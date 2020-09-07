@@ -101,8 +101,25 @@
                 <input type="submit" class="btnConsultar" value="Consultar">
             </form>
         </div>
-        <div class="tabela-atividades">
-
+        <div class="tabela-atividades" cellspacing="0">
+            <table>
+                <tr>
+                    <th class="headerNome">Nome</th>
+                    <th class="headerStatus">Status</th>
+                </tr>
+                <tr>
+                    <td class="celulaNome" id="celulaNome">Joao Vitor Belarmino Dias Silva</td>
+                    <td class="celulaStatus">Entregue</td>
+                </tr>
+                <tr>
+                    <td class="celulaNome" id="celulaNome">Geovana Miranda Mélo</td>
+                    <td class="celulaStatus">Entregue</td>
+                </tr>
+                <tr>
+                    <td class="celulaNome" id="celulaNome">Henrique Nunes</td>
+                    <td class="celulaStatus">Entregue</td>
+                </tr>
+            </table>
         </div>
 
     </section>
@@ -129,33 +146,10 @@
             </div>
         </div>
     </footer>
-    <div class="modal-container" id="modal-atividade">
+    <div class="modal-container" id="modal-atividade-aluno">
         <div class="modal">
-            <h3 class="tituloModal">Criação de listas ordenadas e não ordenadas.</h3>
-            <div class="conteudo-modal">
-                <div class="descricao">
-                    <span>Crie um contexto e uma página com listas ordenadas e não ordenadas.</span>
-                </div>
-                <div class="material">
-                    <div class="materiais">
-                        <a href="#" download="NomeAtividade.txt" class="label">Atividade</a>
-                        <i class="fas fa-download"></i>
-                    </div>
-                    <span class="prazo-entrega">Prazo de entrega: 27/05/2020 até 23:59.</span>
-                </div>
-                <div class="upload">
-                    <span class="tituloUpload">Fazer upload de arquivo</span>
-                    <form action="" method="POST">
-                        <div class="materiais">
-                            <label for="upload" class="label" id="label">Selecionar arquivo...</label>
-                            <input type="file" name="upload" id="upload">
-                            <i class="fas fa-upload"></i>
-                        </div>
-                        <input type="submit" value="Enviar" class="btnEnviar">
-                        <button class="botao">Fechar</button>
-                    </form>
-                </div>
-            </div>
+            
+            
         </div>
     </div>
     <script src="js/app.js"></script>

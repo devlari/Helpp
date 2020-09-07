@@ -23,8 +23,24 @@ function modalAtiv(modalID) {
   }
 }
 
+function modalAtivAluno(modalID) {
+  const modal = document.getElementById(modalID);
+  const nomeAluno = document.getElementById("celulaNome");
+  if(modal) {
+    nomeAluno.addEventListener("click", (e) =>{
+      modal.classList.add("mostrar");
+      console.log(e.target)
+      if(e.target.className == "botao") {
+        modal.classList.remove("mostrar");
+      }
+    });
+  }
+      
+}
+
 function alteraLabel() {
   var input = document.getElementById("upload");
+  if(input){
   input.addEventListener('change', () => {
     if(input.files.length > 0) 
     {
@@ -34,19 +50,23 @@ function alteraLabel() {
     }
   });
 }
+}
 
 const navSlide = () => {
   const burger = document.querySelector('.burguer');
   const nav = document.querySelector('.nav-links');
+  if(nav){
   burger.addEventListener("click", () => {
       nav.classList.toggle('nav-active');
       burger.classList.toggle('toggle');
     });
+} 
 }
 const app = () =>{
   navSlide();
   modalLogin("modal-aviso");
   modalAtiv("modal-atividade");
+  modalAtivAluno("modal-atividade-aluno");
   alteraLabel();
 }
 

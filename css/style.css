@@ -321,7 +321,8 @@
 
 .atividades_prof{
     display:flex;
-    justify-content:center; 
+    align-items: center; 
+    flex-direction: column;
 }
 
 .filtro-atividades{
@@ -355,6 +356,7 @@
     position:absolute;
     right:0;
     bottom:0;
+    font-family: "Lato", sans-serif;
     
 }
 
@@ -387,11 +389,53 @@ select{
     -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
     font-weight: 900;
+    font-size:16px;
+    font-family: "Lato", sans-serif;
     margin-left:7px;
+}
+
+
+
+table{
+    background-color:#c4c4c4;
+    width:100%;
+    border-collapse: collapse;
+    border-radius:15px;
+    margin-bottom:30px;
+    -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+}
+.headerNome{
+    padding:6px;
+    border-bottom:2px solid rgba(0, 0, 0, 0.5);
+    border-right:2px solid rgba(0, 0, 0, 0.5);
+    font-size:20px;
+}
+.headerStatus{
+    padding:6px;
+    border-bottom:2px solid rgba(0, 0, 0, 0.5);
+    font-size:20px;
+}
+.celulaNome{
+    width: 70%;
+    border-right:2px solid rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+.celulaStatus{
+    width: 30%;
+}
+.tabela-atividade, td{
+    padding:10px;
+    text-align:center;
+    font-size:18px;
 }
 
 @media (min-width:769px)
 {
+    .tabela-atividades{
+    width:70%;
+}
     .retangulo-ativ{
         display:flex;
         align-items: center;
@@ -634,7 +678,9 @@ select{
     .modal{
         height: 90%;
     }
-    
+    .tabela-atividades{
+    width:90%;
+}
     
 }
 
