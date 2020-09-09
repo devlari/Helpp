@@ -26,6 +26,7 @@ function modalAtiv(modalID) {
   }
 }
 
+
 function modalAtivAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.getElementById('tabelaAtividade')
