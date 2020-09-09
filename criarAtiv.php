@@ -64,19 +64,6 @@ date_default_timezone_set('America/Sao_Paulo');
                 </div>
                 <input type="submit" class="btnEnviar" value="Enviar"/>
             </form>
-            <!--<form class="formAtiv">
-                <label for="txtNomeAtiv" class="label-nome"><span class="content-name">Nome:</span></label>
-                <input type="text" id="txtNomeAtiv" class="txtNomeAtiv" /><br/>
-                <label for="txtDesc"><span class="content-name">Descrição:</span></label>
-                <input type="text" id="txtDescAtiv" class="txtDescAtiv" />
-                <label for="txtprazoEntrega">Prazo de entrega:</label>
-                <input type="datetime-local" value="<?php echo date("Y-m-d\T23:59");?>"/>
-                <select class="modo-entrega">
-                    <option value="0">Modo de entrega</option>
-                    <option value="1">Online</option>
-                    <option value="2">Presencial</option>
-                </select>
-            </form>-->
         </div>
     </div>
     <script src="js/app.js"></script>
