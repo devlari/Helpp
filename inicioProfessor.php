@@ -114,15 +114,15 @@
                     <th class="headerStatus">Status</th>
                 </tr>
                 <tr>
-                    <td class="celulaNome">Joao Vitor Belarmino Dias Silva</td>
+                    <td class="celulaNome"><span class="nomeAluno">Joao Vitor Belarmino Dias Silva</span></td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
-                    <td class="celulaNome">Geovana Miranda Mélo</td>
+                    <td class="celulaNome"><span class="nomeAluno">Geovana Miranda Mélo</span></td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
-                    <td class="celulaNome">Henrique Nunes</td>
+                    <td class="celulaNome"><span class="nomeAluno">Henrique Nunes</span></td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
             </table>

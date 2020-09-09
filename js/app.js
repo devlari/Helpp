@@ -32,7 +32,7 @@ function modalAtivAluno(modalID) {
   var nomeAluno = document.getElementsByClassName('celulaNome');
   if(modal) {
     tabela.addEventListener("click", (e) =>{
-        if(e.target.className == "celulaNome"){
+        if(e.target.className == "nomeAluno"){
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) =>{
           if(e.target.className == "botao-fechar" || e.target == modal) {
