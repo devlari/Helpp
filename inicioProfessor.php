@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    
+
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet" />
@@ -77,7 +77,9 @@
         <div class="filtro-atividades">
             <form>
                 <div class="div-turma1">
-                    <label for="filtro-turma2"><h1>Turma:</h1></label>
+                    <label for="filtro-turma2">
+                        <h1>Turma:</h1>
+                    </label>
                     <select name="filtro-turma2" class="filtro-turma2" id="filtro-turma2">
                         <option value="1">3Ai</option>
                         <option value="2">2Be</option>
@@ -85,14 +87,18 @@
                     </select>
                 </div>
                 <div class="div-materia">
-                    <label for="filtro-materia"><h1>Matéria:</h1></label>
+                    <label for="filtro-materia">
+                        <h1>Matéria:</h1>
+                    </label>
                     <select name="filtro-materia" class="filtro-materia" id="filtro-materia">
                         <option value="1">Química</option>
                         <option value="2">Física</option>
                     </select>
                 </div>
                 <div class="div-atividade">
-                    <label for="filtro-atividade"><h1>Atividade:</h1></label>
+                    <label for="filtro-atividade">
+                        <h1>Atividade:</h1>
+                    </label>
                     <select name="filtro-atividade" class="filtro-atividade" id="filtro-atividade">
                         <option value="1">Ánions e Cátions</option>
                     </select>
@@ -102,21 +108,21 @@
             </form>
         </div>
         <div class="tabela-atividades" cellspacing="0">
-            <table>
+            <table id="tabelaAtividade">
                 <tr>
                     <th class="headerNome">Nome</th>
                     <th class="headerStatus">Status</th>
                 </tr>
                 <tr>
-                    <td class="celulaNome" id="celulaNome">Joao Vitor Belarmino Dias Silva</td>
+                    <td class="celulaNome">Joao Vitor Belarmino Dias Silva</td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
-                    <td class="celulaNome" id="celulaNome">Geovana Miranda Mélo</td>
+                    <td class="celulaNome">Geovana Miranda Mélo</td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
-                    <td class="celulaNome" id="celulaNome">Henrique Nunes</td>
+                    <td class="celulaNome">Henrique Nunes</td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
             </table>
@@ -147,9 +153,19 @@
         </div>
     </footer>
     <div class="modal-container" id="modal-atividade-aluno">
-        <div class="modal">
-            
-            
+        <div class="modal-atividade">
+            <h1 class="titulodomodal">João Vitor Belarmino</h1>
+            <div class="traco"></div>
+            <div class="conteudo-modal">
+                <span class="prazo-para">Prazo de entrega: 27/05/2020 até 23:59.</span>
+                <h2 class="entregue-em">Entregue em 16/05/2020 às 13:11.</h2>
+                <div class="materiais">
+                    <a href="#" download="NomeAtividade.txt" class="label">Atividade</a>
+                    <i class="fas fa-download"></i>
+                </div>
+                <button class="botao-fechar">Fechar</button>
+            </div>
+
         </div>
     </div>
     <script src="js/app.js"></script>

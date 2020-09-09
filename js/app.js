@@ -3,6 +3,7 @@ function modalLogin(modalID) {
   if (modal) {
     modal.classList.add("mostrar");
     modal.addEventListener("click", (e) => {
+      
       if (e.target.className == "botao") {
         modal.classList.remove("mostrar");
       }
@@ -16,27 +17,33 @@ function modalAtiv(modalID) {
   if(modal) {
     atividade.addEventListener("click", (e) =>{
       modal.classList.add("mostrar");
-      if(e.target.className == "botao") {
-        modal.classList.remove("mostrar");
-      }
+      modal.addEventListener("click", (e) =>{
+        if(e.target.className == "botao") {
+          modal.classList.remove("mostrar");
+        }
+      });
     });
   }
 }
 
 function modalAtivAluno(modalID) {
   const modal = document.getElementById(modalID);
-  const nomeAluno = document.getElementById("celulaNome");
+  const tabela = document.getElementById('tabelaAtividade')
+  var nomeAluno = document.getElementsByClassName('celulaNome');
   if(modal) {
-    nomeAluno.addEventListener("click", (e) =>{
-      modal.classList.add("mostrar");
-      console.log(e.target)
-      if(e.target.className == "botao") {
-        modal.classList.remove("mostrar");
+    tabela.addEventListener("click", (e) =>{
+        if(e.target.className == "celulaNome"){
+        modal.classList.add("mostrar");
+        modal.addEventListener("click", (e) =>{
+          if(e.target.className == "botao-fechar" || e.target == modal) {
+            modal.classList.remove("mostrar");
+          }
+        });
       }
-    });
+      });
+    }
   }
-      
-}
+
 
 function alteraLabel() {
   var input = document.getElementById("upload");
