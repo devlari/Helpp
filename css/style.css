@@ -89,19 +89,6 @@
     font-weight: 900;
 }
 
-.filtro_disciplina1{
-    margin-left:9px;
-    width: 35%;
-    outline: none;
-    border:0px;
-    border-radius:5px;
-    padding:10px;
-    background-color:#c4c4c4;
-    -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
-    font-weight: 900;
-}
 
 .botao2{
     width: 35px;
@@ -399,10 +386,70 @@ select{
     font-family: "Lato", sans-serif;
     margin-left:7px;
 }
+.conteudo-gestor{
+    padding-top:12vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: 88vh;
+    
+}
+.tabela-pps th{
+    padding:0px 12px 6px 12px;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+    border-right:1px solid black;
+}
+.headerMencao{
+    border-right:0!important;
+}
+.tabela-pps td{
+    padding:0px 12px 6px 12px;
+    border-right:1px solid black;
+}
+.celulaMencao{
+    border-right:0!important;
+}
 
+.tabela-pps{
+    position:relative;
+    width: 80%;
+    height:75%;
+}
 
+.tabela-pps table{
+    background-color:#c4c4c4;
+    width:100%;
+    height:100%;
+    border-collapse: collapse;
+    border-radius:15px;
+    margin-bottom:30px;
+    -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    display:block;
+    
+}
 
-table{
+.importarPPs{
+    background-color:#1ec2b4;
+    border:0;
+    border-radius:25px;
+    font-weight: 900;
+    padding:10px;
+    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    font-size:22px;
+    outline:none;
+    position:absolute;
+    right:0;
+    bottom:-60px;
+    font-family: "Lato", sans-serif;
+    width:15%;
+}
+.tabela-atividades table{
     background-color:#c4c4c4;
     width:100%;
     border-collapse: collapse;
@@ -652,7 +699,17 @@ table{
         width:16%;
     }
 }
-
+@media (max-width:1052px){
+    .dados-user{
+        display:none;
+    }
+    .tabela-pps{
+        width:95%;
+    }
+    .tabela-pps table{
+        overflow:scroll;
+    }
+}
 @media (min-width:769px){
     
     .tabela-atividades{
@@ -935,8 +992,11 @@ table{
         height: 90%;
     }
     .tabela-atividades{
-    width:90%;
-}
+        width:90%;
+    }
+    .importarPPs{
+        width:100%;
+    }
     
 }
 

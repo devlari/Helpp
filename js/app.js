@@ -30,7 +30,6 @@ function modalAtiv(modalID) {
 function modalAtivAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.getElementById('tabelaAtividade')
-  var nomeAluno = document.getElementsByClassName('celulaNome');
   if(modal) {
     tabela.addEventListener("click", (e) =>{
         if(e.target.className == "nomeAluno"){
