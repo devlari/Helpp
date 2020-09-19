@@ -132,7 +132,7 @@
                             <i class="fas fa-upload"></i>
                         </div>
                         <input type="submit" value="Enviar" class="btnEnviar">
-                        <button class="botao">Fechar</button>
+                        <div class="botao">Fechar</div>
                     </form>
                 </div>
             </div>

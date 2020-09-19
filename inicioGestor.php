@@ -62,9 +62,21 @@
                     <td class="celulaConcluiu"></td>
                     <td class="celulaMencao"></td>
                 </tr>
-
             </table>
-            <button class="importarPPs">Importar</button>
+            <form method="POST">
+                <div class="importarPPs">
+                    <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
+                    <input type="file" name="uploadPPs" id="uploadPPs">
+                </div>
+                <div class="modal-container" id="modal-alert-import">
+                    <div class="modal-alert">
+                        <h3 class="tituloModal">Atenção!</h3><br />
+                        <span id="spnAviso"></span><br/>
+                        <input type="submit" class="btnImportar" value="Sim">
+                        <div class="botao">Não</div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
