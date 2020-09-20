@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -15,13 +14,13 @@
         <img src="img/helpp.png" class="logo"></img>
       </div>
       <div class="half-two">
-        <form class="frmLogin" method="POST">
+        <form class="frmLogin" method="POST" action="atualizandoSenha.php">
           <div class="form">
             <h1 class="tituloForm">REDEFINIR SENHA</h1><br/>
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha2" placeholder="Senha" name="txtSenha" id="txtSenha" required>
             <label for="txtSenha2" id="lblSenha2" class="lblSenha2"></label>
-            <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="txtSenha" id="txtSenha2" required><br/>  
+            <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="txtSenha2" id="txtSenha2" required><br/>  
             <input type="submit" class="btnEntrar2" value="Entrar"><br/><br/>
           </div>
         </form>

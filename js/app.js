@@ -10,6 +10,21 @@ function modalLogin(modalID) {
     });
   }
 }
+function modalAlert(modalID) {
+  const modal = document.getElementById(modalID);
+  var input = document.getElementById("uploadPPs");
+  input.addEventListener('change', () => {
+    modal.classList.add("mostrar");
+    nome = input.files[0].name;
+      document.getElementById("spnAviso").innerHTML="Tem certeza que deseja enviar o arquivo "+nome+"?";
+      modal.addEventListener("click", (e) => {
+        if (e.target.className == "botao") {
+          input.value="";
+          modal.classList.remove("mostrar");
+        }
+      });
+  });
+}
 
 function modalAtiv(modalID) {
   const modal = document.getElementById(modalID);
@@ -44,7 +59,6 @@ function modalAtivAluno(modalID) {
     }
   }
 
-
 function alteraLabel() {
   var input = document.getElementById("upload");
   if(input){
@@ -75,6 +89,7 @@ const app = () =>{
   modalAtiv("modal-atividade");
   modalAtivAluno("modal-atividade-aluno");
   alteraLabel();
+  modalAlert("modal-alert-import");
 }
 
 app();

@@ -15,12 +15,12 @@
         <img src="img/helpp.png" class="logo"></img>
       </div>
       <div class="half-two">
-        <form class="frmLogin" method="POST">
+        <form class="frmLogin" method="POST" action="login.php">
           <div class="form">
             <h1 class="tituloForm">LOGIN</h1><br/>
             <label for="txtRM" id="lblRM" class="lblRM"></label>
             <input type="text" class="txtrm" placeholder="RM" name="txtRM" id="txtRM" autofocus autocomplete="off" required>
-            <select name="cargo" id="cmbCargo" name="cmbCargo" required>
+            <select name="cargo" id="cmbCargo" required>
               <option value="aluno">Aluno</option>
               <option value="professor">Professor</option>
               <option value="gestor">Gestor</option>

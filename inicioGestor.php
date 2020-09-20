@@ -2,6 +2,13 @@
 <html lang="pt-br">
 
 <head>
+<?php
+    session_start();
+    if ($_SESSION['cargo'] != "gestor")
+    {
+        header('location:index.php');
+    }
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
@@ -62,9 +69,21 @@
                     <td class="celulaConcluiu"></td>
                     <td class="celulaMencao"></td>
                 </tr>
-
             </table>
-            <button class="importarPPs">Importar</button>
+            <form method="POST">
+                <div class="importarPPs">
+                    <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
+                    <input type="file" name="uploadPPs" id="uploadPPs">
+                </div>
+                <div class="modal-container" id="modal-alert-import">
+                    <div class="modal-alert">
+                        <h3 class="tituloModal">Atenção!</h3><br />
+                        <span id="spnAviso"></span><br/>
+                        <input type="submit" class="btnImportar" value="Sim">
+                        <div class="botao">Não</div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
