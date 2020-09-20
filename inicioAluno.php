@@ -2,6 +2,22 @@
 <html lang="en">
 
 <head>
+<?php
+    session_start();
+    include('conexao.php');
+
+    if ($_SESSION['cargo'] != "aluno")
+    {
+        header('location:index.php');
+    }
+    //Select precisa por inner join pra achar a turma também
+    $query = "SELECT nomeUsuario FROM usuario
+            WHERE rmUsuario = '{$_SESSION['usuario']}'";
+    $dados = mysqli_query($conexao, $query);
+    while($result = mysqli_fetch_array($dados)){
+        $nome = $result["nomeUsuario"];
+    }
+?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
@@ -35,8 +51,8 @@
     <section class="conteudo">
         <div class="dados-user">
             <ul>
-                <li>Olá, Artur</li>
-                <li>RM: 177571</li>
+                <li>Olá, <?php echo $nome ?></li>
+                <li>RM: <?php echo $_SESSION['usuario'] ?></li>
                 <li>Curso: Informática</li>
                 <li>Série: 3ºAi</li>
             </ul>
