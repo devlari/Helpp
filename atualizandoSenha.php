@@ -27,14 +27,17 @@
 		{
 			header("location:inicioAluno.php");
 		}
+		
 		if($_SESSION['cargo'] == "professor")
 		{
 			header("location:inicioProfessor.php");
 		}
+		
 		if($_SESSION['cargo'] == "gestor")
 		{
 			header("location:inicioGestor.php");
 		}
+		
 	}
 
 ?> 

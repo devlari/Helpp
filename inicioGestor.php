@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-<?php
+    <?php
     session_start();
     if ($_SESSION['cargo'] != "gestor")
     {
@@ -73,17 +73,20 @@
             <form method="POST">
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
-                    <input type="file" name="uploadPPs" id="uploadPPs">
+                    <input type="file" name="uploadPPs" id="uploadPPs" accept=".xls"/>
                 </div>
                 <div class="modal-container" id="modal-alert-import">
                     <div class="modal-alert">
-                        <h3 class="tituloModal">Atenção!</h3><br />
-                        <span id="spnAviso"></span><br/>
-                        <input type="submit" class="btnImportar" value="Sim">
-                        <div class="botao">Não</div>
+                        <h3 class="tituloModalAlert">Atenção!</h3>
+                        <div class="traco"></div><br/>
+                        <span id="spnAviso">aaaaaaaaaaaaaaaaaaaaaaaaaaaa?</span><br />
+                        <div class="botoes">
+                            <input type="submit" class="btnImportar" value="Sim">
+                            <div class="botao">Não</div>
+                        </div>
                     </div>
-                </form>
-            </div>
+            </form>
+        </div>
         </div>
     </section>
 
