@@ -19,7 +19,6 @@
 		$result = mysqli_query($conexao, $query);
 
 		header("location:inicioAluno.php");
-		session_destroy();
 	}
 	else
 	{
