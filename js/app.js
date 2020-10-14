@@ -73,13 +73,51 @@ function alteraLabel() {
     }
 }
 
+
+window.onscroll = scroll;
+
+function scroll() {
+  var scrollTop = window.pageYOffset;
+  if (scrollTop > 30) {
+    try {
+      document.getElementById('navbar-helpp').id = 'depois'
+    } catch (e) { 
+      false 
+    }
+  } else {
+    try {
+      document.getElementById('depois').id = 'navbar-helpp'
+    } catch (e) { 
+      false
+    }
+  }
+}
+
+
 const navSlide = () => {
     const burger = document.querySelector('.burguer');
     const nav = document.querySelector('.nav-links');
+    const tela = document.getElementById("tela");
+    const tela2 = document.getElementById("tela2");
+    const rodape = document.getElementById("rodape");
     if (nav) {
         burger.addEventListener("click", () => {
-            nav.classList.toggle('nav-active');
-            burger.classList.toggle('toggle');
+            nav.classList.add('nav-active');
+            tela.addEventListener("click", (e) =>{
+                if(e.target !== nav){
+                    nav.classList.remove('nav-active');
+                }
+            });
+            tela2.addEventListener("click", (e) =>{
+                if(e.target !== nav){
+                    nav.classList.remove('nav-active');
+                }
+            });
+            rodape.addEventListener("click", (e) =>{
+                if(e.target !== nav){
+                    nav.classList.remove('nav-active');
+                }
+            });
         });
     }
 }
@@ -90,6 +128,7 @@ const app = () => {
     modalAtivAluno("modal-atividade-aluno");
     alteraLabel();
     modalAlert("modal-alert-import");
+    scroll();
 }
 
 app();

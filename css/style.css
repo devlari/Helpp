@@ -726,6 +726,7 @@ select{
 #spnAviso{
     font-size:20px;
 }
+
 @media (min-width:1290px){
     .formAtiv input[type='datetime-local']{
         width:55%;
@@ -851,7 +852,7 @@ select{
         width:15vw;
     }
     .turma{
-        height:20%;
+        height:16%;
     }
     .modo-entrega{
         height: 20%;

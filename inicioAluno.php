@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-<?php
-    session_start();
-    include('conexao.php');
-
-    if ($_SESSION['cargo'] != "aluno")
-    {
-        header('location:index.php');
-    }
-    //Select precisa por inner join pra achar a turma também
-    $query = "SELECT nomeUsuario FROM usuario
-            WHERE rmUsuario = '{$_SESSION['usuario']}'";
-    $dados = mysqli_query($conexao, $query);
-    while($result = mysqli_fetch_array($dados)){
-        $nome = $result["nomeUsuario"];
-    }
-?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
@@ -30,16 +14,16 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span>Atividades</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -48,11 +32,11 @@
         </div>
     </nav>
 
-    <section class="conteudo">
+    <section class="conteudo" id="tela">
         <div class="dados-user">
             <ul>
-                <li>Olá, <?php echo $nome ?></li>
-                <li>RM: <?php echo $_SESSION['usuario'] ?></li>
+                <li>Olá, Otário</li>
+                <li>RM: 180500</li>
                 <li>Curso: Informática</li>
                 <li>Série: 3ºAi</li>
             </ul>
@@ -65,7 +49,7 @@
     <div class="Atividade-titulo">
         <h1>Atividades</h1>
     </div>
-    <section class="atividades">
+    <section class="atividades" id="tela2">
         <form>
             <div class="filtro">
                 <label for="filtro_disciplina">
@@ -102,7 +86,7 @@
         </div>
 
     </section>
-    <footer>
+    <footer id="rodape">
         <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">

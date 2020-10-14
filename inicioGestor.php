@@ -2,13 +2,6 @@
 <html lang="pt-br">
 
 <head>
-    <?php
-    session_start();
-    if ($_SESSION['cargo'] != "gestor")
-    {
-        header('location:index.php');
-    }
-?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
@@ -22,7 +15,7 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="img/helpp.png" />
         </div>
@@ -30,7 +23,7 @@
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -39,7 +32,7 @@
         </div>
     </nav>
 
-    <section class="conteudo-gestor">
+    <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
                 <li>Olá, Flávia</li>

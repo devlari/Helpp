@@ -1,13 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<?php
-    session_start();
-    if ($_SESSION['cargo'] != "professor")
-    {
-        header('location:index.php');
-    }
-?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
@@ -21,17 +14,17 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span>Criar atividade</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span>Atividades</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
+            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -40,7 +33,7 @@
         </div>
     </nav>
 
-    <section class="conteudo">
+    <section class="conteudo" id="tela">
         <div class="dados-user">
             <ul>
                 <li>Olá, Agatha</li>
@@ -79,7 +72,7 @@
     <div class="Atividade-titulo">
         <h1>Atividades recebidas</h1>
     </div>
-    <section class="atividades_prof">
+    <section class="atividades_prof" id="tela2">
         <div class="filtro-atividades">
             <form>
                 <div class="div-turma1">
@@ -135,7 +128,7 @@
         </div>
 
     </section>
-    <footer>
+    <footer id="rodape">
         <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">
