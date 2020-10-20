@@ -18,11 +18,6 @@ span {
   left: 20px;
 }
 
-.dark-mode {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-}
 
 nav {
   position:fixed;
@@ -118,7 +113,7 @@ nav {
 @media (max-width: 768px) {
   .nav-links {
     width: 50vw;
-    box-shadow: none;
+    
   }
   .burguer {
     cursor: pointer;
@@ -173,7 +168,10 @@ nav {
   nav{
     display:flex;
     justify-content: center;
-    
+    height: 10vh;
+  }
+  .logo{
+    height: 16vh;
   }
   .burguer{
     display:none;

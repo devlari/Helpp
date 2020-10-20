@@ -197,14 +197,23 @@
                     <div class="competencias">
                         <h3 class="titulo-competencias">Competências</h3>
                         <div class="traco"></div>
+                        <div class="spn-requerimentos">
+                            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>
+                        </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Habilidades</h3>
                         <div class="traco"></div>
+                        <div class="spn-requerimentos">
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>
+                        </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
                         <div class="traco"></div>
+                        <div class="spn-requerimentos">
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,6 +234,8 @@
                     <a href="#" download="NomeAtividade.txt" class="label">Atividade</a>
                     <i class="fas fa-download"></i>
                 </div>
+            </div>
+            <div class="botao12">
                 <button class="botao-fechar">Fechar</button>
             </div>
 

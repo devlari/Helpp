@@ -181,7 +181,7 @@
 
 .conteudo-modal {
   width: 90%;
-  height: 100%;
+
   position: relative;
   margin-top: 15px;
   margin-left: 5%;
@@ -539,9 +539,9 @@ select {
   cursor: pointer;
   font-size: 16px;
   outline: none;
-  color:black;
+  color: black;
   text-decoration: none;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 .traco {
@@ -771,6 +771,7 @@ select {
   height: 75%;
   border-radius: 10px;
   position: relative;
+  animation: modal 0.6s ease-out;
 }
 .Status-Mencao-PP {
   width: 15%;
@@ -780,10 +781,10 @@ select {
   font-weight: 600;
 }
 .botao12 {
-    position:absolute;
-    right:0;
-    bottom:0;
-    margin:20px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
 }
 .tabela-ativ-geral {
   display: flex;
@@ -829,11 +830,20 @@ select {
   height: 150px;
   background-color: #a9a9a9;
   margin: 15px;
-  text-align: center;
   border-radius: 10px;
   -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.titulo-competencias {
+  text-align: center;
+}
+
+.spn-requerimentos {
+  width: 95%;
+  padding-left: 20px;
+  overflow: hidden;
 }
 @media (min-width: 1290px) {
   .formAtiv input[type="datetime-local"] {
@@ -856,6 +866,9 @@ select {
   .turma {
     width: 16%;
   }
+  .modal-doc30{
+    height: 70%;
+  }
 }
 @media (max-width: 1052px) {
   .dados-user {
@@ -866,6 +879,12 @@ select {
   }
   .tabela-pps table {
     overflow: scroll;
+  }
+  .modal-doc30{
+    height: 85%;
+  }
+  .competencias{
+    height: 175px;
   }
 }
 @media (min-width: 769px) {
@@ -1121,6 +1140,32 @@ select {
   .turma {
     width: 30%;
   }
+  .modal-doc30{
+    height: 90%;
+  }
+  .competencias{
+    
+    height: 200px;
+  }
+  .spn-requerimentos{
+    font-size:14px;
+  }
+  .tabela-ativ-geral{
+    width: 70%;
+  }
+  .tabela-atividades-pp{
+    width:50%;
+  }
+  .tabela-pps-prof{
+    overflow: scroll;
+  }
+  .tabelaPpProf{
+    width: 90%;
+  }
+  .modal-atividade{
+    width:60%;
+    height: 50%;
+  }
 }
 
 @media (max-width: 425px) {
@@ -1146,6 +1191,7 @@ select {
   .importarPPs {
     width: 100%;
   }
+  
 }
 
 @media (max-width: 564px) {
@@ -1157,6 +1203,62 @@ select {
   }
   .desc-section {
     width: 100%;
+  }
+  .modal-atividade{
+    height: 55%;
+  }
+  
+}
+
+@media (max-width:700px){
+  .competencias{
+    height: 220px;
+  }
+}
+
+@media (max-width:600px){
+  .tabela-pps{
+    height: 65%;
+  }
+  .wrapper{
+    height: 87vh;
+    padding-top:0;
+  }
+  .upload-arquivo{
+    height: 10%;
+  }
+  .modo-entrega{
+    height: 10%;
+  }
+  .turma{
+    height: 10%;
+  }
+  .requerimentos{
+    flex-direction: column;
+    
+  }
+  .modal-doc30{
+    height: 100%;
+    overflow-y: scroll;
+  }
+  
+  .Status-Mencao-PP{
+    width: auto;
+    font-size:12px;
+  }
+  .botao12{
+    position:absolute;
+    bottom:auto;
+  }
+  .tabela-atividades-pp{
+    width:30%;
+  }
+  .competencias{
+    width: 95%;
+  }
+  .modal-atividade{
+    width: 70%;
+    height: 55%;
   }
 }
 
@@ -1212,12 +1314,27 @@ select {
     display: flex;
     justify-content: center;
   }
+  .modal-atividade{
+    width: 80%;
+  }
 }
 
 @media (max-width: 325px) {
   .modal {
     height: 100%;
   }
+  .Status-Mencao-PP{
+    font-size:9px;
+  }
+  .modal-doc30{
+    width: 95%;
+    height: 95%;
+  }
+  .modal-container{
+    width: 100%;
+    height: 100%;
+  }
+  
 }
 
 @keyframes kf_fadeIn {

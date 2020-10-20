@@ -52,7 +52,7 @@ function modalDocAluno(modalID) {
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e)=>{
-          if(e.target.className == "botao-fechar"){
+          if(e.target.className == "botao-fechar" || e.target == modal){
             modal.classList.remove("mostrar");
           }
         });
