@@ -80,7 +80,6 @@
                     </div>
             </form>
         </div>
-        </div>
     </section>
 
     <script src="js/app.js"></script>

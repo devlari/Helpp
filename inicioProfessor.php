@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
     <script src="https://kit.fontawesome.com/43a2aaa0b4.js" crossorigin="anonymous"></script>
 </head>
@@ -24,7 +23,7 @@
             <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
-            
+
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -42,29 +41,44 @@
             </ul>
         </div>
         <div class="retangulo-pp">
-            <div class="tabela">
-                <div class="div-filtro">
-                    <form class="filtro-pp">
-                        <div class="div-turma">
-                            <label for="filtro_turma1" class="lbl_filtro_turma1">
-                                <h1>Turma:</h1>
-                            </label>
-                            <select class="filtro-turma1" name="filtro_turma1" id="filtro_turma1">
-                                <option value="1">Química</option>
-                                <option value="2">Física</option>
-                            </select>
-                        </div>
-                        <div class="div-disciplina">
-                            <label for="filtro_disciplina">
-                                <h1>Disciplina:</h1>
-                            </label>
-                            <select class="filtro_disciplina1" name="filtro_disciplina" id="filtro_disciplina1">
-                                <option>TPI</option>
-                            </select>
-                        </div>
-                    </form>
-
-                </div>
+            <div class="div-filtro">
+                <form class="filtro-pp">
+                    <div class="div-turma">
+                        <label for="filtro_turma1" class="lbl_filtro_turma1">
+                            <h1>Turma:</h1>
+                        </label>
+                        <select class="filtro-turma1" name="filtro_turma1" id="filtro_turma1">
+                            <option value="1">Química</option>
+                            <option value="2">Física</option>
+                        </select>
+                    </div>
+                    <div class="div-disciplina">
+                        <label for="filtro_disciplina">
+                            <h1>Disciplina:</h1>
+                        </label>
+                        <select class="filtro_disciplina1" name="filtro_disciplina" id="filtro_disciplina1">
+                            <option>TPI</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="tabelaPpProf">
+                <table class="tabela-pps-prof" id="tabelaProfsPP">
+                    <tr>
+                        <th class="headerTurmaPP">Turma PP</th>
+                        <th class="headerAluno">Aluno</th>
+                        <th class="headerDisciplina">Disciplina</th>
+                        <th class="headerTurmaAtual">Turma Atual</th>
+                        <th class="headerEstado">Status</th>
+                    </tr>
+                    <tr>
+                        <td class="celulaTurmaPP">2Ae</td>
+                        <td class="celulaNomeAluno">Emanuel Lopes Miranda</td>
+                        <td class="celulaDisciplina">Química</td>
+                        <td class="celulaTurmaAtual">3Ae</td>
+                        <td class="celulaEstado">Em andamento</td>
+                    </tr>
+                </table>
             </div>
             <button class="consultarpp">Consultar PP's</button>
         </div>
@@ -132,8 +146,7 @@
         <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="img/crowntech.png"
-                        class="logo-rodape" /></a>
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="img/crowntech.png" class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />
                     <span class="endereco">R. Alcântara, 113 - Vila Guilherme, São Paulo - SP, 02110-010</span>
@@ -151,6 +164,16 @@
             </div>
         </div>
     </footer>
+    <div class="modal-container" id="modal-doc-aluno">
+        <div class="modal-doc30">
+            <h1 class="titulodomodal">Marcia Pezzanato</h1>
+            <div class="traco"></div>
+            <div class="conteudo-modal">
+                <span class="dados-pp">PP em: ...</span>
+                <button class="botao-fechar">Fechar</button>
+            </div>
+        </div>
+    </div>
     <div class="modal-container" id="modal-atividade-aluno">
         <div class="modal-atividade">
             <h1 class="titulodomodal">João Vitor Belarmino</h1>

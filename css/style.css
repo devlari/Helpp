@@ -467,6 +467,8 @@ select{
     -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    text-align:center;
 }
 .headerNome{
     padding:6px;
@@ -493,7 +495,7 @@ select{
 }
   
 
-.tabela-atividade, td{
+.tabela-atividades td{
     padding:10px;
     text-align:center;
     font-size:18px;
@@ -538,6 +540,8 @@ select{
     font-size:16px;
     outline:none;
     margin-top:20px;
+    position:absolute;
+    right:0;
 }
 
 .traco{
@@ -725,6 +729,51 @@ select{
 }
 #spnAviso{
     font-size:20px;
+}
+
+.tabelaPpProf{
+    height:100%;
+}
+.celulaEstado{
+    border-right:none !important;
+}
+.headerEstado{
+    border-right:none !important;
+}
+.tabela-pps-prof th{
+    padding:0px 12px 6px 12px;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+    border-right:1px solid black;
+}
+.tabela-pps-prof td{
+    padding:0px 12px 6px 12px;
+    border-right:1px solid black;
+    text-align:center;
+    font-size:16px;
+}
+.tabela-pps-prof{
+    background-color:#c4c4c4;
+    width:100%;
+    height:100%;
+    border-collapse: collapse;
+    border-radius:15px;
+    margin-bottom:30px;
+    -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    display:block;
+}
+
+.celulaNomeAluno{
+    cursor:pointer;
+}
+
+.modal-doc30{
+    width:95%;
+    background-color:#c4c4c4;
+    height: 60%;
+    border-radius:10px;
 }
 
 @media (min-width:1290px){
