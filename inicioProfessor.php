@@ -19,8 +19,8 @@
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
             <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="#" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
 
