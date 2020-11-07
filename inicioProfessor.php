@@ -48,8 +48,8 @@
                             <h1>Turma:</h1>
                         </label>
                         <select class="filtro-turma1" name="filtro_turma1" id="filtro_turma1">
-                            <option value="1">Química</option>
-                            <option value="2">Física</option>
+                            <option value="1">2AE</option>
+                            <option value="2">2AI</option>
                         </select>
                     </div>
                     <div class="div-disciplina">
