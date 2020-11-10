@@ -58,6 +58,7 @@
     border-radius: 50px;
     font-weight: 900;
     font-size: 24px;
+    font-family: "Lato", sans-serif;
     -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
@@ -369,7 +370,7 @@ a.label {
     outline: none;
     position: absolute;
     right: 0;
-    bottom: 0;
+    top:90px;
     font-family: "Lato", sans-serif;
 }
 
@@ -396,7 +397,7 @@ select {
     outline: none;
     border: 0px;
     border-radius: 5px;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 5px;
     background-color: #c4c4c4;
     -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
@@ -496,13 +497,21 @@ select {
     border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     border-right: 2px solid rgba(0, 0, 0, 0.5);
     font-size: 20px;
-    font-weight: 900;
 }
 
 .headerStatus {
     padding: 6px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     font-size: 20px;
+}
+.headerTurma{
+    padding: 6px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+}
+.celulaTurma{
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 .celulaNome {
@@ -980,7 +989,10 @@ select {
     outline: none;
     padding: 5px 10px 5px 10px;
 }
-
+.tabela-atividades{
+    margin-top:50px;
+    width: 100%;
+}
 @media (min-width: 1290px) {
     .formAtiv input[type="datetime-local"] {
         width: 55%;
@@ -991,6 +1003,13 @@ select {
     .turma {
         width: 16%;
     }
+    .tabelaPpProf{
+        width: 100%;
+    }
+    .headerAluno{
+        width: 100%;
+    }
+    
 }
 
 @media (max-width: 1289px) {
@@ -1027,9 +1046,6 @@ select {
 }
 
 @media (min-width: 769px) {
-    .tabela-atividades {
-        width: 70%;
-    }
     .retangulo-ativ {
         display: flex;
         align-items: center;
@@ -1040,7 +1056,7 @@ select {
         width: 100%;
     }
     .quadro-ativ {
-        width: 70%;
+        width: 80%;
         height: 50vh;
         background-color: #c4c4c4;
         border-radius: 15px;
@@ -1099,6 +1115,7 @@ select {
         margin-top: 50px;
     }
     .div-filtro {
+        left:0;
         top: -50px;
     }
     .div-turma {
@@ -1232,7 +1249,8 @@ select {
         font-size: 14px;
     }
     .Atividade-titulo {
-        font-size: 12px;
+        font-size: 18px;
+        margin-top:20px;
     }
     .logo-rodape {
         height: 100px;
@@ -1313,9 +1331,6 @@ select {
     .atividades_prof .retangulo-ativ{
         width: 90%;
     }
-    .tabela-atividades{
-        width:90%;
-    }
 }
 
 @media (max-width: 425px) {
@@ -1335,11 +1350,13 @@ select {
     .modal {
         height: 90%;
     }
-    .tabela-atividades {
-        width: 90%;
-    }
     .importarPPs {
         width: 100%;
+    }
+    .filtro-atividades{
+        display:flex;
+        flex-direction: column;
+
     }
 }
 
@@ -1458,12 +1475,13 @@ select {
 
 @media (max-width: 495px) {
     .btnCadastrarAtividade {
-        position: relative;
+        display:none;
     }
     .btnConsultar {
-        margin-left: 50px;
         margin-top: 10px;
         position: relative;
+        top:15px;
+        width: 100%;
     }
 }
 

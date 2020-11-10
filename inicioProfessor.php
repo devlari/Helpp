@@ -18,11 +18,11 @@
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
-            <li><a href="#" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
+            <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            <li><a href="index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
 
         </ul>
         <div class="burguer" id="burger">
@@ -60,7 +60,7 @@
                             <option>TPI</option>
                         </select>
                     </div>
-                </form>
+                
             </div>
             <div class="tabelaPpProf">
                 <table class="tabela-pps-prof" id="tabelaProfsPP">
@@ -80,7 +80,8 @@
                     </tr>
                 </table>
             </div>
-            <button class="consultarpp">Consultar PP's</button>
+            <input type="submit" class="consultarpp" value="Consultar PP's">
+            </form>
         </div>
     </section>
     <section class="atividades_prof" id="tela2">
@@ -132,27 +133,32 @@
                 <a class="btnCadastrarAtividade" href="cadastrarAtiv.php">Cadastrar atividade</a>
                 <input type="submit" class="btnConsultar" value="Consultar">
             </form>
-        </div>
-        <div class="tabela-atividades" cellspacing="0">
+            <div class="tabela-atividades" cellspacing="0">
             <table id="tabelaAtividade">
                 <tr>
                     <th class="headerNome">Nome</th>
+                    <th class="headerTurma">Turma</th>
                     <th class="headerStatus">Status</th>
                 </tr>
                 <tr>
                     <td class="celulaNome"><span class="nomeAluno">Joao Vitor Belarmino Dias Silva</span></td>
+                    <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
                     <td class="celulaNome"><span class="nomeAluno">Geovana Miranda Mélo</span></td>
+                    <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
                     <td class="celulaNome"><span class="nomeAluno">Henrique Nunes</span></td>
+                    <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
             </table>
         </div>
+        </div>
+        
 
     </section>
 
@@ -232,7 +238,7 @@
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="#">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.html">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
         </div>
