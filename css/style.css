@@ -263,7 +263,9 @@ input[type="file"] {
     top: 10px;
     right: 10px;
 }
-
+.frmBasesTec .btnEnviar{
+    width: 40%;
+}
 .btnEnviar {
     background-color: #1ec2b4;
     border: 0;
@@ -278,7 +280,7 @@ input[type="file"] {
     outline: none;
     margin-top: 15px;
     font-family: "Lato", sans-serif;
-    width: 40%;
+    
 }
 
 .label {
@@ -1034,6 +1036,9 @@ select {
         justify-content: center;
         margin-bottom: 70px;
     }
+    .atividades_prof .retangulo-ativ{
+        width: 100%;
+    }
     .quadro-ativ {
         width: 70%;
         height: 50vh;
@@ -1304,6 +1309,13 @@ select {
         width: 60%;
         height: 50%;
     }
+
+    .atividades_prof .retangulo-ativ{
+        width: 90%;
+    }
+    .tabela-atividades{
+        width:90%;
+    }
 }
 
 @media (max-width: 425px) {
@@ -1409,7 +1421,7 @@ select {
     .frmBasesTec {
         width: 100%;
     }
-    .btnEnviar {
+    .frmBasesTec .btnEnviar {
         width: 100%;
     }
 }

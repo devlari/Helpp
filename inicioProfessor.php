@@ -83,10 +83,23 @@
             <button class="consultarpp">Consultar PP's</button>
         </div>
     </section>
-    <div class="Atividade-titulo">
-        <h1>Atividades recebidas</h1>
-    </div>
     <section class="atividades_prof" id="tela2">
+        <div class="Atividade-titulo">
+            <h1>Atividades requisitadas</h1>
+        </div>
+        <div class="retangulo-ativ" style="margin-top:25px">
+            <div class="quadro-ativ">
+                <div class="atribuida">
+                    <div class="ativ" id="atividade">
+                        <span class="nome-ativ">Criação de listas ordenadas e não ordenadas</span>
+                        <span class="prazo">Prazo: 27/05/2020 até 23:59.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Atividade-titulo">
+            <h1>Atividades recebidas</h1>
+        </div>
         <div class="filtro-atividades">
             <form>
                 <div class="div-turma1">
@@ -142,6 +155,7 @@
         </div>
 
     </section>
+
     <footer id="rodape">
         <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
         <div class="rodape">
