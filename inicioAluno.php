@@ -19,10 +19,10 @@
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="inicioAluno.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            <li><a href="index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
             
         </ul>
         <div class="burguer" id="burger">
@@ -33,16 +33,31 @@
     </nav>
 
     <section class="conteudo" id="tela">
-        <div class="dados-user">
+        <div class="dados-user" id="dadosAluno">
             <ul>
-                <li>Olá, Otário</li>
-                <li>RM: 180500</li>
-                <li>Curso: Informática</li>
-                <li>Série: 3ºAi</li>
+                <li>Olá, Otário!</li>
+                <li class="rmUser">RM: 180500</li>
+                <li class="cursoUser">Curso: Informática</li>
+                <li class="serieUser">Série: 3ºAi</li>
             </ul>
         </div>
-        <div class="retangulo">
-            <div class="tabela"></div>
+        <div class="retangulo-pp">
+            <div class="tabela-pps" cellspacing="0">
+                <table id="tabelaPPs">
+                    <tr>
+                        <th class="headerMateria">Matéria da PP</th>
+                        <th class="headerProfessor">Professores</th>
+                        <th class="headerConcluiu">Status</th>
+                        <th class="headerMencao">Menção</th>
+                    </tr>
+                    <tr>
+                        <td class="celulaMateria">Técnicas de programação para internet I e II</td>
+                        <td class="celulaProfessor">Adriano Milanez e Marco Antonio</td>
+                        <td class="celulaConcluiu"></td>
+                        <td class="celulaMencao"></td>
+                    </tr>
+                </table>
+            </div>
             <button class="consultarpp">Consultar PP's</button>
         </div>
     </section>

@@ -67,7 +67,7 @@
 }
 
 .filtro {
-    width: 65vw;
+    width: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -428,6 +428,8 @@ select {
 }
 
 .tabela-pps td {
+    width:100%;
+    min-width: 160px;
     padding: 0px 12px 6px 12px;
     border-right: 1px solid black;
 }
@@ -440,6 +442,10 @@ select {
     position: relative;
     width: 80%;
     height: 75%;
+}
+
+.retangulo-pp .tabela-pps{
+    width: 100%;
 }
 
 .tabela-pps table {
@@ -1173,9 +1179,6 @@ select {
 }
 
 @media (max-width: 768px) {
-    .dados-user {
-        display: none;
-    }
     .tabela {
         width: 100%;
         height: 100%;
@@ -1440,6 +1443,14 @@ select {
     }
     .frmBasesTec .btnEnviar {
         width: 100%;
+    }
+    #dadosAluno{
+        display: flex;
+        position:absolute;
+        top:150px;
+    }
+    .rmUser,.cursoUser,.serieUser{
+        display:none
     }
 }
 
