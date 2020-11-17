@@ -35,7 +35,7 @@
     <section class="conteudo" id="tela">
         <div class="dados-user" id="dadosAluno">
             <ul>
-                <li>Olá, Otário!</li>
+                <li>Olá, Aluno!</li>
                 <li class="rmUser">RM: 180500</li>
                 <li class="cursoUser">Curso: Informática</li>
                 <li class="serieUser">Série: 3ºAi</li>

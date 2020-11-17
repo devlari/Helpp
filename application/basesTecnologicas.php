@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="../system/css/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
-    <title>Bases técnologicas</title>
+    <title>Bases tecnológicas</title>
     <script src="https://kit.fontawesome.com/43a2aaa0b4.js" crossorigin="anonymous"></script>
 </head>
 
@@ -38,22 +38,22 @@
             </div>
         </div>
         <div class="container2">
-            <form action="" method="POST" class="frmBasesTec">
+            <form action="editandoPP.php" method="POST" class="frmBasesTec">
                 <div class="basesTecnologicas">
                     <div class="campoCompetencias">
                         <h3 class="titulo-competencias">Competências</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" id="txtCompetencias" placeholder="Digite as competências aqui..."></textarea>
+                        <textarea class="txtCompetencias" id="txtCompetencias" name="txtCompetencias" placeholder="Digite as competências aqui..."></textarea>
                     </div>
                     <div class="campoCompetencias">
                         <h3 class="titulo-competencias">Habilidades</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" id="txtHabilidades" placeholder="Digite as habilidades aqui..."></textarea>
+                        <textarea class="txtCompetencias" id="txtHabilidades" name ="txtHabilidades" placeholder="Digite as habilidades aqui..."></textarea>
                     </div>
                     <div class="campoCompetencias" style="position: relative">
                         <h3 class="titulo-competencias">Base(s) tecnológica(s) ou científica</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" placeholder="Digite as bases tecnologicas aqui..."></textarea>
+                        <textarea class="txtCompetencias" id="txtBasesTecnologicas" name = "txtBasesTecnologicas" placeholder="Digite as bases tecnologicas aqui..."></textarea>
                         <input type="submit" value="Salvar" class="btnEnviar" style=" position:absolute; bottom:-55px; right:0px;">
                     </div>
                 </div>

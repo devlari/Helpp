@@ -5,7 +5,6 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
-session_start();
 $_SESSION["erro"] = 0;
 class PPDAO{
     private $resultado;
@@ -108,6 +107,43 @@ class PPDAO{
         }else{
             $this->resultado = false;
         }
+    }
+    
+    //Cadastro de competências, habilidades e bases tecnológicas
+    public function preencherDoc31 (PP $pp)
+    {
+        $query = "UPDATE pp SET habilidadePP = ?, conhecimentoPP = ?, tecnologiaPP = ? WHERE aluno_rmAluno = ? "
+                . "AND disciplina_codDisciplina = ?";
+        
+        $atualizar = Conn::getConn()->prepare($query);
+        
+        $atualizar->bindValue(1, $pp->getHabilidadePP());
+        $atualizar->bindValue(2, $pp->getCompetenciaPP());
+        $atualizar->bindValue(3, $pp->getBaseTecnologicaPP());
+        
+        $atualizar->bindValue(4, $pp->getRmAluno());
+        $atualizar->bindValue(5, $pp->getCodDisciplina());
+        
+        try{
+            $atualizar->execute();
+            //echo "Competências, Habilidades e Bases Tecnológicas cadastradas com sucesso!";
+            $this->resultado = true;
+            //$this->result = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            //$this->result = null;
+            WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
+        }
+        
+    }
+    
+    //Caso o professor queira editar alguma coisa no doc
+    protected function alterarDoc31(Professor $professor){
+        
+    }
+    
+    //No fim do ano ele verificará se o aluno cumpriu ou não a PP
+    protected function concluirDoc31(Professor $professor){
+        
     }
     
     public function getResultado() {
