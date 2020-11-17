@@ -428,10 +428,21 @@ select {
 }
 
 .tabela-pps td {
-    width:100%;
-    min-width: 160px;
+    /* min-width: 160px; LINHA MALIGNA */
     padding: 0px 12px 6px 12px;
     border-right: 1px solid black;
+}
+#tabelaPPSALUNO .tabela-pps{
+    height: 100%;
+}
+#tabelaPPSALUNO .tabela-pps td {
+    width: 100%;
+    text-align:center;
+}
+
+.celulaAluno{
+    width: 100%;
+    text-align:center;
 }
 
 .celulaMencao {

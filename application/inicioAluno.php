@@ -41,7 +41,7 @@
                 <li class="serieUser">Série: 3ºAi</li>
             </ul>
         </div>
-        <div class="retangulo-pp">
+        <div class="retangulo-pp" id='tabelaPPSALUNO'>
             <div class="tabela-pps" cellspacing="0">
                 <table id="tabelaPPs">
                     <tr>
@@ -102,10 +102,10 @@
 
     </section>
     <footer id="rodape">
-        <div class=rodape-imagem><img src="../system/img/rodape-imagem.png" /></div>
+        <div class=""><img src="../system/img/crowntech.png"/></div>
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="img/crowntech.png"
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../system/img/crowntech.png"
                         class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />

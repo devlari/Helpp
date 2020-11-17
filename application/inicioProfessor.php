@@ -163,10 +163,9 @@
     </section>
 
     <footer id="rodape">
-        <div class=rodape-imagem><img src="../system/img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="img/crowntech.png" class="logo-rodape" /></a>
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../system/img/crowntech.png" class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />
                     <span class="endereco">R. Alcântara, 113 - Vila Guilherme, São Paulo - SP, 02110-010</span>
@@ -186,7 +185,7 @@
     </footer>
     <div class="modal-container" id="modal-doc-aluno">
         <div class="modal-doc30">
-            <h1 class="titulodomodal" style="font-size:30px; font-weight:900">Manuela Duarte Pereira</h1>
+            <h1 class="titulodomodal" style="font-size:30px; font-weight:900" ss>Emanuel Lopes Miranda</h1>
             <div class="traco"></div>
             <div class="conteudo-modal">
                 <div class="linha-um-doc30">
