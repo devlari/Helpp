@@ -38,25 +38,25 @@ date_default_timezone_set('America/Sao_Paulo');
     <div class="wrapper" id="tela">
         <div class="formAtividade">
             <h1 class="tituloForm3">Adicionar atividade</h1>
-            <form class="formAtiv">
+            <form class="formAtiv" method="POST" action = "criandoAtividade.php" enctype="multipart/form-data">
                 <div class="name-section">
-                    <input type="text" class="txtNomeAtiv" name="txtNomeAtiv" required>
-                    <label for="txtNomeAtiv" class="label-name"> <span class="content-name">Nome:</span></label>
-                </div><br />
-                <select class="turma">
+                    <input type="text" class="txtNomeAtiv" name="txtNomeAtiv" id="txtNomeAtiv" required>
+                    <label for="lblNomeAtiv" class="label-name"> <span class="content-name">Nome:</span></label>
+                </div><br/>
+                <select class="turma" name = "turma" id="turma">
                     <option value="0">Turma</option>
                 </select>
                 <div class="desc-section">
-                    <input type="text" class="txtDescAtiv" name="txtDescAtiv" required>
-                    <label for="txtDescAtiv" class="label-name2"><span class="content-name2">Descrição:</span></label>
+                    <input type="text" class="txtDescAtiv" name="txtDescAtiv" id="txtDescAtiv" required>
+                    <label for="lblDescAtiv" class="label-name2"><span class="content-name2">Descrição:</span></label>
                 </div><br />
-                <select class="modo-entrega">
+                <select class="modo-entrega" name = "modoEntrega">
                     <option value="0">Modo de entrega</option>
                     <option value="1">Online</option>
                     <option value="2">Presencial</option>
                 </select>
                 <label for="txtprazoEntrega">Prazo de entrega:</label>
-                <input type="datetime-local" value="<?php echo date("Y-m-d\T23:59");?>" />
+                <input type="datetime-local" name="txtPrazoEntrega" value="<?php echo date("Y-m-d\T23:59");?>" />
                 <div class="upload-arquivo">
                     <label for="upload" class="label" id="label">Selecionar arquivo...</label>
                     <input type="file" name="upload" id="upload">
