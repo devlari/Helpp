@@ -29,10 +29,16 @@
 		{
 			if($_SESSION['cargo'] == "aluno")
 			{
+                                echo $_SESSION['usuario'];
+                                echo $_SESSION['cargo'];
+                                echo $senha;
 				header("location:inicioAluno.php");
 			}
 			if($_SESSION['cargo'] == "professor")
 			{
+                            echo $_SESSION['usuario'];
+                                echo $_SESSION['cargo'];
+                                echo $senha;
 				header("location:inicioProfessor.php");
 			}
 			if($_SESSION['cargo'] == "gestor")
@@ -43,6 +49,12 @@
 	}
 	else
 	{
-		header("location:index.php");
+            echo $_SESSION['usuario'];
+            echo $_SESSION['cargo'];
+            echo $senha;
+            
+            var_dump($result);
+            echo "cuzao";
+		//header("location:index.php");
 	}
 	?>

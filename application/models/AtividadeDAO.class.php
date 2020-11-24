@@ -67,4 +67,18 @@ class AtividadeDAO extends Conn{
             WSErro("<b>Erro ao alterar o registro de código: {$u->getId()}:</b> {$e->getMessage()}", $e->getCode());
         }
     }
+    
+    public function listarAtividadeProf($rmProfessor) {
+        $query = "Select * from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno 
+        and a.PP_Disciplina_codDisciplina = b.disciplina_codDisciplina inner join professor_pp c 
+        on b.aluno_rmAluno = c.cod_pp_rmAluno and b.disciplina_codDisciplina = c.cod_pp_codDisciplina 
+        where c.rm_professor = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmProfessor);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
 }

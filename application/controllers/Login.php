@@ -14,7 +14,7 @@ class Login extends Controller
         $user = new Usuario;
                 
         if(empty($_SESSION['usuario']))
-	    {
+	{
             $this->index();          
         }
         else

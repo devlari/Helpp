@@ -1,6 +1,16 @@
+<?php 
+session_start();
+require ("../application/config/config.php");
+require ("../application/config/Conn.class.php");
+require ("../application/models/TurmaDAO.class.php");
+require ("../application/models/PPDAO.class.php");
+require ("../application/models/AtividadeDAO.class.php");
+$turmas = new TurmaDAO();
+$pps = new PPDAO();
+$atividades = new AtividadeDAO();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,11 +42,11 @@
         </div>
     </nav>
 
-    <section class="conteudo" id="tela">
+    <section class="conteudo" id="tela"> 
         <div class="dados-user">
             <ul>
                 <li>Olá, Agatha</li>
-                <li>RM: 100365</li>
+                <li>RM: <?php echo $_SESSION['usuario'];?></li>
                 <li>Cargo: Professor(a)</li>
             </ul>
         </div>
@@ -48,8 +58,11 @@
                             <h1>Turma:</h1>
                         </label>
                         <select class="filtro-turma1" name="filtro_turma1" id="filtro_turma1">
-                            <option value="1">2AE</option>
-                            <option value="2">2AI</option>
+                            <?php
+                            foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma){
+                                echo '<option value="' . $turma["cod_turma"] . '">' . $turma["nome_turma"] .'</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="div-disciplina">
@@ -57,7 +70,11 @@
                             <h1>Disciplina:</h1>
                         </label>
                         <select class="filtro_disciplina1" name="filtro_disciplina" id="filtro_disciplina1">
-                            <option>TPI</option>
+                            <?php
+                                foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma){
+                                    echo '<option value="'. $turma{"codDisciplina"} . '">' . $turma["nomeDisciplina"] .'</option>';
+                                }
+                            ?>
                         </select>
                     </div>
                 
@@ -71,13 +88,17 @@
                         <th class="headerTurmaAtual">Turma Atual</th>
                         <th class="headerEstado">Status</th>
                     </tr>
-                    <tr>
-                        <td class="celulaTurmaPP">2Ae</td>
-                        <td class="celulaNomeAluno">Emanuel Lopes Miranda</td>
-                        <td class="celulaDisciplina">Química</td>
-                        <td class="celulaTurmaAtual">3Ae</td>
-                        <td class="celulaEstado">Em andamento</td>
-                    </tr>
+                    <?php
+                        foreach ($pps->buscarProfPP($_SESSION['usuario']) as $pp){
+                            echo "<tr>";
+                            echo '<td class="celulaTurmaPP">'. $pp["seriePP"] .'</option>';
+                            echo '<td class="celulaNomeAluno">'. $pp["nomeUsuario"] .'</option>';
+                            echo '<td class="celulaDisciplina">'. $pp["disciplinaPP"] .'</option>';
+                            echo '<td class="celulaTurmaAtual">'. '' .'</option>';
+                            echo '<td class="celulaEstado">'. $pp["statusPP"] .'</option>';
+                            echo "</tr>";
+                        }
+                    ?>
                 </table>
             </div>
             <input type="submit" class="consultarpp" value="Consultar PP's">
@@ -91,6 +112,15 @@
         <div class="retangulo-ativ" style="margin-top:25px">
             <div class="quadro-ativ">
                 <div class="atribuida">
+                    <div class="ativ" id="atividade">
+                        <?php
+                            foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade){
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
+                            }
+                            
+                        ?>
+                    </div>
                     <div class="ativ" id="atividade">
                         <span class="nome-ativ">Criação de listas ordenadas e não ordenadas</span>
                         <span class="prazo">Prazo: 27/05/2020 até 23:59.</span>
@@ -108,9 +138,11 @@
                         <h1>Turma:</h1>
                     </label>
                     <select name="filtro-turma2" class="filtro-turma2" id="filtro-turma2">
-                        <option value="1">3Ai</option>
-                        <option value="2">2Be</option>
-                        <option value="3">1Bi</option>
+                        <?php
+                            foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma){
+                                echo '<option value="' . $turma["cod_turma"] . '">' . $turma["nome_turma"] .'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="div-materia">
@@ -118,8 +150,11 @@
                         <h1>Matéria:</h1>
                     </label>
                     <select name="filtro-materia" class="filtro-materia" id="filtro-materia">
-                        <option value="1">Química</option>
-                        <option value="2">Física</option>
+                        <?php
+                            foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma){
+                                echo '<option value="'. $turma{"codDisciplina"} . '">' . $turma["nomeDisciplina"] .'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="div-atividade">
@@ -127,7 +162,12 @@
                         <h1>Atividade:</h1>
                     </label>
                     <select name="filtro-atividade" class="filtro-atividade" id="filtro-atividade">
-                        <option value="1">Ánions e Cátions</option>
+                        <?php
+                            foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade){
+                                echo '<option value="'. $atividade{"cod_atividade"} . '">' . $atividade["titulo_atividade"] .'</option>';
+                            }
+                            
+                        ?>
                     </select>
                 </div>
                 <a class="btnCadastrarAtividade" href="cadastrarAtiv.php">Cadastrar atividade</a>
