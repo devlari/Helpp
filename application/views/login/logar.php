@@ -1,13 +1,13 @@
 <?php
    use application\config\config;
 ?>
-
-<div class="wrapper">
+<body>
+    <div class="wrapper">
       <div class="half-one">
-        <img src="img/helpp.png" class="logo"></img>
-      </div>      
+          <img src="/Helpp/system/img/helpp.png" class="logo"></img>
+      </div>
       <div class="half-two">
-        <form class="frmLogin" method="POST" action="/testeTcc/cep/" >
+        <form class="frmLogin" method="POST" action="login.php">
           <div class="form">
             <h1 class="tituloForm">LOGIN</h1><br/>
             <label for="txtRM" id="lblRM" class="lblRM"></label>
@@ -26,3 +26,11 @@
       </div>
       <p class="divisoria"></p>
     </div>
+      <footer>
+          <img src="/Helpp/system/img/rodape.png" class="rodape"></img>
+        <p class="copy">Copyright © 2020 CrownTech. Todos os direitos reservados.</p>
+      </footer>
+      
+      <script src="../system/js/app.js"></script>
+  </body>
+</html>
