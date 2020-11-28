@@ -431,6 +431,7 @@ select {
     /* min-width: 160px; LINHA MALIGNA */
     padding: 0px 12px 6px 12px;
     border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 #tabelaPPSALUNO .tabela-pps{
     height: 100%;

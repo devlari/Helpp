@@ -43,7 +43,6 @@
         <div class="dados-user">
             <ul>
                 <li>Olá, Flávia</li>
-                <li>RM: 120001</li>
                 <li>Cargo: Gestor(a)</li>
             </ul>
         </div>

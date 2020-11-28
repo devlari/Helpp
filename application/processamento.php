@@ -72,15 +72,16 @@
                             $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if ($dados != null){
                                 switch($coluna){
-                                    case 1: $rmAluno = $dados;break;
-                                    case 2: $nomeAluno = $dados;break;
-                                    case 3: $periodo = $dados;break;
-                                    case 4: $turmaPP = $dados;break;
-                                    case 5: $semestreAno = $dados;break;
-                                    case 6: $disciplina = $dados;break;
-                                    case 7: 
+                                    case 2: $rmAluno = $dados;break;
+                                    case 3: $nomeAluno = $dados;break;
+                                    case 4: $periodo = $dados;break;
+                                    //coluna periodo estava mesclada, foi necessário pular o índice 5
+                                    case 6: $turmaPP = $dados;break;
+                                    case 7: $semestreAno = $dados;break;
+                                    case 8: $disciplina = $dados;break;
+                                    case 9: 
                                         //$professor = $objPHPExcel->getActiveSheet()->getCell()->getCalculatedValue();
-                                        //$professor = $dados;
+                                        $professor = $dados;
                                         
                                         break;
                                     default: $nulo = $dados;    
@@ -91,7 +92,7 @@
                         $l++; 
                         
                         //Cadastrando o usuário Aluno
-                        /*$Usuario->setId($rmAluno);
+                        $Usuario->setId($rmAluno);
                         $Usuario->setNome($nomeAluno);
                         $Usuario->setPerfil('Aluno');
                         
@@ -120,7 +121,7 @@
                         
                         //Cadastrando turma, aqui eu vou usar um código ja cadastrado manualmente na tabela curso, já que por enquanto não sabemos como vamos cadastrá-lo
                         //Separando o semestre e o ano da turma de PP
-                        /*$SemAno = explode("/", $semestreAno);
+                        $SemAno = explode("/", $semestreAno);
                         $semestre = $SemAno[0];
                         $ano = $SemAno[1];
                         
@@ -164,25 +165,26 @@
                             }
                         }*/
                         
-                        /*$PP->setRmAluno($rmAluno);
+                        $PP->setRmAluno($rmAluno);
                         $PP->setRmGestor('180115');
                         $PP->setSemestrePP($semestre);
                         $PP->setStatusPP('Em aberto');
                         $PP->setCursoPP('Informática');
                         
+                        //$PPDAO->verificaDisciplina($disc);
                         if($PPDAO->getResultado() == false){
                             //Cadastrando PP
                             $PPDAO->cadastrar($PP);
-                        }*/
+                        }
                         
-                        echo "RM do aluno: " . $rmAluno . "<br>";
+                        /*echo "RM do aluno: " . $rmAluno . "<br>";
                         echo "Nome do aluno: " . $nomeAluno . "<br>";
                         echo "Período: " . $periodo . "<br>";
                         echo "Série/Módulo: " . $turmaPP . "<br>";
                         echo "Semestre/Ano: " . $semestreAno . "<br>";
                         echo "Disciplina: " . $disciplina . "<br>";
-                        echo "Rm Professor 1: " . $professor . "<br><hr>";
-                        //header("location: inicioGestor.php");
+                        echo "Rm Professor 1: " . $professor . "<br><hr>";*/
+                        header("location: inicioGestor.php");
                     }
                     echo "</table>";
                 }
