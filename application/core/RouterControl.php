@@ -16,32 +16,38 @@ class RouterControl
 
     public function start($request)
     {
-       if ($request['url'] != '') {
-        $this->url = explode('/', $request['url']);
+       if ($request['url'] = '')
+       {
 
-        $this->controller = ucfirst($this->url[0]);
-        array_shift($this->url);
- 
-        $this->method = $this->url[0];
-        array_shift($this->url);
- 
-        $this->params = $this->url;
+            $this->url = explode('/', $request['url']);
 
-        if($this->method == '')
+            $this->controller = ucfirst($this->url[0]);
+            array_shift($this->url);
+    
+            $this->method = $this->url[0];
+            array_shift($this->url);
+    
+            $this->params = $this->url;
+            array_shift($this->url);
+
+            if($this->method == '')
+            {
+                $this->method = 'index';
+            }
+       } else
         {
+            $this->controller = 'Login';
             $this->method = 'index';
         }
-       } else {
-        $this->controller = 'Login';
-        $this->method = 'index';
-       }
+
+        $this->load();
     }
 
-    public function load()
+    public function load($controller = 'Login',  $method = 'index', $params = [""])
     {
-        $control = "application\\controllers\\" . $this->controller;
+        $control = "application\\controllers\\" . $controller;
         $page = new $control;
-        $page->{$this->method}();
+        $page->{$method}($params);
     }
 
     /*

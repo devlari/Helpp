@@ -41,14 +41,14 @@ date_default_timezone_set('America/Sao_Paulo');
             <form class="formAtiv" method="POST" action = "criandoAtividade.php" enctype="multipart/form-data">
                 <div class="name-section">
                     <input type="text" class="txtNomeAtiv" name="txtNomeAtiv" id="txtNomeAtiv" required>
-                    <label for="lblNomeAtiv" class="label-name"> <span class="content-name">Nome:</span></label>
+                    <label for="txtNomeAtiv" class="label-name"><span class="content-name">Nome:</span></label>
                 </div><br/>
                 <select class="turma" name = "turma" id="turma">
                     <option value="0">Turma</option>
                 </select>
                 <div class="desc-section">
                     <input type="text" class="txtDescAtiv" name="txtDescAtiv" id="txtDescAtiv" required>
-                    <label for="lblDescAtiv" class="label-name2"><span class="content-name2">Descrição:</span></label>
+                    <label for="txtDescAtiv" class="label-name2"><span class="content-name2">Descrição:</span></label>
                 </div><br />
                 <select class="modo-entrega" name = "modoEntrega">
                     <option value="0">Modo de entrega</option>

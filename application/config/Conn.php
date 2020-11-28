@@ -6,7 +6,8 @@
  * @copyright (c) year, Geovana M. Melo 
  */
 
-//namespace application\config;
+namespace application\config;
+
 class Conn{
     private static $Host = HOST;
     private static $User = USER;
