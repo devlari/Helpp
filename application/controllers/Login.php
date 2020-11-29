@@ -14,56 +14,61 @@ class Login extends Controller
     }
 
     public function index()
-    {          
-        $user = new Usuario;
-                
+    {                  
         if(empty($_SESSION['usuario']))
 	    {
             session_start();
         
             $this->load('login/head');   
-            $this->load('login/logar');        
-            
-            if(isset($_POST['txtRM']))
-            {
-                if($user->Login())
-                {
-                    $this->perm = $user->verifyPerm();
-
-                    $arr = $user->realScape($_POST['txtRM'], $_POST['txtSenha']);
-                    foreach ($arr as $key => $value)
-                    {
-                        $user->{$key}($value);
-                        if($key == 'setId')
-                        {
-                            $_SESSION['usuario'] = $value;
-                        }
-                    } 
-                    $user->setCargo($_POST['cargo']);
-                    $_SESSION['cargo'] = $_POST['cargo'];
-                    
-                    if(!$user->verifyPass())
-                    {
-                        $this->atualizarSenha();
-                    }
-                    else{
-                        
-                    }
-                }
-            }
+            $this->load('login/logar');
         }
         else
         {        
-            $control = new RouterControl;
-            $control->load();
+            //$control = new RouterControl;
+            //$control->load();
         }   
 
         
     }
         
 
-    public function atualizarSenha()
-    {
-        echo 'caimos';
+    public function check()
+    { 
+        $user = new Usuario;
+        if(isset($_POST['txtRM']))
+        {
+            if($user->Login())
+            {
+                $this->perm = $user->verifyPerm();
+
+                $arr = $user->realScape($_POST['txtRM'], $_POST['txtSenha']);
+                foreach ($arr as $key => $value)
+                {
+                    $user->{$key}($value);
+                    if($key == 'setId')
+                    {
+                        $_SESSION['usuario'] = $value;
+                    }
+                } 
+                $user->setCargo($_POST['cargo']);
+                $_SESSION['cargo'] = $_POST['cargo'];
+                    
+                if(!$user->verifyPass())
+                {
+                    $control = new RouterControl;
+                    $control->load($this->perm);
+                    //$this->atualizarSenha();
+                }
+                else{
+                    $control = new RouterControl;
+                    $control->load($this->perm);
+                }
+            }
+            else
+            {
+                //RETORNAR "USUÁRIO OU SENHA INCORRETOS"
+            }
+        }
     }
 }
+?>

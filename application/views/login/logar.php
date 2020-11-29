@@ -7,7 +7,7 @@
           <img src="/Helpp/system/img/helpp.png" class="logo"></img>
       </div>
       <div class="half-two">
-        <form class="frmLogin" method="POST" action="login.php">
+        <form class="frmLogin" method="POST" action="login/check">
           <div class="form">
             <h1 class="tituloForm">LOGIN</h1><br/>
             <label for="txtRM" id="lblRM" class="lblRM"></label>

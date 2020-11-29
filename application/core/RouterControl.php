@@ -16,7 +16,7 @@ class RouterControl
 
     public function start($request)
     {
-       if ($request['url'] = '')
+       if ($request['url'] != '')
        {
 
             $this->url = explode('/', $request['url']);
@@ -40,14 +40,14 @@ class RouterControl
             $this->method = 'index';
         }
 
-        $this->load();
+        $this->load($this->controller, $this->method);
     }
 
     public function load($controller = 'Login',  $method = 'index', $params = [""])
     {
         $control = "application\\controllers\\" . $controller;
         $page = new $control;
-        $page->{$method}($params);
+        $page->{$method}($params);        
     }
 
     /*

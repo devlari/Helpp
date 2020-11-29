@@ -18,10 +18,10 @@ class Usuario extends Conn
     private $senhaUsuario;
     
     # VALIDAÇÃO DO LOGIN #
-    private function Login()
+    public function Login()
     {     
         $query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$this->idUsuario}' AND senhaUsuario = '{$this->senhaUsuario}' AND perfilUsuario = '{$this->perfilUsuario}'";
-        $result = mysqli_query($this->conect(), $query);
+        $result = mysqli_query(Conn::getConn(), $query);
         $row = mysqli_num_rows($result);
 
         if($row == 1)
@@ -54,13 +54,13 @@ class Usuario extends Conn
     {
         switch ($this->perfilUsuario) {
             case 'gestor':                
-                return 'indexManager';
+                return 'Gestor';
             break;
             case 'professor':
-                return 'indexTeach';                
+                return 'Professor';                
             break;
             case 'aluno':
-                return 'indexStudy';
+                return 'Aluno';
             break;
         }
     }
