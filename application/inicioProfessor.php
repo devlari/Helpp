@@ -283,7 +283,7 @@ $atividades = new AtividadeDAO();
         </div>
     </div>
     <div class="modal-container" id="modal-atividade-aluno">
-        <div class="modal-atividade">
+        <div class="modal-atividade" id="modal-atividade-recebida">
             <h1 class="titulodomodal">João Vitor Belarmino</h1>
             <div class="traco"></div>
             <div class="conteudo-modal">

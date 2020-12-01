@@ -42,8 +42,7 @@
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
-                <li>Olá, Flávia</li>
-                <li>RM: 120001</li>
+                <li class="Ola">Olá, Flávia</li>
                 <li>Cargo: Gestor(a)</li>
             </ul>
         </div>
@@ -101,6 +100,7 @@
                         </div>
                     </div>
             </form>
+
         </div>
     </section>
 
