@@ -1,3 +1,17 @@
+<?php
+session_start();
+require ("../application/config/config.php");
+require ("../application/config/Conn.class.php");
+require ("../application/models/TurmaDAO.class.php");
+require ("../application/models/PPDAO.class.php");
+require ("../application/models/AtividadeDAO.class.php");
+require ("../application/models/UsuarioDAO.class.php");
+$turmas = new TurmaDAO();
+$pps = new PPDAO();
+$atividades = new AtividadeDAO();
+$UsuarioDAO = new UsuarioDAO();
+ 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -35,8 +49,12 @@
     <section class="conteudo" id="tela">
         <div class="dados-user" id="dadosAluno">
             <ul>
-                <li>Olá, Aluno!</li>
-                <li class="rmUser">RM: 180500</li>
+                <?php
+                foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user){
+                    echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                }
+                ?>
+                <li class="rmUser"><?php echo "RM: ".  $_SESSION['usuario']; ?></li>
                 <li class="cursoUser">Curso: Informática</li>
                 <li class="serieUser">Série: 3ºAi</li>
             </ul>
@@ -50,12 +68,16 @@
                         <th class="headerConcluiu">Status</th>
                         <th class="headerMencao">Menção</th>
                     </tr>
-                    <tr>
-                        <td class="celulaMateria">Técnicas de programação para internet I e II</td>
-                        <td class="celulaProfessor">Adriano Milanez e Marco Antonio</td>
-                        <td class="celulaConcluiu"></td>
-                        <td class="celulaMencao"></td>
-                    </tr>
+                    <?php
+                        foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $pp){
+                            echo "<tr>";
+                            echo '<td class="celulaMateria">'. $pp["disciplinaPP"] .'</option>';
+                            echo '<td class="celulaProfessor">'. $pp["nomeUsuario"] .'</option>';
+                            echo '<td class="celulaConcluiu">'. $pp["statusPP"] .'</option>';
+                            echo '<td class="celulaMencao">'. $pp["mencaoFinal"] .'</option>';
+                            echo "</tr>";
+                        }
+                    ?>
                 </table>
             </div>
             <button class="consultarpp">Consultar PP's</button>
@@ -71,7 +93,11 @@
                     <h1>Disciplina:</h1>
                 </label>
                 <select class="filtro_txt" name="filtro_disciplina" id="filtro_disciplina">
-                    <option>TPI</option>
+                    <?php
+                        foreach ($turmas->buscarTurmaAluno($_SESSION['usuario']) as $turma){
+                            echo '<option value="'. $turma{"codDisciplina"} . '">' . $turma["nomeDisciplina"] .'</option>';
+                        }
+                    ?>
                 </select>
                 <div class="botao_search">
                     <input type="submit" value=" " class="botao2"><i class="fas fa-search"></i>
@@ -82,10 +108,16 @@
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <h3>Atribuída(1)</h3>
-                    <div class="ativ" id="atividade">
-                        <span class="nome-ativ">Criação de listas ordenadas e não ordenadas</span>
-                        <span class="prazo">Prazo: 27/05/2020 até 23:59.</span>
-                    </div>
+                        <?php
+                            foreach ($atividades->listarAtividadeAluno($_SESSION['usuario']) as $atividade){
+                                echo "<div class='ativ' id='atividade'>";
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
+                                echo "</div>";
+                            }
+                            
+                        ?>
+                    
                 </div>
                 <div class="concluida">
                     <h3>Concluída(0)</h3>

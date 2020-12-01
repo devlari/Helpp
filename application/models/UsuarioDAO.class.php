@@ -40,6 +40,21 @@ class UsuarioDAO extends Conn{
         } 
     }
     
+    
+     public function obterUsuario($rmAluno)
+    {
+        $sql = "SELECT * FROM usuario WHERE rmUsuario = ?";
+        $consultar = Conn::getConn()->prepare($sql);
+        
+        $consultar->bindValue(1, $rmAluno);
+        $consultar->execute();
+        
+        if ($consultar->rowCount() > 0){
+            $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+        } 
+    }
+    
     public function editarUsuario(application\models\Usuario $u)
     {
         $query = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ?, perfilUsuario = ? WHERE rmUsuario = ?";

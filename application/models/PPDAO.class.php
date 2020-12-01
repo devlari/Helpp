@@ -123,6 +123,19 @@ class PPDAO{
         return $this->resultado;
     }
     
+    public function buscarAlunoPP($rmAluno) {
+        $query = "Select c.nomeUsuario, a.disciplinaPP, a.mencaoFinal, a.statusPP from pp a inner join professor_pp b 
+            on b.cod_pp_rmAluno = a.aluno_rmAluno and a.disciplina_codDisciplina = b.cod_pp_codDisciplina 
+            inner join usuario c on b.rm_professor = c.rmUsuario where a.aluno_rmAluno = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+    
     //Cadastro de competências, habilidades e bases tecnológicas
     public function preencherDoc31 (PP $pp)
     {

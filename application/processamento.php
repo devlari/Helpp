@@ -65,7 +65,7 @@
                     );
                     
                     //ALTEREI O FOR PRA IR POUCO DADO PRO BANCO AGORA NO COMEÇO - Xofana
-                    for ($row=12; $row<=15; $row++){
+                    for ($row=12; $row<=$totalLinhas; $row++){
                         //implementado
                         $c=0;                      
                         for ($coluna=0; $coluna<=$totaColunas; $coluna++){

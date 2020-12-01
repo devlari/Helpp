@@ -6,19 +6,23 @@
  * @copyright (c) year, Geovana M. Melo 
  */
 class AtividadeDAO extends Conn{
-    public function cadastrarAtividade() {
-        $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario) values (?,?,?)";
+    public function cadastrarAtividade(Atividade $a) {
+        $query = "INSERT INTO atividade (PP_Disciplina_codDisciplina, PP_Aluno_rmAluno, titulo_atividade, "
+                . "instrucao_atividade, prazo_entrega, forma_entrega) values (?,?,?,?,?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         
-        $cadastrar->bindValue(1, $u->getId());
-        $cadastrar->bindValue(2, $u->getNome());
-        $cadastrar->bindValue(3, $u->getPerfil());
+        $cadastrar->bindValue(1, 66);
+        $cadastrar->bindValue(2, '180114');
+        $cadastrar->bindValue(3, $a->getTituloAtividade());
+        $cadastrar->bindValue(4, $a->getInstrucaoAtividade());
+        $cadastrar->bindValue(5, $a->getPrazoAtividade());
+        $cadastrar->bindValue(6, $a->getFormaEntregaAtividade());
         
         try{
             $cadastrar->execute();
             $this->result = Conn::getConn()->lastInsertId();
-            echo "Cadastro efetuado com sucesso!";
+            echo "Atividade cadastrada com sucesso!";
         } catch (Exception $e) {
             $this->result = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
@@ -76,6 +80,17 @@ class AtividadeDAO extends Conn{
        
         $busca = Conn::getConn()->prepare($query);
         $busca->bindValue(1, $rmProfessor);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+    
+     public function listarAtividadeAluno($rmAluno) {
+        $query = "Select * from atividade where PP_Aluno_rmAluno = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
         $busca->execute();
         
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);

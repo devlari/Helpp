@@ -106,6 +106,20 @@ class TurmaDAO extends Conn{
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
         return $this->resultado;
     }
+    
+    public function buscarTurmaAluno($rmAluno) {
+        $query = "Select c.nomeDisciplina, c.codDisciplina"
+                . " from turma a inner join aluno_turma b on a.cod_turma = b.codTurma "
+                . "inner join disciplina c on a.cod_turma = c.codTurma inner join pp d on d.disciplina_codDisciplina"
+                . "= c.codDisciplina where b.rmAluno = ? ";
+        
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
     public function getResult() {
         return $this->resultado;
     }

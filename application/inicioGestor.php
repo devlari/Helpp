@@ -29,7 +29,7 @@
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
-
+            <li><a href="index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -57,22 +57,7 @@
                     <th class="headerConcluiu">Concluiu em</th>
                     <th class="headerMencao">Menção</th>
                 </tr>
-                <?php
-                $PPDAO = new PPDAO();
-                foreach ($PPDAO->consultar() as $Pps) {
-                    echo "<tr>";
-                    echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
-                    echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
-                    echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
-                    echo "<td class='celulaMateria'>" . $Pps{
-                        "disciplinaPP"} . "</td>";
-                    echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
-                    echo "<td class='celulaProfessor'>" . 'null' . "</td>";
-                    echo "<td class='celulaConcluiu'></td>";
-                    echo "<td class='celulaMencao'></td>";
-                    echo "</tr>";
-                }
-                ?>
+               
                 <!--<tr>
                     <td class="celulaRM">177571</td>
                     <td class="celulaAluno">Artur Barbosa Gomes</td>
