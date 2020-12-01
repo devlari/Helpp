@@ -442,6 +442,61 @@ select {
     height: 88vh;
 }
 
+.management-class-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:65px 0;
+}
+.management-class{
+    width: 80%;
+}
+
+.management-table{
+    background-color: #c4c4c4;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.management-table th:nth-child(-n + 3){
+    padding: 0px 12px 6px 12px;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.management-table td:nth-child(-n + 5){
+    padding: 0px 12px 6px 12px;
+    border-right: 1px solid black;
+}
+
+.link-acao{
+    margin:0px 30px;
+}
+.tdAcao a{
+    text-decoration: none;
+    color:black;
+}
+
+.tdAcao{
+    
+    border-right:none !important;
+}
+.thAcaoTurma{
+    padding: 0px 12px 6px 12px;
+    font-size: 18px;
+    min-width: 180px;
+}
+
+.thCursoTurma{
+    width: 100%;
+}
 
 .tabela-pps th {
     padding: 0px 12px 6px 12px;
