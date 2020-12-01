@@ -1,6 +1,6 @@
 <?php
 
-define('BASE', '/testeTCC/');
+define('BASE', '/Helpp/');
 
 define('UNSET_URI_COUNT', 1);
 define('DEBUG_URI', false);
@@ -10,7 +10,7 @@ define('DEBUG_URI', false);
 define('HOST', 'localhost'); //lê a constante quando executar o código. 
 define('USER', 'root');
 define('PASS', '');
-define('DBSA', 'teste_tcc'); //nome do banco
+define('DBSA', 'Helpp'); //nome do banco
 
 //WSErro :: Exibe erros lançados :: Front
 function WSErro($ErrMsg, $ErrNo, $ErrDie = null) {

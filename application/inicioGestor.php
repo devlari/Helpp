@@ -15,7 +15,7 @@
 <body>
     <?php
     require("../application/config/config.php");
-    require("../application/config/Conn.php");
+    require("../application/config/Conn.class.php");
     require("../application/models/PP.class.php");
     require("../application/models/PPDAO.class.php");
     require("../application/models/TurmaDAO.class.php")
@@ -57,7 +57,21 @@
                     <th class="headerConcluiu">Concluiu em</th>
                     <th class="headerMencao">Menção</th>
                 </tr>
-               
+                <?php
+                $PPDAO = new PPDAO();
+                foreach ($PPDAO->consultar() as $Pps) {
+                    echo "<tr>";
+                    echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
+                    echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
+                    echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
+                    echo "<td class='celulaMateria'>" . $Pps{"disciplinaPP"} . "</td>";
+                    echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
+                    echo "<td class='celulaProfessor'>" . '' . "</td>";
+                    echo "<td class='celulaConcluiu'></td>";
+                    echo "<td class='celulaMencao'></td>";
+                    echo "</tr>";
+                }
+                ?>
                 <!--<tr>
                     <td class="celulaRM">177571</td>
                     <td class="celulaAluno">Artur Barbosa Gomes</td>
