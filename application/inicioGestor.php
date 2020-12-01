@@ -20,6 +20,7 @@
         require ("../application/config/Conn.class.php");
         require ("../application/models/PP.class.php");
         require ("../application/models/PPDAO.class.php");
+        require ("../application/models/TurmaDAO.class.php")
         //session_start();
     ?>
     <nav id="navbar-helpp">
@@ -100,7 +101,32 @@
                         </div>
                     </div>
             </form>
-
+            <?php
+            $turmaDAO = new TurmaDAO();        
+            ?>
+            <table border = "1">
+                <tr>
+                    <td>Nome:</td>
+                    <td>Ano:</td>
+                    <td>Curso:</td>
+                    <td>Ação:</td>
+                    <td>Ação:</td>
+                </tr>
+                <?php
+                //if ($turmaDAO->getRowCount() >= 1):
+                    $query = "SELECT t.cod_turma, t.nome_turma, t.ano_turma, c.nome_curso FROM turma AS t INNER JOIN curso AS c ON t.cod_curso = c.cod_curso";
+                    foreach ($turmaDAO->consultar($query) as $turma):
+                        echo "<tr>";
+                        echo "<td>{$turma["nome_turma"]}</td>";
+                        echo "<td>{$turma["ano_turma"]}</td>";
+                        echo "<td>{$turma["nome_curso"]}</td>";
+                        echo "<td><a href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a></td>";
+                        echo "<td><a href='excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
+                        echo "</tr>";
+                    endforeach;
+                //endif;
+                ?>
+            </table>
         </div>
     </section>
 

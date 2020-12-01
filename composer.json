@@ -1,9 +1,9 @@
 {
-    "name": "lucas/teste-tcc",
-    "description": "TesteHelpp",
+    "name": "lucas/helpp",
+    "description": "Helpp",
     "authors": [{
-        "name": "CrownTech",
-        "email": "contato.crowntech@gmail.com"
+        "name": "Lucas Amorim",
+        "email": "lucasamorim046@gmail.com"
     }],
     "require": {
         "phpoffice/phpexcel": "^1.8"

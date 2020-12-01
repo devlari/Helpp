@@ -10,28 +10,31 @@ class Login extends Controller
     private $perm;
 
     public function __construct()
-    {         
-        $user = new Usuario;
-                
-        if(empty($_SESSION['usuario']))
-	{
-            $this->index();          
-        }
-        else
-        {        
-            $this->perm = $user->verifyPerm();
-            $this->caling('home', $this->perm);
-          //$this->caling($user->verifyPerm($_SESSION['cargo']));
-        }       
+    {       
     }
 
     public function index()
-    {
-        session_start();
+    {                  
+        if(empty($_SESSION['usuario']))
+	    {
+            session_start();
         
-        $this->load('head');   
-        $this->load('login/logar');        
+            $this->load('login/head');   
+            $this->load('login/logar');
+        }
+        else
+        {        
+            //$control = new RouterControl;
+            //$control->load();
+        }   
+
         
+    }
+        
+
+    public function check()
+    { 
+        $user = new Usuario;
         if(isset($_POST['txtRM']))
         {
             if($user->Login())
@@ -49,22 +52,23 @@ class Login extends Controller
                 } 
                 $user->setCargo($_POST['cargo']);
                 $_SESSION['cargo'] = $_POST['cargo'];
-                
+                    
                 if(!$user->verifyPass())
                 {
-                    $this->atualizarSenha();
+                    $control = new RouterControl;
+                    $control->load($this->perm);
+                    //$this->atualizarSenha();
                 }
                 else{
-                    $this->caling('home', $this->perm);
+                    $control = new RouterControl;
+                    $control->load($this->perm);
                 }
             }
-
+            else
+            {
+                //RETORNAR "USUÁRIO OU SENHA INCORRETOS"
+            }
         }
     }
-        
-
-    public function atualizarSenha()
-    {
-        echo 'caimos';
-    }
 }
+?>

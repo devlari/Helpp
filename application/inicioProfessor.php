@@ -79,6 +79,17 @@ $atividades = new AtividadeDAO();
                     </div>
                 
             </div>
+            <script>
+                function pegacampo_ajax($val) {
+                    var dado = $('#idCooDiv'+$val).html(); //pega o texto do div pelo id
+                    var link = "pegacampo_ajax.php"; //endereco do segundo arquivo php
+                    $.ajax({type: 'POST', url: link, data: dado, processData: false, contentType: false }).done(function (result) {
+                    $('#resultado').html(result);
+                    $('#resultado').css('display', 'block');
+                    });
+                    return false;
+                }
+</script>
             <div class="tabelaPpProf">
                 <table class="tabela-pps-prof" id="tabelaProfsPP">
                     <tr>
@@ -170,7 +181,7 @@ $atividades = new AtividadeDAO();
                         ?>
                     </select>
                 </div>
-                <a class="btnCadastrarAtividade" href="cadastrarAtiv.php">Cadastrar atividade</a>
+                <a class="btnCadastrarAtividade" href="criarAtiv.php">Cadastrar atividade</a>
                 <input type="submit" class="btnConsultar" value="Consultar">
             </form>
             <div class="tabela-atividades" cellspacing="0">
@@ -257,27 +268,27 @@ $atividades = new AtividadeDAO();
                         <h3 class="titulo-competencias">Competências</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>
+                            <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>-->
                         </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Habilidades</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>
+                           <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>-->
                         </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>
+                            <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>-->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.html">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
         </div>
