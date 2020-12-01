@@ -5,9 +5,12 @@ require ("../application/config/Conn.class.php");
 require ("../application/models/TurmaDAO.class.php");
 require ("../application/models/PPDAO.class.php");
 require ("../application/models/AtividadeDAO.class.php");
+require ("../application/models/UsuarioDAO.class.php");
+
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
+$UsuarioDAO = new UsuarioDAO();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,7 +48,11 @@ $atividades = new AtividadeDAO();
     <section class="conteudo" id="tela"> 
         <div class="dados-user">
             <ul>
-                <li>Olá, Agatha</li>
+                <?php
+                foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user){
+                    echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                }
+                ?>
                 <li>RM: <?php echo $_SESSION['usuario'];?></li>
                 <li>Cargo: Professor(a)</li>
             </ul>

@@ -7,9 +7,9 @@
  */
 
 namespace application\models;
-use application\config\Conn;
+//use application\config\Conn;
 
-class Usuario extends Conn
+class Usuario extends \Conn
 {
     protected $idUsuario;
     protected $nomeUsuario;
