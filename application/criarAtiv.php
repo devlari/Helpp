@@ -1,6 +1,12 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 
+require ("../application/config/config.php");
+require ("../application/config/Conn.class.php");
+require ("../application/models/TurmaDAO.class.php");
+
+$turmas = new TurmaDAO();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,7 +50,11 @@ date_default_timezone_set('America/Sao_Paulo');
                     <label for="txtNomeAtiv" class="label-name"><span class="content-name">Nome:</span></label>
                 </div><br/>
                 <select class="turma" name = "turma" id="turma">
-                    <option value="0">Turma</option>
+                      <?php
+                            foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma){
+                                echo '<option value="'. $turma{"cod_turma"} . '">' . $turma["nome_turma"] .'</option>';
+                            }
+                       ?>
                 </select>
                 <div class="desc-section">
                     <input type="text" class="txtDescAtiv" name="txtDescAtiv" id="txtDescAtiv" required>
@@ -52,8 +62,8 @@ date_default_timezone_set('America/Sao_Paulo');
                 </div><br />
                 <select class="modo-entrega" name = "modoEntrega">
                     <option value="0">Modo de entrega</option>
-                    <option value="1">Online</option>
-                    <option value="2">Presencial</option>
+                    <option value="Online">Online</option>
+                    <option value="Presencial">Presencial</option>
                 </select>
                 <label for="txtprazoEntrega">Prazo de entrega:</label>
                 <input type="datetime-local" name="txtPrazoEntrega" value="<?php echo date("Y-m-d\T23:59");?>" />
