@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
@@ -14,22 +14,22 @@
 
 <body>
     <?php
-    require("../application/config/config.php");
-    require("../application/config/Conn.class.php");
-    require("../application/models/PP.class.php");
-    require("../application/models/PPDAO.class.php");
-    require("../application/models/TurmaDAO.class.php")
+    require("../../../application/config/config.php");
+    require("../../../application/config/Conn.class.php");
+    require("../../../application/models/PP.class.php");
+    require("../../../application/models/PPDAO.class.php");
+    require("../../../application/models/TurmaDAO.class.php")
     //session_start();
     ?>
     <nav id="navbar-helpp">
         <div class="logo">
-            <img src="../system/img/helpp.png" />
+            <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
-            <li><a href="index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            <li><a href="../../" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -122,7 +122,7 @@
                     echo "<td class='tdNomeTurma'>{$turma["nome_turma"]}</td>";
                     echo "<td class='tdAnoTurma'>{$turma["ano_turma"]}</td>";
                     echo "<td class='tdNomeCurso'>{$turma["nome_curso"]}</td>";
-                    echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
+                    echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='../../controllers/excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
                     echo "<td class='tdAcao'></td>";
                     echo "</tr>";
                 endforeach;
@@ -132,7 +132,7 @@
         </div>
     </section>
 
-    <script src="../system/js/app.js"></script>
+    <script src="../../../system/js/app.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,10 @@
 <?php
 
-require('../application/config/config.php');
-require('../application/config/Conn.class.php');
-require('../application/models/Create.class.php');
-require('../application/models/Disciplina.class.php');
-require('../application/models/DisciplinaDAO.class.php');
+require('../config/config.php');
+require('../config/Conn.class.php');
+require('../models/Create.class.php');
+require('../models/Disciplina.class.php');
+require('../models/DisciplinaDAO.class.php');
 
 $nomeDisciplina = $_POST['txtNomeDisciplina'];
 $siglaDisciplina = $_POST['txtSiglaDisciplina'];
@@ -20,6 +20,8 @@ foreach ($elementos as $e):
 
     $disciplinaDAO = new DisciplinaDAO();
     $disciplinaDAO->cadastrar($disciplina);
+    
+    header("location:../views/gestor");
 
 //    if ($disciplinaDAO->getResultado()):
 //        echo "Disciplina cadastrada com sucesso!";

@@ -7,11 +7,11 @@
     <body>
     <?php
 
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-        require('../application/models/Read.class.php');
-        require('../application/models/Turma.class.php');
-        require('../application/models/TurmaDAO.class.php');
+        require('../../config/config.php');
+        require('../../config/Conn.class.php');
+        require('../../models/Read.class.php');
+        require('../../models/Turma.class.php');
+        require('../../models/TurmaDAO.class.php');
         
         if (isset($_GET['ID'])):
             $idTurma = $_GET['ID'];
@@ -31,7 +31,7 @@
         endif;
         ?>        
         <div>
-            <form class="editarTurma" method="POST" action="editTurma.php">
+            <form class="editarTurma" method="POST" action="../../controllers/editTurma.php">
                 <?php foreach ($lerTurma->consultar($query) as $turma):?>
                 <input type="hidden" name="txtIdTurma" id="txtIdTurma" value="<?php echo $idTurma ?>"><br>
                 <label for="lblNomeTurma" id="lblNomeTurma">Nome da Turma:</label>

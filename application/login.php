@@ -1,18 +1,11 @@
 <?php
 
 	session_start();
-	include('conexao.php');
+	include("./controllers/conexao.php");
 
 	$_SESSION['usuario'] = mysqli_real_escape_string($conexao, $_POST['txtRM']);
 	$_SESSION['cargo'] = $_POST['cargo'];
 	$senha = mysqli_real_escape_string($conexao, $_POST['txtSenha']);
-
-	//Caso o usuário tente acessar a página pelo endereço dela (tentar ir pro login sem colocar as informações no index)
-	if(empty($_SESSION['usuario']) || empty($senha))
-	{
-            header("location:index.php");
-            exit();
-	}
 
 	$query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$_SESSION['usuario']}' AND senhaUsuario = '{$senha}' AND perfilUsuario = '{$_SESSION['cargo']}'";
 	$result = mysqli_query($conexao, $query);
@@ -29,32 +22,33 @@
 		{
 			if($_SESSION['cargo'] == "aluno")
 			{
-                                echo $_SESSION['usuario'];
-                                echo $_SESSION['cargo'];
-                                echo $senha;
-				header("location:inicioAluno.php");
+                                                                                echo $_SESSION['usuario'];
+                                                                                echo $_SESSION['cargo'];
+                                                                                echo $senha;
+				header("location:views/aluno");
 			}
 			if($_SESSION['cargo'] == "professor")
 			{
-                            echo $_SESSION['usuario'];
-                                echo $_SESSION['cargo'];
-                                echo $senha;
-				header("location:inicioProfessor.php");
+                                                                                echo $_SESSION['usuario'];
+                                                                                echo $_SESSION['cargo'];
+                                                                                echo $senha;
+				header("location:views/professor");
 			}
 			if($_SESSION['cargo'] == "gestor")
 			{
-				header("location:inicioGestor.php");
+				echo $_SESSION['usuario'];
+                                                                                echo $_SESSION['cargo'];
+                                                                                echo $senha;
+				header("location:views/gestor");
 			}
 		}
 	}
 	else
 	{
-            echo $_SESSION['usuario'];
-            echo $_SESSION['cargo'];
-            echo $senha;
-            
-            var_dump($result);
-            echo "cuzao";
-		//header("location:index.php");
+                            echo $_SESSION['usuario'];
+                            echo $_SESSION['cargo'];
+                            echo $senha;
+                            var_dump($result);
+                            //header("location:index.php");
 	}
 	?>

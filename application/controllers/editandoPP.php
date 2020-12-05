@@ -1,8 +1,8 @@
 <?php
-    require('../application/config/config.php');
-    require('../application/config/Conn.class.php');
-    require('../application/models/PP.class.php');
-    require('../application/models/PPDAO.class.php');
+    require ("../config/config.php");
+    require ("../config/Conn.class.php");
+    require("../models/PP.class.php");
+    require("../models/PPDAO.class.php");
 
     $competencias = $_POST['txtCompetencias'];
     $habilidades = $_POST['txtHabilidades'];
@@ -27,6 +27,6 @@
     
     $PPDAO->preencherDoc31($PP);
    
-    header("location: inicioProfessor.php");
+    header("location:../views/professor");
 ?>
 

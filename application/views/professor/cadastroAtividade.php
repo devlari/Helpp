@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 
-require ("../application/config/config.php");
-require ("../application/config/Conn.class.php");
-require ("../application/models/TurmaDAO.class.php");
+require ("../../config/config.php");
+require("../../config/Conn.class.php");
+require("../../models/TurmaDAO.class.php");
 
 $turmas = new TurmaDAO();
 session_start();
@@ -14,8 +14,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet" />
@@ -26,7 +26,7 @@ session_start();
 <body>
     <nav id="navbar-helpp">
         <div class="logo">
-            <img src="../system/img/helpp.png" />
+            <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
@@ -44,9 +44,9 @@ session_start();
     <div class="wrapper" id="tela">
         <div class="formAtividade">
             <h1 class="tituloForm3">Adicionar atividade</h1>
-            <form class="formAtiv" method="POST" action = "criandoAtividade.php" enctype="multipart/form-data">
+            <form class="formAtiv" method="POST" action = "../../controllers/cadastrarAtividade.php" enctype="multipart/form-data">
                 <div class="name-section">
-                    <input type="text" class="txtNomeAtiv" name="txtNomeAtiv" id="txtNomeAtiv" required>
+                    <input type="text" class="txtNomeAtiv" name="txtNomeAtiv" id="txtNomeAtiv" autocomplete="off" required>
                     <label for="txtNomeAtiv" class="label-name"><span class="content-name">Nome:</span></label>
                 </div><br/>
                 <select class="turma" name = "turma" id="turma">
@@ -57,7 +57,7 @@ session_start();
                        ?>
                 </select>
                 <div class="desc-section">
-                    <input type="text" class="txtDescAtiv" name="txtDescAtiv" id="txtDescAtiv" required>
+                    <input type="text" class="txtDescAtiv" name="txtDescAtiv" id="txtDescAtiv" autocomplete="off" required>
                     <label for="txtDescAtiv" class="label-name2"><span class="content-name2">Descrição:</span></label>
                 </div><br />
                 <select class="modo-entrega" name = "modoEntrega">
