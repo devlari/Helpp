@@ -31,20 +31,11 @@ $UsuarioDAO = new UsuarioDAO();
             <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
-<<<<<<< HEAD:application/views/professor/index.php
-            <li><a href="index.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
-            <li><a href="cadastroAtividade.php" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="../../" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
-=======
             <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i>Início</a></li>
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i>Atividades</a></li>
             <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
             <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
             <li><a href="index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
->>>>>>> 55fcf976915a60e6aa5f0466001bee5783ca9a8f:application/inicioProfessor.php
-
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
