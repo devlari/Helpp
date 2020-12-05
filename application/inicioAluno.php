@@ -54,7 +54,7 @@ $UsuarioDAO = new UsuarioDAO();
                     echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
                 }
                 ?>
-                <li class="rmUser"><?php echo "RM: ".  $_SESSION['usuario']; ?></li>
+                
                 <li class="cursoUser">Curso: Informática</li>
                 <li class="serieUser">Série: 3ºAi</li>
             </ul>

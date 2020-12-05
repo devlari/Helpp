@@ -31,11 +31,11 @@ $UsuarioDAO = new UsuarioDAO();
             <img src="../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
-            <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i>Início</a></li>
+            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i>Atividades</a></li>
+            <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
+            <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
+            <li><a href="index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
 
         </ul>
         <div class="burguer" id="burger">
@@ -53,7 +53,6 @@ $UsuarioDAO = new UsuarioDAO();
                     echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
                 }
                 ?>
-                <li>RM: <?php echo $_SESSION['usuario'];?></li>
                 <li>Cargo: Professor(a)</li>
             </ul>
         </div>
@@ -62,7 +61,7 @@ $UsuarioDAO = new UsuarioDAO();
                 <form class="filtro-pp">
                     <div class="div-turma">
                         <label for="filtro_turma1" class="lbl_filtro_turma1">
-                            <h1>Turma:</h1>
+                            <h1>Turma PP:</h1>
                         </label>
                         <select class="filtro-turma1" name="filtro_turma1" id="filtro_turma1">
                             <?php
@@ -96,7 +95,7 @@ $UsuarioDAO = new UsuarioDAO();
                     });
                     return false;
                 }
-</script>
+            </script>
             <div class="tabelaPpProf">
                 <table class="tabela-pps-prof" id="tabelaProfsPP">
                     <tr>
@@ -127,7 +126,7 @@ $UsuarioDAO = new UsuarioDAO();
         <div class="Atividade-titulo">
             <h1>Atividades requisitadas</h1>
         </div>
-        <div class="retangulo-ativ" style="margin-top:25px">
+        <div class="retangulo-ativ">
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <div class="ativ" id="atividade">
