@@ -6,15 +6,15 @@
     </head>
     <body>
         <?php
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-        require('../application/models/Read.class.php');
+        require('../../config/config.php');
+        require('../../config/Conn.class.php');
+        require('../../models/Read.class.php');
 
         $lerTurma = new Read();
         $lerTurma->ExeRead('turma');
         ?>
         <h1>CRIAR DISCIPLINA</h1>
-        <form class="cadastroDisciplina" method="POST" action="criandoDisciplina.php">
+        <form class="cadastroDisciplina" method="POST" action="../../controllers/cadastrarDisciplina.php">
             <label for="nomeDisciplina" id="nomeDisciplina">Nome da Disciplina:</label>
             <input type="text" name="txtNomeDisciplina" id="txtNomeDisciplina"><br>
             <label for="siglaDisciplina" id="siglaDisciplina">Sigla da Disciplina:</label>

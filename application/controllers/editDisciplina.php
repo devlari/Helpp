@@ -1,9 +1,9 @@
 <?php
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-        require('../application/models/Update.class.php');
-        require('../application/models/Disciplina.class.php');
-        require('../application/models/DisciplinaDAO.class.php');
+        require('../config/config.php');
+        require('../config/Conn.class.php');
+        require('../models/Update.class.php');
+        require('../models/Disciplina.class.php');
+        require('../models/DisciplinaDAO.class.php');
         
         $idDisciplina=$_POST['txtIdDisciplina'];
         $nomeDisciplina = $_POST['txtNomeDisciplina'];
@@ -18,6 +18,6 @@
         
         $disciplinaDAO->alterar($disciplina);
         
-        header("location:gerenciarDisciplina.php");
+        header("location:../views/gestor/gerenciarDisciplina.php");
         
         

@@ -6,11 +6,11 @@
     </head>
     <body>
     <?php
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-        require('../application/models/Read.class.php');
-        require('../application/models/Disciplina.class.php');
-        require('../application/models/DisciplinaDAO.class.php');
+        require('../../config/config.php');
+        require('../../config/Conn.class.php');
+        require('../../models/Read.class.php');
+        require('../../models/Disciplina.class.php');
+        require('../../models/DisciplinaDAO.class.php');
         
         if (isset($_GET['ID'])):
             $idDisciplina = $_GET['ID'];
@@ -24,7 +24,7 @@
         endif;
         ?>
         <H1>Editar Disciplina</h1>
-        <form class="editarDisciplina" method="POST" action="editDisciplina.php">
+        <form class="editarDisciplina" method="POST" action="../../controllers/editDisciplina.php">
             <?php  foreach ($lerDisciplina->consultar($query) AS $disciplina); ?>
             <input type="hidden" name="txtIdDisciplina" id="txtIdDisciplina" value="<?php echo $idDisciplina ?>"><br>
             <label for="nomeDisciplina" id="nomeDisciplina">Nome da Disciplina:</label>

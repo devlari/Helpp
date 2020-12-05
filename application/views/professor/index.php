@@ -1,11 +1,11 @@
 <?php 
 session_start();
-require ("../application/config/config.php");
-require ("../application/config/Conn.class.php");
-require ("../application/models/TurmaDAO.class.php");
-require ("../application/models/PPDAO.class.php");
-require ("../application/models/AtividadeDAO.class.php");
-require ("../application/models/UsuarioDAO.class.php");
+require ("../../config/config.php");
+require ("../../config/Conn.class.php");
+require ("../../models/TurmaDAO.class.php");
+require ("../../models/PPDAO.class.php");
+require ("../../models/AtividadeDAO.class.php");
+require ("../../models/UsuarioDAO.class.php");
 
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
@@ -17,8 +17,8 @@ $UsuarioDAO = new UsuarioDAO();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
@@ -28,7 +28,7 @@ $UsuarioDAO = new UsuarioDAO();
 <body>
     <nav id="navbar-helpp">
         <div class="logo">
-            <img src="../system/img/helpp.png" />
+            <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i>Início</a></li>
@@ -36,7 +36,6 @@ $UsuarioDAO = new UsuarioDAO();
             <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
             <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
             <li><a href="index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
-
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -187,7 +186,7 @@ $UsuarioDAO = new UsuarioDAO();
                         ?>
                     </select>
                 </div>
-                <a class="btnCadastrarAtividade" href="criarAtiv.php">Cadastrar atividade</a>
+                <a class="btnCadastrarAtividade" href="cadastroAtividade.php">Cadastrar atividade</a>
                 <input type="submit" class="btnConsultar" value="Consultar">
             </form>
             <div class="tabela-atividades" cellspacing="0">
@@ -222,7 +221,7 @@ $UsuarioDAO = new UsuarioDAO();
     <footer id="rodape">
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../system/img/crowntech.png" class="logo-rodape" /></a>
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../../../system/img/crowntech.png" class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />
                     <span class="endereco">R. Alcântara, 113 - Vila Guilherme, São Paulo - SP, 02110-010</span>
@@ -317,7 +316,7 @@ $UsuarioDAO = new UsuarioDAO();
 
         </div>
     </div>
-    <script src="../system/js/app.js"></script>
+    <script src="../../../system/js/app.js"></script>
 </body>
 
 </html>

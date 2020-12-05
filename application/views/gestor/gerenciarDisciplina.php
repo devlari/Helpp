@@ -6,10 +6,10 @@
     </head>
     <body>
         <?php
-            require('../application/config/config.php');
-            require('../application/config/Conn.class.php');
-            require('../application/models/Disciplina.class.php');
-            require('../application/models/DisciplinaDAO.class.php');
+            require('../../config/config.php');
+            require('../../config/Conn.class.php');
+            require('../../models/Disciplina.class.php');
+            require('../../models/DisciplinaDAO.class.php');
         ?>
         <h1>Gerenciar Disciplinas</h1>
         <table border = '1'>

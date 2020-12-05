@@ -1,9 +1,9 @@
 <?php
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-        require('../application/models/Update.class.php');
-        require('../application/models/Turma.class.php');
-        require('../application/models/TurmaDAO.class.php');
+        require('../config/config.php');
+        require('../config/Conn.class.php');
+        require('../models/Update.class.php');
+        require('../models/Turma.class.php');
+        require('../models/TurmaDAO.class.php');
         
         $idTurma =$_POST['txtIdTurma'];
         $nomeTurma = $_POST['txtNomeTurma'];
@@ -20,7 +20,7 @@
         
         $turmaDAO->alterar($turma);
         
-        header("location:gerenciarTurma.php");
+        header("location:../views/gestor");
 
 //        echo "<pre>";
 //        var_dump($alterarTurma);

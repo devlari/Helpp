@@ -1,9 +1,9 @@
 <?php
 
-require('../application/config/config.php');
-require('../application/config/Conn.class.php');
-require('../application/models/Atividade.class.php');
-require('../application/models/AtividadeDAO.class.php');
+require('../config/config.php');
+require('../config/Conn.class.php');
+require('../models/Atividade.class.php');
+require('../models/AtividadeDAO.class.php');
 
 $titulo = $_POST['txtNomeAtiv'];
 $turma = $_POST['turma'];
@@ -25,6 +25,8 @@ $atividade->setFormaEntregaAtividade($modoEntrega);
 $atividade->setPrazoAtividade($data . '' . $horario);
 
 $atividadeDAO->cadastrarAtividade($atividade);
+
+header("location:../views/professor");
 
 
 /*echo $titulo . "<br>";
