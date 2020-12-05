@@ -48,7 +48,6 @@ function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.getElementById("tabelaProfsPP");
     tabela.addEventListener("click", (e) => {
-      console.log(e.target);
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e)=>{
@@ -109,7 +108,50 @@ function scroll() {
     }
   }
 }
-
+const softScroll = () => {
+  const menuItems = document.querySelectorAll('.nav-links li a[href^="#"]')
+  menuItems.forEach(item => {
+    item.addEventListener("click", scrollToIdOnClick)
+  })
+  
+  function scrollToIdOnClick(event){
+    event.preventDefault()
+     const element = event.target
+     const id = element.getAttribute('href')
+     const to = document.querySelector(id).offsetTop - 100;
+    // console.log(to)
+    // window.scrollTo({
+    //   top: to - 100,
+    //   behavior: 'smooth',
+    // })
+    smoothScrollTo(0, to)
+  }
+  function smoothScrollTo(endX, endY, duration) {
+    const startX = window.scrollX || window.pageXOffset;
+    const startY = window.scrollY || window.pageYOffset;
+    const distanceX = endX - startX;
+    const distanceY = endY - startY;
+    const startTime = new Date().getTime();
+  
+    duration = typeof duration !== 'undefined' ? duration : 400;
+  
+    // Easing function
+    const easeInOutQuart = (time, from, distance, duration) => {
+      if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from;
+      return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
+    };
+  
+    const timer = setInterval(() => {
+      const time = new Date().getTime() - startTime;
+      const newX = easeInOutQuart(time, startX, distanceX, duration);
+      const newY = easeInOutQuart(time, startY, distanceY, duration);
+      if (time >= duration) {
+        clearInterval(timer);
+      }
+      window.scrollTo(newX, newY);
+    }, 1000 / 60); // 60 fps
+  };
+}
 const navSlide = () => {
   const burger = document.querySelector(".burguer");
   const nav = document.querySelector(".nav-links");
@@ -198,6 +240,7 @@ const app = () => {
   modalAlert("modal-alert-import");
   modalDocAluno("modal-doc-aluno");
   scroll();
+  softScroll()
 };
 
 app();

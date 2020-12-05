@@ -106,6 +106,7 @@
         ?>
     </section>
     <section class="management-class-section">
+        <h1>Gerenciamento de turmas</h1>
         <div class="management-class">
             <table class="management-table" cellspacing="0">
                 <tr>
