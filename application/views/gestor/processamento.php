@@ -3,25 +3,25 @@
             echo "<h1>Pagina de processamento </h1><br>";
             
             //Chamando a classe PHPExcel e a conexão
-            require("../Libraries/PHPExcel.php");
-            require("../Libraries/PHPExcel/IOFactory.php");
-            require("../application/models/Gestor.class.php");
+            require("../../../Libraries/PHPExcel.php");
+            require("../../../Libraries/PHPExcel/IOFactory.php");
+            require("../../../application/models/Gestor.class.php");
             
             //Chamando os arquivos responsáveis pela conexão ao banco
-            require ("../application/config/config.php");
-            require ("../application/config/Conn.class.php");
+            require ("../../../application/config/config.php");
+            require ("../../../application/config/Conn.class.php");
             
             //Classes de cadastro
-            require ("../application/models/Create.class.php");
-            require ("../application/models/Usuario.php");
-            require ("../application/models/UsuarioDAO.class.php");
-            require ("../application/models/AlunoDAO.class.php");
-            require ("../application/models/Turma.class.php");
-            require ("../application/models/TurmaDAO.class.php");
-            require ("../application/models/Disciplina.class.php");
-            require ("../application/models/DisciplinaDAO.class.php");
-            require ("../application/models/PP.class.php");
-            require ("../application/models/PPDAO.class.php");
+            require ("../../../application/models/Create.class.php");
+            require ("../../../application/models/Usuario.php");
+            require ("../../../application/models/UsuarioDAO.class.php");
+            require ("../../../application/models/AlunoDAO.class.php");
+            require ("../../../application/models/Turma.class.php");
+            require ("../../../application/models/TurmaDAO.class.php");
+            require ("../../../application/models/Disciplina.class.php");
+            require ("../../../application/models/DisciplinaDAO.class.php");
+            require ("../../../application/models/PP.class.php");
+            require ("../../../application/models/PPDAO.class.php");
             
             //Conectando com o banco
             //$conn = new Conn;
