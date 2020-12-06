@@ -64,7 +64,8 @@
                     echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
                     echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                     echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
-                    echo "<td class='celulaMateria'>" . $Pps{"disciplinaPP"} . "</td>";
+                    echo "<td class='celulaMateria'>" . $Pps{
+                    "disciplinaPP"} . "</td>";
                     echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
                     echo "<td class='celulaProfessor'>" . '' . "</td>";
                     echo "<td class='celulaConcluiu'></td>";

@@ -5,13 +5,8 @@
         <title></title>
     </head>
     <body>
-        <?php
-        require('../application/config/config.php');
-        require('../application/config/Conn.class.php');
-
-        ?>
         <h1>CADASTRAR CURSO</h1>
-        <form method="POST" action="cadastrarCurso.php">
+        <form method="POST" action="../../controllers/cadastrarCurso.php">
             <label for="nomeCurso" id="nomeCurso">Nome do Curso:</label>
             <input type="text" name="txtNomeCurso" id="txtNomeCurso"><br>
             <label for="eixoCurso" id="eixoCurso">Eixo do Curso:</label>
