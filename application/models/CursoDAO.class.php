@@ -42,7 +42,7 @@ class CursoDAO{
         $alterar->bindValue(1, $curso->getNomeCurso());
         $alterar->bindValue(2, $curso->getEixoCurso());
         
-        $alterar->bindValue(4, $curso->getCodCurso());
+        $alterar->bindValue(3, $curso->getCodCurso());
         
         try{
             $alterar->execute();

@@ -22,33 +22,33 @@
 		{
 			if($_SESSION['cargo'] == "aluno")
 			{
-                                                                                echo $_SESSION['usuario'];
-                                                                                echo $_SESSION['cargo'];
-                                                                                echo $senha;
+                echo $_SESSION['usuario'];
+                echo $_SESSION['cargo'];
+                echo $senha;
 				header("location:views/aluno");
 			}
 			if($_SESSION['cargo'] == "professor")
 			{
-                                                                                echo $_SESSION['usuario'];
-                                                                                echo $_SESSION['cargo'];
-                                                                                echo $senha;
+                echo $_SESSION['usuario'];
+                echo $_SESSION['cargo'];
+                echo $senha;
 				header("location:views/professor");
 			}
 			if($_SESSION['cargo'] == "gestor")
 			{
 				echo $_SESSION['usuario'];
-                                                                                echo $_SESSION['cargo'];
-                                                                                echo $senha;
+                echo $_SESSION['cargo'];
+                echo $senha;
 				header("location:views/gestor");
 			}
 		}
 	}
 	else
 	{
-                            echo $_SESSION['usuario'];
-                            echo $_SESSION['cargo'];
-                            echo $senha;
-                            var_dump($result);
-                            //header("location:index.php");
+       	echo $_SESSION['usuario'];
+        echo $_SESSION['cargo'];
+        echo $senha;
+        var_dump($result);
+        //header("location:index.php");
 	}
 	?>
