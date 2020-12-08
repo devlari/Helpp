@@ -124,9 +124,12 @@ class PPDAO{
     }
     
     public function buscarAlunoPP($rmAluno) {
-        $query = "Select c.nomeUsuario, a.disciplinaPP, a.mencaoFinal, a.statusPP from pp a inner join professor_pp b 
-            on b.cod_pp_rmAluno = a.aluno_rmAluno and a.disciplina_codDisciplina = b.cod_pp_codDisciplina 
-            inner join usuario c on b.rm_professor = c.rmUsuario where a.aluno_rmAluno = ?";
+        $query = "SELECT usu.nomeUsuario, pp.disciplinaPP, pp.mencaoFinal, pp.statusPP, pp.cursoPP FROM pp AS pp 
+                    INNER JOIN professor_pp AS pr 
+                    ON pp.aluno_rmAluno = pr.cod_pp_rmAluno AND pp.disciplina_codDisciplina = pr.cod_pp_codDisciplina
+                    INNER JOIN usuario AS usu
+                    ON pr.rm_professor = usu.rmUsuario 
+                    WHERE pp.aluno_rmAluno = ?";
        
         $busca = Conn::getConn()->prepare($query);
         $busca->bindValue(1, $rmAluno);

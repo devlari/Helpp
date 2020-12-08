@@ -16,7 +16,7 @@
 		//Senha padrão = "ETECHAS"
 		if($senha == "ETECHAS")
 		{
-			header("location:atualizarSenha.php");
+			header("location:views/login/atualizarSenha.php");
 		}
 		else
 		{
