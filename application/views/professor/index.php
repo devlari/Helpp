@@ -35,7 +35,7 @@ $UsuarioDAO = new UsuarioDAO();
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i>Atividades</a></li>
             <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
             <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
-            <li><a href="index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
+            <li><a href="../../index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -84,20 +84,10 @@ $UsuarioDAO = new UsuarioDAO();
                     </div>
                 
             </div>
-            <script>
-                function pegacampo_ajax($val) {
-                    var dado = $('#idCooDiv'+$val).html(); //pega o texto do div pelo id
-                    var link = "pegacampo_ajax.php"; //endereco do segundo arquivo php
-                    $.ajax({type: 'POST', url: link, data: dado, processData: false, contentType: false }).done(function (result) {
-                    $('#resultado').html(result);
-                    $('#resultado').css('display', 'block');
-                    });
-                    return false;
-                }
-            </script>
             <div class="tabelaPpProf">
                 <table class="tabela-pps-prof" id="tabelaProfsPP">
                     <tr>
+                        <th style="display:hidden">RM</th>
                         <th class="headerTurmaPP">Turma PP</th>
                         <th class="headerAluno">Aluno</th>
                         <th class="headerDisciplina">Disciplina</th>
@@ -106,12 +96,13 @@ $UsuarioDAO = new UsuarioDAO();
                     </tr>
                     <?php
                         foreach ($pps->buscarProfPP($_SESSION['usuario']) as $pp){
-                            echo "<tr>";
-                            echo '<td class="celulaTurmaPP">'. $pp["seriePP"] .'</option>';
-                            echo '<td class="celulaNomeAluno">'. $pp["nomeUsuario"] .'</option>';
-                            echo '<td class="celulaDisciplina">'. $pp["disciplinaPP"] .'</option>';
-                            echo '<td class="celulaTurmaAtual">'. '' .'</option>';
-                            echo '<td class="celulaEstado">'. $pp["statusPP"] .'</option>';
+                            echo "<tr id='linhaPP'>";
+                            echo "<td style='display:hidden'>". $pp["rmUsuario"]. "</td>";
+                            echo '<td class="celulaTurmaPP">'. $pp["seriePP"] .'</td>';
+                            echo '<td class="celulaNomeAluno">'. $pp["nomeUsuario"] .'</td>';
+                            echo '<td class="celulaDisciplina">'. $pp["disciplinaPP"] .'</td>';
+                            echo '<td class="celulaTurmaAtual">'. '' .'</td>';
+                            echo '<td class="celulaEstado">'. $pp["statusPP"] .'</td>';
                             echo "</tr>";
                         }
                     ?>
@@ -240,8 +231,8 @@ $UsuarioDAO = new UsuarioDAO();
         </div>
     </footer>
     <div class="modal-container" id="modal-doc-aluno">
-        <div class="modal-doc30">
-            <h1 class="titulodomodal" style="font-size:30px; font-weight:900" ss>Emanuel Lopes Miranda</h1>
+        <div class="modal-doc30" id="basesTec">
+            <!--<h1 class="titulodomodal" style="font-size:30px; font-weight:900" ss>Emanuel Lopes Miranda</h1>
             <div class="traco"></div>
             <div class="conteudo-modal">
                 <div class="linha-um-doc30">
@@ -273,28 +264,28 @@ $UsuarioDAO = new UsuarioDAO();
                         <h3 class="titulo-competencias">Competências</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                            <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>-->
+                            <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>
                         </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Habilidades</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                           <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>-->
+                           <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>
                         </div>
                     </div>
                     <div class="competencias">
                         <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
                         <div class="traco"></div>
                         <div class="spn-requerimentos">
-                            <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>-->
+                            <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>
                         </div>
                     </div>
+                </div>-->
+                <div class="botao12">
+                    <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
+                    <button class="botao-fechar">Fechar</button>
                 </div>
-            </div>
-            <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
-                <button class="botao-fechar">Fechar</button>
             </div>
         </div>
     </div>

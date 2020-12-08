@@ -110,7 +110,7 @@ class PPDAO{
     }
     
     public function buscarProfPP($rmProfessor) {
-        $query = "Select seriePP, a.nomeUsuario, disciplinaPP, statusPP from usuario a inner join pp b 
+        $query = "Select seriePP, a.nomeUsuario, disciplinaPP, statusPP, a.rmUsuario from usuario a inner join pp b 
             on a.rmUsuario = b.aluno_rmAluno inner join professor_pp c 
             on b.aluno_rmAluno = c.cod_pp_rmAluno and b.disciplina_codDisciplina = c.cod_pp_codDisciplina 
             where c.rm_professor = ?";

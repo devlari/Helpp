@@ -21,9 +21,9 @@
             <label for="txtRM" id="lblRM" class="lblRM"></label>
             <input type="text" class="txtrm" placeholder="RM" name="txtRM" id="txtRM" autofocus autocomplete="off" required>
             <select name="cargo" id="cmbCargo" required>
-              <option value="aluno">Aluno</option>
-              <option value="professor">Professor</option>
-              <option value="gestor">Gestor</option>
+              <option value="Aluno">Aluno</option>
+              <option value="Professor">Professor</option>
+              <option value="Gestor">Gestor</option>
             </select><br/>
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha" placeholder="Senha" name="txtSenha" id="txtSenha" required>  
