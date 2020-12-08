@@ -3,6 +3,8 @@
 require('../application/controllers/conexao.php');
 require('../application/config/config.php');
 require('../application/config/Conn.class.php');
+
+$conexao = conexao();
 if (isset($_GET["txtRm"])) {
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega

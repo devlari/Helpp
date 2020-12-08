@@ -12,7 +12,7 @@ class AtividadeDAO extends Conn{
         
         $cadastrar = Conn::getConn()->prepare($query);
         
-        $cadastrar->bindValue(1, 66);
+        $cadastrar->bindValue(1, 1);
         $cadastrar->bindValue(2, '180114');
         $cadastrar->bindValue(3, $a->getTituloAtividade());
         $cadastrar->bindValue(4, $a->getInstrucaoAtividade());

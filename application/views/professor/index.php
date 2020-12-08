@@ -119,19 +119,14 @@ $UsuarioDAO = new UsuarioDAO();
         <div class="retangulo-ativ">
             <div class="quadro-ativ">
                 <div class="atribuida">
-                    <div class="ativ" id="atividade">
                         <?php
                             foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade){
+                                echo "<div class='ativ' id='atividade'>";
                                 echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
                                 echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
+                                echo "</div>";
                             }
-                            
                         ?>
-                    </div>
-                    <div class="ativ" id="atividade">
-                        <span class="nome-ativ">Criação de listas ordenadas e não ordenadas</span>
-                        <span class="prazo">Prazo: 27/05/2020 até 23:59.</span>
-                    </div>
                 </div>
             </div>
         </div>

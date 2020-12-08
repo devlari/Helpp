@@ -544,6 +544,7 @@ select {
     border-right: 0 !important;
 }
 
+
 .tabela-pps {
     position: relative;
     width: 80%;
@@ -618,6 +619,10 @@ select {
 }
 
 .headerNomeAluno{
+    width: 100%;
+}
+
+.headerRmProfessor2{
     width: 100%;
 }
 

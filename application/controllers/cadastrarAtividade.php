@@ -22,7 +22,7 @@ $atividadeDAO = new AtividadeDAO();
 $atividade->setTituloAtividade($titulo);
 $atividade->setInstrucaoAtividade($descricao);
 $atividade->setFormaEntregaAtividade($modoEntrega);
-$atividade->setPrazoAtividade($data . '' . $horario);
+$atividade->setPrazoAtividade($data);
 
 $atividadeDAO->cadastrarAtividade($atividade);
 
@@ -33,5 +33,5 @@ header("location:../views/professor");
 echo $turma . "<br>";
 echo $descricao . "<br>";
 echo $modoEntrega . "<br>";
-echo $data . ' ' . $horario . "<br>";
+echo $data . "<br>";
 echo $arquivo . "<br>";*/

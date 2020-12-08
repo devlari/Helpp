@@ -44,7 +44,7 @@
                 //Carrega o arquivo enviado
                 $objPHPExcel = $leitura->load($planilha);
                 
-                $worksheet = $objPHPExcel->getSheet(2);
+                $worksheet = $objPHPExcel->getSheet(0);
 
                 //foreach($worksheet as $sheet){
                     $totalLinhas = $worksheet->getHighestRow();
@@ -71,22 +71,22 @@
                             $dados = $worksheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if ($dados != null){
                                 switch($coluna){
-                                    case 1: $rmAluno = $dados;break;
-                                    case 2: $nomeAluno = $dados;break;
-                                    case 3: $periodo = $dados;break;
-                                    case 4: $turmaPP = $dados;break;
-                                    case 5: $anoPP = $dados;break;
+                                    case 2: $rmAluno = $dados;break;
+                                    case 3: $nomeAluno = $dados;break;
+                                    case 4: $periodo = $dados;break;
+                                    case 6: $turmaPP = $dados;break;
+                                    case 7: $semestreAno = $dados;break;
                                     //case 6: $semestreAno = $dados;break;
-                                    case 6: $disciplina = $dados;break;
-                                    case 7: $rmProf1 = $dados;break;
-                                    case 8: 
+                                    case 8: $disciplina = $dados;break;
+                                    case 9: $rmProf1 = $dados;break;
+                                    /*case 8: 
                                         //$professor = $objPHPExcel->getActiveSheet()->getCell()->getCalculatedValue();
                                         $professor = $dados;
                                         
                                         break;
                                     case 9: $rmProf2 =$dados;break;
                                     case 10: $professor2= $dados;break;
-                                    case 13: $turmaAtual= $dados;break;
+                                    case 13: $turmaAtual= $dados;break;*/
                                     default: $nulo = $dados;    
                                 }
                                 $c++;
@@ -95,7 +95,7 @@
                         $l++; 
                         
                         //Cadastrando o usuário Aluno
-                        /*$Usuario->setId($rmAluno);
+                        $Usuario->setId($rmAluno);
                         $Usuario->setNome($nomeAluno);
                         $Usuario->setPerfil('Aluno');
                         
@@ -106,9 +106,17 @@
                         if ($UsuarioDAO->getResult() == false){
                             $UsuarioDAO->cadastrarUsuario($Usuario);
                             $AlunoDAO->cadastrarAluno($Usuario);
-                        }*/
+                        }
                         
                         //Cadastrando Professor
+                        /*$Usuario->setId($rmProf1);
+                        $Usuario->setNome($professor);
+                        $UsuarioDAO->cadastrarUsuario($Usuario);*/
+                        /*if($rmProf2 != ""){
+                            $Usuario->setId($rmProf2);
+                            $Usuario->setNome($professor);
+                            $UsuarioDAO->cadastrarUsuario($Usuario);
+                        }*/
                         //tirando a / da string de professores da tabela
                         //$professores = explode("/", $professor);
                         //$prof1 = $professores[0];
@@ -124,7 +132,7 @@
                         
                         //Cadastrando turma, aqui eu vou usar um código ja cadastrado manualmente na tabela curso, já que por enquanto não sabemos como vamos cadastrá-lo
                         //Separando o semestre e o ano da turma de PP
-                        /*$SemAno = explode("/", $semestreAno);
+                        $SemAno = explode("/", $semestreAno);
                         $semestre = $SemAno[0];
                         $ano = $SemAno[1];
                         
@@ -159,39 +167,35 @@
                         foreach($discDAO->verificaDisciplina($disc) as $d){
                                $PP->setCodDisciplina($d["codDisciplina"]);
                                $PP->setDisciplinaPP($d["nomeDisciplina"]);
-                        }*/
+                        }
                         
-                        /*for ($i=0; $i<=1; $i++){
-                            foreach($turmaDAO->buscarCursoTurma($turma->getCodCurso()) as $tt){
-                               $PP->setCodDisciplina($tt["nome_curso"]);
-                               echo "{$PP->getCodDisciplina()}";
-                            }
-                        }*/
                         
-                        /*$PP->setRmAluno($rmAluno);
+                        $PP->setRmAluno($rmAluno);
+                        $PP->setRmProfessor($rmProf1);
                         $PP->setRmGestor('180115');
                         $PP->setSemestrePP($semestre);
                         $PP->setStatusPP('Em aberto');
                         $PP->setCursoPP('Informática');
+                        $PP->setAnoPP($ano);
                         
                         //$PPDAO->verificaDisciplina($disc);
                         if($PPDAO->getResultado() == false){
                             //Cadastrando PP
                             $PPDAO->cadastrar($PP);
-                        }*/
+                        }
                         
                         echo "RM do aluno: " . $rmAluno . "<br>";
                         echo "Nome do aluno: " . $nomeAluno . "<br>";
                         echo "Período: " . $periodo . "<br>";
                         echo "Série/Módulo: " . $turmaPP . "<br>";
-                        echo "Semestre/Ano: " . $anoPP . "<br>";
+                        echo "Semestre/Ano: " . $semestre . $ano . "<br>";
                         echo "Disciplina: " . $disciplina . "<br>";
-                        echo "Rm professor 1: " . $rmProf1 . "<br>";
+                        /*echo "Rm professor 1: " . $rmProf1 . "<br>";
                         echo "Nome professor 1: " . $professor . "<br>";
                         echo "Rm professor 2: " . $rmProf2 . "<br>";
                         echo "Nome professor 2: " . $professor2 . "<br>";
-                        echo "Turma atual: " . $turmaAtual . "<br><hr>";
-                        //header("location: inicioGestor.php");
+                        echo "Turma atual: " . $turmaAtual . "<br><hr>";*/
+                        header("location: index.php");
                     }
                     echo "</table>";
                 }
