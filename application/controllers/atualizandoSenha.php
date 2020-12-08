@@ -17,26 +17,21 @@
 		$query = "UPDATE usuario SET senhaUsuario = '{$senha}' WHERE rmUsuario = '{$_SESSION['usuario']}'";
 
 		$result = mysqli_query($conexao, $query);
-
-		header("location:inicioAluno.php");
-	}
-	else
-	{
+		
 		if($_SESSION['cargo'] == "aluno")
 		{
-			header("location:inicioAluno.php");
+			header("location:../views/aluno");
 		}
 		
 		if($_SESSION['cargo'] == "professor")
 		{
-			header("location:inicioProfessor.php");
+			header("location:../views/aluno");
 		}
 		
 		if($_SESSION['cargo'] == "gestor")
 		{
-			header("location:inicioGestor.php");
+			header("location:../views/aluno");
 		}
-		
 	}
 
 ?> 
