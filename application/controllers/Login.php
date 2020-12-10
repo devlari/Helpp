@@ -2,7 +2,7 @@
 
 namespace application\controllers;
 
-use application\models\Usuario;
+use application\models\UsuarioDAO;
 use application\core\Controller;
 
 class Login extends Controller
@@ -34,10 +34,16 @@ class Login extends Controller
 
     public function check()
     { 
-        $user = new Usuario;
+        //require("../application/models/UsuarioDAO.class.php");
+        //$user = new UsuarioDAO;
         if(isset($_POST['txtRM']))
         {
-            if($user->Login())
+           // if($user->obterUsuario($_POST['txtRM']))
+            //{
+                echo 'ACHADO';
+            //}
+
+            /*if($user->Login())
             {
                 $this->perm = $user->verifyPerm();
 
@@ -67,7 +73,7 @@ class Login extends Controller
             else
             {
                 //RETORNAR "USUÁRIO OU SENHA INCORRETOS"
-            }
+            }*/
         }
     }
 }
