@@ -68,7 +68,7 @@ session_start();
                 <input type="datetime-local" name="txtPrazoEntrega" min="<?php echo date("Y-m-d\T23:59");?>" value="<?php echo date("Y-m-d\T23:59"); ?>" />
                 <div class="upload-arquivo">
                     <label for="upload" class="label" id="label">Selecionar arquivo...</label>
-                    <input type="file" name="upload" id="upload">
+                    <input type="file" name="upload" id="upload" required>
                     <i class="fas fa-upload"></i>
                 </div>
                 <input type="submit" class="btnEnviar" value="Enviar" />

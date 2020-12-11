@@ -24,6 +24,30 @@ function modalAtivAluno(){
 
 function modalAtiv(){
     $conexao = conexao();
+    $rm = $_GET['txtRm'];
+    $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
+    $result = mysqli_query($conexao, $sql);
+    $cont = mysqli_affected_rows($conexao);
+    echo mysqli_error($conexao);
+    if($cont > 0){
+        $resultado = mysqli_fetch_array($result);
+        ?>
+        <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario'];?></h1>
+            <div class="traco"></div>
+            <div class="conteudo-modal">
+                <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
+                <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
+                <div class="materiais">
+                    <a href="#" download="NomeAtividade.txt" class="label"><?php echo $resultado['arquivo']; ?></a>
+                    <i class="fas fa-download"></i>
+                </div>
+            </div>
+
+        <?php
+    }else{
+        echo "<h1 class='titulodomodal'>Ops!</h1>
+        <div class='traco'></div><h1 class='titulodomodal'>Não foram encontrados dados sobre essa atividade!</h1>";
+    }
 }
 
 function modalPp(){
