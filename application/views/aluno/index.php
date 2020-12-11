@@ -157,7 +157,7 @@ $UsuarioDAO = new UsuarioDAO();
         </div>
     </footer>
     <div class="modal-container" id="modal-atividade">
-        <div class="modal">
+        <div class="modal" id="modal-ativ-aluno">
             <h3 class="tituloModal">Criação de listas ordenadas e não ordenadas.</h3>
             <div class="conteudo-modal">
                 <div class="descricao">

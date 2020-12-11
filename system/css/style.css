@@ -143,6 +143,7 @@ html{
     -webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    overflow:auto;
 }
 
 .quadro-ativ {
@@ -566,7 +567,6 @@ select {
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     display: block;
-    overflow-y: scroll;
 }
 
 .cadTurma{
@@ -616,6 +616,17 @@ select {
     border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     border-right: 2px solid rgba(0, 0, 0, 0.5);
     font-size: 20px;
+}
+
+.headerRm{
+    padding: 6px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+}
+
+.celulaRm{
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 .headerNomeAluno{
@@ -1206,7 +1217,7 @@ select {
         width: 95%;
     }
     .tabela-pps table {
-        overflow: scroll;
+        overflow: auto;
     }
     .modal-doc30 {
         height: 85%;
@@ -1489,7 +1500,7 @@ select {
         width: 50%;
     }
     .tabela-pps-prof {
-        overflow: scroll;
+        overflow: auto;
     }
     .tabelaPpProf {
         width: 90%;
@@ -1551,7 +1562,7 @@ select {
         height: 220px;
     }
     .management-table{
-        overflow:scroll;
+        overflow:auto;
     }
 }
 
@@ -1626,7 +1637,12 @@ select {
     .conteudo-gestor{
         padding-top:0;
     }
-    
+    .quadro-ativ{
+        overflow:auto
+    }
+    .ativ{
+        overflow:auto;
+    }
 }
 
 @media (max-width: 375px) and (min-width: 320px) {

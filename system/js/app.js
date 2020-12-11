@@ -37,7 +37,7 @@ function modalAtiv(modalID) {
       modal.classList.add("mostrar");
       modal.addEventListener("click", (e) => {
         if (e.target.className == "botao") {
-          modal.classList.remove("mostrar");
+          location.reload()
         }
       });
     });
@@ -47,6 +47,7 @@ function modalAtiv(modalID) {
 function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.getElementById("tabelaProfsPP");
+  if(modal){
   tabela.addEventListener("click", (e) => {
     if (e.target.className == "celulaNomeAluno") {
       modal.classList.add("mostrar");
@@ -57,7 +58,7 @@ function modalDocAluno(modalID) {
       });
     }
   });
-
+  }
 }
 
 function modalAtivAluno(modalID) {
@@ -69,7 +70,7 @@ function modalAtivAluno(modalID) {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
           if (e.target.className == "botao-fechar" || e.target == modal) {
-            modal.classList.remove("mostrar");
+            location.reload()
           }
         });
       }
@@ -204,15 +205,16 @@ function CriaRequest() {
 
 function getDados() {
   // Declaração de Variáveis
-  const tabela = document.getElementById("tabelaAtividade");
+  const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
   const tabelaPP = document.querySelectorAll("#linhaPP")
-  tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
-    if(e.target.className == 'celulaNomeAluno'){
-    let RM = linha.firstElementChild.innerText
-    let result = document.getElementById("basesTec")
+  const tabelaAtividadesAluno = document.querySelector('.atribuida .ativ')
+  if(tabelaAtividadesAluno){
+  tabelaAtividadesAluno.addEventListener('click', (e) => {
+    let RM = document.getElementById('rmAlunoAtual')
+    let Ativ = document.getElementsByClassName("nome-ativ").innerText
+    let result = document.getElementById("modal-ativ-aluno")
     let xmlreq = CriaRequest()
-    xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM, true);
-
+    xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtAtiv =" + Ativ + "&funcao=modalAtivAluno", true)
     xmlreq.onreadystatechange = function () {
 
       // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
@@ -227,16 +229,14 @@ function getDados() {
       }
     }
     xmlreq.send(null);
-  }
-    //console.log(linha.firstElementChild.innerText)
-  }))
-  /*tabela.addEventListener("click", (e) => {
-    if (e.target.className == "nomeAluno") {
-      let nome = e.target.innerHTML;//Pega o valor da tag, nome a ser consultado no banco
-      var result = document.getElementById("modal-atividade-recebida");// campo onde vai mostrar o nome do aluno
-      var xmlreq = CriaRequest();
-
-      xmlreq.open("GET", "teste.php?txtNome=" + nome, true);//enviando o nome que foi clicado pra ser consultado no banco suas respectivas informações.
+  })
+}
+  tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
+    if (e.target.className == 'celulaNomeAluno') {
+      let RM = linha.firstElementChild.innerText
+      let result = document.getElementById("basesTec")
+      let xmlreq = CriaRequest()
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalPp", true);
 
       xmlreq.onreadystatechange = function () {
 
@@ -250,10 +250,35 @@ function getDados() {
             result.innerHTML = "Erro: " + xmlreq.statusText;
           }
         }
-      };
+      }
       xmlreq.send(null);
     }
-  });*/
+    //console.log(linha.firstElementChild.innerText)
+  }))
+  tabelaAtivRecebida.forEach(linha => linha.addEventListener('click', (e) => {
+      if (e.target.className == 'nomeAluno') {
+      let RM = linha.firstElementChild.innerText
+      console.log(RM)
+      let result = document.getElementById("modal-atividade-recebida")
+      let xmlreq = CriaRequest()
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalAtiv", true);
+
+      xmlreq.onreadystatechange = function () {
+
+        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+        if (xmlreq.readyState == 4) {
+
+          // Verifica se o arquivo foi encontrado com sucesso
+          if (xmlreq.status == 200) {
+            result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+          } else {
+            result.innerHTML = "Erro: " + xmlreq.statusText;
+          }
+        }
+      }
+      xmlreq.send(null);
+    }
+  }))
 }
 
 const app = () => {

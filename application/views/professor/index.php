@@ -121,9 +121,12 @@ $UsuarioDAO = new UsuarioDAO();
                 <div class="atribuida">
                         <?php
                             foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade){
+                                $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+
                                 echo "<div class='ativ' id='atividade'>";
                                 echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                                echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
+                                echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
                                 echo "</div>";
                             }
                         ?>
@@ -178,21 +181,25 @@ $UsuarioDAO = new UsuarioDAO();
             <div class="tabela-atividades" cellspacing="0">
             <table id="tabelaAtividade">
                 <tr>
+                    <th class="headerRm">Rm</th>
                     <th class="headerNome">Nome</th>
                     <th class="headerTurma">Turma</th>
                     <th class="headerStatus">Status</th>
                 </tr>
-                <tr>
+                <tr id="linhaAtiv">
+                    <td class="celulaRm"><span class="rmAluno">180114</span></td>
                     <td class="celulaNome"><span class="nomeAluno">Joao Vitor Belarmino Dias Silva</span></td>
-                    <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
+                    <td class="celulaTurma"><span class="turmaPP">3Ai</span></td>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
+                <td class="celulaRm"><span class="rmAluno">180500</span></td>
                     <td class="celulaNome"><span class="nomeAluno">Geovana Miranda Mélo</span></td>
                     <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
                     <td class="celulaStatus">Entregue</td>
                 </tr>
                 <tr>
+                <td class="celulaRm"><span class="rmAluno">180500</span></td>
                     <td class="celulaNome"><span class="nomeAluno">Henrique Nunes</span></td>
                     <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
                     <td class="celulaStatus">Entregue</td>
