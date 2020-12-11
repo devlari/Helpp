@@ -1,33 +1,36 @@
 <?php
 
-	session_start();
-	include("./controllers/conexao.php");
-        $conexao= conexao();
+    session_start();
+    include("./controllers/conexao.php");
+    $conexao= conexao();
 
-	$_SESSION['usuario'] = mysqli_real_escape_string($conexao, $_POST['txtRM']);
-	$_SESSION['cargo'] = $_POST['cargo'];
-	$senha = mysqli_real_escape_string($conexao, $_POST['txtSenha']);
+    $_SESSION['usuario'] = mysqli_real_escape_string($conexao, $_POST['txtRM']);
+    $_SESSION['cargo'] = $_POST['cargo'];
+    $senha = mysqli_real_escape_string($conexao, $_POST['txtSenha']);
 
-	$query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$_SESSION['usuario']}' AND senhaUsuario = '{$senha}' AND perfilUsuario = '{$_SESSION['cargo']}'";
-	$result = mysqli_query($conexao, $query);
-	$row = mysqli_num_rows($result);
+    $query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$_SESSION['usuario']}' AND senhaUsuario = '{$senha}' AND perfilUsuario = '{$_SESSION['cargo']}'";
+    $result = mysqli_query($conexao, $query);
+    $row = mysqli_num_rows($result);
 
-	if($row == 1)
-	{
-		//Senha padrão = "ETECHAS"
-		if($senha == "ETECHAS")
-		{
-                    header("location:views/login/atualizarSenha.php");
-		}
-		else
-		{
+    echo $query;
+    echo mysqli_error($conexao);
+
+    if($row == 1)
+    {
+        //Senha padrão = "ETECHAS"
+        if($senha == "ETECHAS" || $senha == "etechas")
+        {
+            header("location:views/login/atualizarSenha.php");
+        }
+        else
+        {
                     if($_SESSION['cargo'] == "Aluno")
-                    {               
+                    {
                         echo $_SESSION['usuario'];
                         echo $_SESSION['cargo'];
                         echo $senha;
                         header("location:views/aluno");
-                    }   
+                    }
                     if($_SESSION['cargo'] == "Professor")
                     {
                         echo "putz";
@@ -38,19 +41,19 @@
                     }
                     if($_SESSION['cargo'] == "Gestor")
                     {
-			echo $_SESSION['usuario'];
+                        echo $_SESSION['usuario'];
                         echo $_SESSION['cargo'];
                         echo $senha;
-			header("location:views/gestor");
+                        header("location:views/gestor");
                     }
-		}
-	}
-	else
-	{
+        }
+    }
+    else
+    {
             echo $_SESSION['usuario'];
             echo $_SESSION['cargo'];
             echo $senha;
             var_dump($result);
-            //header("location:index.php");
-	}
+            header("location:index.php");
+    }
 ?>

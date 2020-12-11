@@ -2,6 +2,7 @@
 session_start();
 require("../../config/config.php");
 require("../../config/Conn.class.php");
+require("../../models/AlunoDAO.class.php");
 require("../../models/TurmaDAO.class.php");
 require("../../models/PPDAO.class.php");
 require("../../models/AtividadeDAO.class.php");
@@ -11,6 +12,8 @@ $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
+$aluno = new AlunoDAO();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +37,7 @@ $UsuarioDAO = new UsuarioDAO();
         <ul class="nav-links">
             <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i>Início</a></li>
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i>Atividades</a></li>
-            <li><a href="criarAtiv.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
+            <li><a href="cadastroAtividade.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
             <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
             <li><a href="../../index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
         </ul>
@@ -157,7 +160,7 @@ $UsuarioDAO = new UsuarioDAO();
                         <h1>Matéria:</h1>
                     </label>
                     <select name="filtro-materia" class="filtro-materia" id="filtro-materia">
-                        <?php
+                    <?php
                         foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
                             echo '<option value="' . $turma["codDisciplina"] . '">' . $turma["nomeDisciplina"] . '</option>';
                         }
@@ -174,11 +177,9 @@ $UsuarioDAO = new UsuarioDAO();
                             echo '<option value="' . $atividade{
                             "cod_atividade"} . '">' . $atividade["titulo_atividade"] . '</option>';
                         }
-
                         ?>
                     </select>
                 </div>
-                <a class="btnCadastrarAtividade" href="cadastroAtividade.php">Cadastrar atividade</a>
                 <input type="submit" class="btnConsultar" value="Consultar">
             </form>
             <div class="tabela-atividades" cellspacing="0">

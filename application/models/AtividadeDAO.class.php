@@ -8,7 +8,7 @@
 class AtividadeDAO extends Conn{
     public function cadastrarAtividade(Atividade $a) {
         $query = "INSERT INTO atividade (PP_Disciplina_codDisciplina, PP_Aluno_rmAluno, titulo_atividade, "
-                . "instrucao_atividade, prazo_entrega, forma_entrega) values (?,?,?,?,?,?)";
+                . "instrucao_atividade, prazo_entrega, forma_entrega, arquivo_prof) values (?,?,?,?,?,?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         
@@ -18,6 +18,7 @@ class AtividadeDAO extends Conn{
         $cadastrar->bindValue(4, $a->getInstrucaoAtividade());
         $cadastrar->bindValue(5, $a->getPrazoAtividade());
         $cadastrar->bindValue(6, $a->getFormaEntregaAtividade());
+        $cadastrar->bindValue(7, $a->getArquivoProf());
         
         try{
             $cadastrar->execute();
@@ -54,15 +55,24 @@ class AtividadeDAO extends Conn{
         return $this->result;
     }
     
-    public function editarAtividade(){
-        $query = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ?, perfilUsuario = ? WHERE rmUsuario = ?";
+    public function editarAtividade(Atividade $atividade){
+        $query = "UPDATE atividade SET titulo_atividade = ?, instrucao_atividade = ?, 
+        data_conclusao = ?, prazo_entrega = ?, forma_entrega = ?, mencao_atividade = ?, 
+        status = ?, arquivo_prof = ?, arquivo_aluno = ? WHERE codAtividade = ?";
+
         $alterar = Conn::getConn()->prepare($query);
         
-        $alterar->bindValue(1, $u->getNome());
-        $alterar->bindValue(2, $u->getEmail());
-        $alterar->bindValue(3, $u->getPerfil());
-        $alterar->bindValue(4, $u->getId());
-        
+        $alterar->bindValue(1, $atividade->getTituloAtividade());
+        $alterar->bindValue(2, $atividade->getInstrucaoAtividade());
+        $alterar->bindValue(3, $atividade->getDataConclusaoAtividade());
+        $alterar->bindValue(4, $atividade->getPrazoAtividade());
+        $alterar->bindValue(5, $atividade->getFormaEntregaAtividade());
+        $alterar->bindValue(6, $atividade->getMencaoAtividade());
+        $alterar->bindValue(7, $atividade->getStatus());
+        $alterar->bindValue(8, $atividade->getArquivoProf());
+        $alterar->bindValue(9, $atividade->getArquivoAluno());
+        $alterar->bindValue(10, $atividade->getCodigoAtividade());
+
         try{
             $alterar->execute();
             $this->result = Conn::getConn()->lastInsertId();
