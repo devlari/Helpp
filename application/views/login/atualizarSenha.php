@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../../system/css/login.css">
-    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
     
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <title>Faça login!</title>
@@ -30,7 +28,6 @@
       <p class="divisoria"></p>
     </div>
       <footer>
-          <img src="../../../system/img/rodape.png" class="rodape"></img>
         <p class="copy">Copyright © 2020 CrownTech. Todos os direitos reservados.</p>
       </footer>
       <div class="modal-container" id="modal-aviso">
@@ -40,6 +37,6 @@
           <button class="botao">OK!</button>
         </div>
       </div>
-      <script src="../../system/js/app.js"></script>
+      <script src="../../../system/js/app.js"></script>
   </body>
 </html>

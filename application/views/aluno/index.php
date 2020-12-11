@@ -51,7 +51,7 @@ $UsuarioDAO = new UsuarioDAO();
             <ul>
                 <?php
                 foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user){
-                    echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                    echo "<li class='Ola'>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
                 }
                 foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user){
                     echo "<li>Curso: " . $user["cursoPP"] . "</li>";
@@ -81,7 +81,6 @@ $UsuarioDAO = new UsuarioDAO();
                     ?>
                 </table>
             </div>
-            <button class="consultarpp">Consultar PP's</button>
         </div>
     </section>
     <div class="Atividade-titulo">

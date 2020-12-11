@@ -159,8 +159,7 @@ $UsuarioDAO = new UsuarioDAO();
                     <select name="filtro-materia" class="filtro-materia" id="filtro-materia">
                         <?php
                         foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
-                            echo '<option value="' . $turma{
-                            "codDisciplina"} . '">' . $turma["nomeDisciplina"] . '</option>';
+                            echo '<option value="' . $turma["codDisciplina"] . '">' . $turma["nomeDisciplina"] . '</option>';
                         }
                         ?>
                     </select>

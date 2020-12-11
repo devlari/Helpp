@@ -5,10 +5,10 @@ function conexao(){
 	define('senha','');
 	define('bd','teste_tcc');*/
         
-        	$host = "localhost";
+    $host = "localhost";
 		$usuario = "root";
 		$senha = "";
-		$banco = "teste_tcc";
+		$banco = "helpp";
 
         $conn = @mysqli_connect($host,$usuario,$senha,$banco) or die ("Não foi possível conectar-se.");
         

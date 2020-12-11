@@ -13,13 +13,24 @@ html{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction:column;
 }
+
+.conteudo .dados-user{
+    width: 61vw;
+    margin-bottom:15px;
+}
+
 .conteudo-gestor .dados-user{
     width:80%;
     margin-bottom:15px;
 }
 .conteudo-gestor .dados-user .Ola{
     font-size:32px;
+    font-weight: bold;
+}
+.Ola{
+    font-size:32px!important;
     font-weight: bold;
 }
 
@@ -42,7 +53,6 @@ html{
 .retangulo-pp {
     width: 61vw;
     height: 48vh;
-    margin-left: 50px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -531,6 +541,11 @@ select {
 #tabelaPPSALUNO .tabela-pps{
     height: 100%;
 }
+
+.headerMateria{
+    width: 100%;
+}
+
 #tabelaPPSALUNO .tabela-pps td {
     width: 100%;
     text-align:center;
@@ -567,6 +582,7 @@ select {
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     display: block;
+    overflow:auto;
 }
 
 .cadTurma{
@@ -1292,9 +1308,6 @@ select {
     }
     .fone {
         font-size: 20px;
-    }
-    .retangulo-pp {
-        margin-top: 50px;
     }
     .div-filtro {
         left:0;
