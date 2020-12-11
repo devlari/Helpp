@@ -172,7 +172,7 @@ $UsuarioDAO = new UsuarioDAO();
                 </div>
                 <div class="upload">
                     <span class="tituloUpload">Fazer upload de arquivo</span>
-                    <form action="" method="POST">
+                    <form action="../../controllers/enviarAtivAluno.php" method="POST">
                         <div class="materiais">
                             <label for="upload" class="label" id="label">Selecionar arquivo...</label>
                             <input type="file" name="upload" id="upload">

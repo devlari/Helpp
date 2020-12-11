@@ -30,7 +30,6 @@
       <p class="divisoria"></p>
     </div>
       <footer>
-          <img src="../../../system/img/rodape.png" class="rodape"></img>
         <p class="copy">Copyright © 2020 CrownTech. Todos os direitos reservados.</p>
       </footer>
       <div class="modal-container" id="modal-aviso">
@@ -40,6 +39,6 @@
           <button class="botao">OK!</button>
         </div>
       </div>
-      <script src="../../system/js/app.js"></script>
+      <script src="../../../system/js/app.js"></script>
   </body>
 </html>

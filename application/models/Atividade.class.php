@@ -15,6 +15,8 @@ class Atividade{
     private $prazoAtividade;
     private $formaEntregaAtividade;
     private $mencaoAtividade;
+    private $arquivo_prof;
+    private $arquivo_aluno;
     
     public function importarArquivo(){
         
@@ -60,6 +62,18 @@ class Atividade{
         return $this->mencaoAtividade;
     }
 
+    function getArquivoProf(){
+        return $this->arquivo_prof;
+    }
+
+    function getArquivoAluno(){
+        return $this->arquivo_aluno;
+    }
+
+    function getStatus(){
+        return $this->status;
+    }
+
     function setCodigoAtividade($codigoAtividade){
         $this->codigoAtividade = $codigoAtividade;
     }
@@ -90,6 +104,18 @@ class Atividade{
 
     function setMencaoAtividade($mencaoAtividade){
         $this->mencaoAtividade = $mencaoAtividade;
+    }
+
+    function setArquivoProf($arquivo_prof){
+        $this->arquivo_prof = $arquivo_prof;
+    }
+
+    function setArquivoAluno($arquivo_aluno){
+        $this->arquivo_aluno = $arquivo_aluno;
+    }
+
+    function setStatus($status){
+        $this->status = $status;
     }
 
 

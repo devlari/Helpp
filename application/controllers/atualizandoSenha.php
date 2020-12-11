@@ -1,5 +1,6 @@
 <?php
 	include('conexao.php');
+	$conexao = conexao();
 	session_start();
 
 	$senha = mysqli_real_escape_string($conexao, $_POST['txtSenha']);
@@ -8,8 +9,7 @@
 	//Caso o usuário tente acessar a página pelo endereço dela (tentar ir pro atualizando sem colocar as informações no atualizar)
 	if(empty($senha) || empty($senha2))
 	{
-		header("location:index.php");
-		exit();
+		echo "???";
 	}
 
 	if($senha == $senha2)
@@ -18,17 +18,17 @@
 
 		$result = mysqli_query($conexao, $query);
 		
-		if($_SESSION['cargo'] == "aluno")
+		if($_SESSION['cargo'] == "Aluno")
 		{
 			header("location:../views/aluno");
 		}
 		
-		if($_SESSION['cargo'] == "professor")
+		if($_SESSION['cargo'] == "Professor")
 		{
 			header("location:../views/aluno");
 		}
 		
-		if($_SESSION['cargo'] == "gestor")
+		if($_SESSION['cargo'] == "Gestor")
 		{
 			header("location:../views/aluno");
 		}
