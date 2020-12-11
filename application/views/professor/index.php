@@ -48,7 +48,7 @@ $aluno = new AlunoDAO();
         </div>
     </nav>
 
-    <section class="conteudo" id="tela">
+    <section class="conteudo-prof" id="tela">
         <div class="dados-user">
             <ul>
                 <?php
