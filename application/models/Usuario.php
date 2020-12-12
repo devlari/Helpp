@@ -9,7 +9,7 @@
 
 class Usuario{
     
-    protected $idUsuario;
+    protected $rmUsuario;
     protected $nomeUsuario;
     private $emailUsuario;
     private $perfilUsuario;
@@ -78,12 +78,12 @@ class Usuario{
 
     public function setId($id)
     {
-        $this->idUsuario = $id;
+        $this->rmUsuario = $id;
     }
 
     public function getId()
     {
-        return $this->idUsuario;
+        return $this->rmUsuario;
     }
 
     public function setNome($nome)
