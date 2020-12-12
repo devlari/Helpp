@@ -6,9 +6,9 @@
  * @copyright (c) year, Geovana M. Melo 
  */
 class UsuarioDAO extends Conn{
-    private $result;
+    public $result;
     
-    public function cadastrarUsuario(application\models\Usuario $u)
+    public function cadastrarUsuario($u)
     {
         $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario) values (?,?,?)";
         
@@ -38,6 +38,9 @@ class UsuarioDAO extends Conn{
             $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
         } 
+        else{
+            return null;
+        }
     }
     
     
