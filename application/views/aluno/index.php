@@ -110,10 +110,12 @@ $UsuarioDAO = new UsuarioDAO();
                     <h3>Atribuída(1)</h3>
                         <?php
                             foreach ($atividades->listarAtividadeAluno($_SESSION['usuario']) as $atividade){
+                                $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
                                 echo "<div class='ativ' id='atividade'>";
                                 echo "<input type='hidden' id='codigoAtividade' value='". $atividade['codAtividade'] ."'>";
                                 echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                                echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
+                                echo "<span class='prazo'>" . $dataNova . "</span><br>";
                                 echo "</div>";
                             }
                             
