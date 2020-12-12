@@ -171,9 +171,10 @@ class PPDAO{
             $atualizar->execute();
             //echo "Competências, Habilidades e Bases Tecnológicas cadastradas com sucesso!";
             $this->resultado = true;
-            //$this->result = Conn::getConn()->lastInsertId();
+            $this->result = Conn::getConn()->lastInsertId();
+
         } catch (Exception $e) {
-            //$this->result = null;
+            $this->result = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
         

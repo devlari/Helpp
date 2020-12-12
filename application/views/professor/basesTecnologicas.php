@@ -69,6 +69,7 @@ $aluno = new AlunoDAO();
         </div>
         <div class="container2">
             <form action="../../controllers/editandoPP.php" method="POST" class="frmBasesTec">
+                <input name='rmAluno' type="hidden" value=<?php echo $rm;?>></input>
                 <div class="basesTecnologicas">
                     <div class="campoCompetencias">
                         <h3 class="titulo-competencias">Competências</h3>
