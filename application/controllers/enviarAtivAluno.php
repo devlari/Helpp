@@ -8,8 +8,8 @@ require('../models/AtividadeDAO.class.php');
 
 $codAtiv = $_POST['codigoAtividade'];
 
-$nome_temporario = $_FILES['upload']["tmp_name"];
-$nome_real = $_FILES['upload']["name"];
+$nome_temporario = $_FILES["upload"]["tmp_name"];
+$nome_real = $_FILES["upload"]["name"];
 $extensao_real = pathinfo($nome_real);
 $extensao_real = $extensao_real['extension'];
 $tamanho = mt_rand(8, 50);

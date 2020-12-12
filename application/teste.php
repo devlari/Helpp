@@ -18,79 +18,94 @@ if (isset($_GET["txtRm"])) {
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
 }
-function modalAtivAluno(){
+function modalAtivAluno()
+{
     $conexao = conexao();
     $codAtiv = $_GET["txtCodAtiv"];
     $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
-    
-    if($cont > 0){
+
+    if ($cont > 0) {
         $resultado = mysqli_fetch_array($result);
         $dataArrumada = explode("-", $resultado["prazo_entrega"]);
         $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-        ?>
-        <input type="hidden" value="<?php echo $resultado['codAtividade'];?>">
-        <h3 class="tituloModal"><?php echo $resultado['titulo_atividade'];?></h3>
-            <div class="conteudo-modal">
-                <div class="descricao">
-                    <span><?php echo $resultado['instrucao_atividade'];?></span>
-                </div>
-                <div class="material">
-                        <div class="materiais">
-                            <a href="../../../system/arquivos/<?php echo $resultado['arquivo_prof']; ?>" download="ativ" class="label">Instrução atividade</a>
-                            <i class="fas fa-download"></i>
-                        </div>
-                    <span class="prazo-entrega">Prazo de entrega: <?php echo $dataNova;?></span>
-                </div>
-                <div class="upload">
-                    <span class="tituloUpload">Fazer upload de arquivo</span>
-                    <form action="../../controllers/enviarAtivAluno.php" method="POST">
-                        <div class="materiais">
-                            <input type='hidden' id='codigoAtividade' name='codigoAtividade' value='<?php echo $codAtiv ?>'>
-                            <label for="upload" class="label" id="label">Selecionar arquivo...</label>
-                            <input type="file" name="upload" id="upload" required>
-                            <i class="fas fa-upload"></i>
-                        </div>
-                        <input type="submit" value="Enviar" class="btnEnviar">
-                        <div class="botao">Fechar</div>
-                    </form>
-                </div>
+?>
+        <input type="hidden" value="<?php echo $resultado['codAtividade']; ?>">
+        <h3 class="tituloModal"><?php echo $resultado['titulo_atividade']; ?></h3>
+        <div class="conteudo-modal">
+            <div class="descricao">
+                <span><?php echo $resultado['instrucao_atividade']; ?></span>
             </div>
-        <?php
+            <div class="material">
+                <div class="materiais">
+                    <a href="../../../system/arquivos/<?php echo $resultado['arquivo_prof']; ?>" download="ativ" class="label">Instrução atividade</a>
+                    <i class="fas fa-download"></i>
+                </div>
+                <span class="prazo-entrega">Prazo de entrega: <?php echo $dataNova; ?></span>
+            </div>
+            <div class="upload">
+                <span class="tituloUpload">Fazer upload de arquivo</span>
+                <form action="../../controllers/enviarAtivAluno.php" method="POST" enctype="multipart/form-data">
+                    <div class="materiais">
+                        <input type='hidden' id='codigoAtividade' name='codigoAtividade' value='<?php echo $codAtiv ?>'>
+                        <label for="upload" class="label" id="label">Selecionar arquivo...</label>
+                        <input type="file" name="upload" id="upload" required>
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <input type="submit" value="Enviar" class="btnEnviar">
+                    <div class="botao">Fechar</div>
+                </form>
+            </div>
+        </div>
+        <script>
+                var input = document.getElementById("upload");
+                if (input) {
+                    
+                    input.addEventListener("change", () => {
+                        if (input.files.length > 0) {
+                            var nome = "Não há arquivo selecionado. Selecionar arquivo...";
+                            nome = input.files[0].name;
+                            document.getElementById("label").innerHTML = nome;
+                        }
+                    });
+                }
+        </script>
+    <?php
     }
-
 }
 
-function modalAtiv(){
+function modalAtiv()
+{
     $conexao = conexao();
     $rm = $_GET['txtRm'];
     $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
     echo mysqli_error($conexao);
-    if($cont > 0){
+    if ($cont > 0) {
         $resultado = mysqli_fetch_array($result);
-        ?>
-        <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario'];?></h1>
-            <div class="traco"></div>
-            <div class="conteudo-modal">
-                <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
-                <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
-                <div class="materiais">
-                    <a href="#" download="NomeAtividade.txt" class="label"><?php echo $resultado['arquivo']; ?></a>
-                    <i class="fas fa-download"></i>
-                </div>
+    ?>
+        <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario']; ?></h1>
+        <div class="traco"></div>
+        <div class="conteudo-modal">
+            <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
+            <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
+            <div class="materiais">
+                <a href="#" download="NomeAtividade.txt" class="label"><?php echo $resultado['arquivo']; ?></a>
+                <i class="fas fa-download"></i>
             </div>
+        </div>
 
-        <?php
-    }else{
+    <?php
+    } else {
         echo "<h1 class='titulodomodal'>Ops!</h1>
         <div class='traco'></div><h1 class='titulodomodal'>Não foram encontrados dados sobre essa atividade!</h1>";
     }
 }
 
-function modalPp(){
+function modalPp()
+{
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega
@@ -103,7 +118,7 @@ function modalPp(){
     if ($cont > 0 && $cont2) {
         $resultado2 = mysqli_fetch_array($result2);
         $resultado = mysqli_fetch_array($result);
-?>
+    ?>
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
