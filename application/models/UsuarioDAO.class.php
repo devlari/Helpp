@@ -10,13 +10,14 @@ class UsuarioDAO extends Conn{
     
     public function cadastrarUsuario(application\models\Usuario $u)
     {
-        $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario) values (?,?,?)";
+        $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario, senhaUsuario) values (?,?,?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         
         $cadastrar->bindValue(1, $u->getId());
         $cadastrar->bindValue(2, $u->getNome());
         $cadastrar->bindValue(3, $u->getPerfil());
+        $cadastrar->bindValue(4, $u->getSenha());
         
         try{
             $cadastrar->execute();

@@ -105,6 +105,22 @@ class TurmaDAO extends Conn{
         }
     }
     
+     public function verificaAlunoTurma(Turma $turma, $rmAluno) {
+        $query = "SELECT * FROM aluno_turma WHERE rmAluno = ? and codTurma = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rmAluno);
+        $verifica->bindValue(2, $turma->getCodTurma());
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+        }
+    }
+    
     public function buscarCursoTurma($id) {
         $query = "SELECT c.nome_curso FROM curso c inner join turma t on t.cod_curso = c.cod_curso where t.cod_curso = ?";
         
