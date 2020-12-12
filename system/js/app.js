@@ -47,26 +47,9 @@ function modalAtiv(modalID) {
 function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.getElementById("tabelaProfsPP");
-  if(modal){
-  tabela.addEventListener("click", (e) => {
-    if (e.target.className == "celulaNomeAluno") {
-      modal.classList.add("mostrar");
-      modal.addEventListener("click", (e) => {
-        if (e.target.className == "botao-fechar" || e.target == modal) {
-          location.reload()
-        }
-      });
-    }
-  });
-  }
-}
-
-function modalAtivAluno(modalID) {
-  const modal = document.getElementById(modalID);
-  const tabela = document.getElementById("tabelaAtividade");
   if (modal) {
     tabela.addEventListener("click", (e) => {
-      if (e.target.className == "nomeAluno") {
+      if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
           if (e.target.className == "botao-fechar" || e.target == modal) {
@@ -75,6 +58,37 @@ function modalAtivAluno(modalID) {
         });
       }
     });
+  }
+}
+
+function modalAtivAluno(modalID) {
+  const modal = document.getElementById(modalID);
+  const tabela = document.getElementById("tabelaAtividade");
+  const tabelaAtiv = document.querySelectorAll("#linhaAtiv")
+  if (modal) {
+    tabelaAtiv.forEach(linha => linha.addEventListener('click', (e) => {
+      let Status = linha.lastElementChild
+      if (e.target.className == "nomeAluno") {
+        if (Status.innerText == "Entregue") {
+          modal.classList.add("mostrar");
+          modal.addEventListener("click", (e) => {
+            if (e.target.className == "botao-fechar" || e.target == modal) {
+              location.reload()
+            }
+          });
+        }
+      }
+    }))
+    /*tabela.addEventListener("click", (e) => {
+      if (e.target.className == "nomeAluno") {
+        modal.classList.add("mostrar");
+        modal.addEventListener("click", (e) => {
+          if (e.target.className == "botao-fechar" || e.target == modal) {
+            location.reload()
+          }
+        });
+      }
+    });*/
   }
 }
 
@@ -208,29 +222,29 @@ function getDados() {
   const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
   const tabelaPP = document.querySelectorAll("#linhaPP")
   const tabelaAtividadesAluno = document.querySelector('.atribuida .ativ')
-  if(tabelaAtividadesAluno){
-  tabelaAtividadesAluno.addEventListener('click', (e) => {
-    let codAtiv = document.getElementById('codigoAtividade').value
-    let RM = document.getElementById('rmAlunoAtual')
-    let result = document.getElementById("modal-ativ-aluno")
-    let xmlreq = CriaRequest()
-    xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
-    xmlreq.onreadystatechange = function () {
+  if (tabelaAtividadesAluno) {
+    tabelaAtividadesAluno.addEventListener('click', (e) => {
+      let codAtiv = document.getElementById('codigoAtividade').value
+      let RM = document.getElementById('rmAlunoAtual')
+      let result = document.getElementById("modal-ativ-aluno")
+      let xmlreq = CriaRequest()
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
+      xmlreq.onreadystatechange = function () {
 
-      // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
-      if (xmlreq.readyState == 4) {
+        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+        if (xmlreq.readyState == 4) {
 
-        // Verifica se o arquivo foi encontrado com sucesso
-        if (xmlreq.status == 200) {
-          result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
-        } else {
-          result.innerHTML = "Erro: " + xmlreq.statusText;
+          // Verifica se o arquivo foi encontrado com sucesso
+          if (xmlreq.status == 200) {
+            result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+          } else {
+            result.innerHTML = "Erro: " + xmlreq.statusText;
+          }
         }
       }
-    }
-    xmlreq.send(null);
-  })
-}
+      xmlreq.send(null);
+    })
+  }
   tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
     if (e.target.className == 'celulaNomeAluno') {
       let RM = linha.firstElementChild.innerText
@@ -256,7 +270,8 @@ function getDados() {
     //console.log(linha.firstElementChild.innerText)
   }))
   tabelaAtivRecebida.forEach(linha => linha.addEventListener('click', (e) => {
-      if (e.target.className == 'nomeAluno') {
+    let Status = linha.lastElementChild.innerText;
+    if (e.target.className == 'nomeAluno' && Status == 'Entregue') {
       let RM = linha.firstElementChild.innerText
       console.log(RM)
       let result = document.getElementById("modal-atividade-recebida")

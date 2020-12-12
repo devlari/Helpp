@@ -1062,6 +1062,9 @@ select {
     bottom: 0;
     margin: 20px;
 }
+#modal-doc-aluno .botao12{
+    bottom:auto;
+}
 
 .tabela-ativ-geral {
     display: flex;
@@ -1618,7 +1621,10 @@ select {
     }
     .botao12 {
         position: absolute;
-        bottom: auto;
+        bottom: 0;
+    }
+    #modal-doc-aluno .botao12{
+        position:relative;
     }
     .tabela-atividades-pp {
         width: 30%;
@@ -1628,7 +1634,7 @@ select {
     }
     .modal-atividade {
         width: 70%;
-        height: 55%;
+        height: 50%;
     }
     .basesTecnologicas {
         flex-direction: column;

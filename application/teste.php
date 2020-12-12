@@ -156,6 +156,10 @@ function modalPp()
                     </div>
                 </div>
             </div>
+            <div class="botao12">
+                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
+                <button class="botao-fechar">Fechar</button>
+            </div>
     <?php
     }
 }

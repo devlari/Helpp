@@ -238,60 +238,7 @@ $aluno = new AlunoDAO();
     </footer>
     <div class="modal-container" id="modal-doc-aluno">
         <div class="modal-doc30" id="basesTec">
-            <!--<h1 class="titulodomodal" style="font-size:30px; font-weight:900" ss>Emanuel Lopes Miranda</h1>
-            <div class="traco"></div>
-            <div class="conteudo-modal">
-                <div class="linha-um-doc30">
-                    <span class="dados-pp">PP em: ...<br />Química</span>
-                    <div class="tabela-ativ-geral">
-                        <table class="tabela-atividades-pp" id="tabela-ativ-pp">
-                            <tr>
-                                <th class="headerAtividade">Atividade</th>
-
-                                <th class="headerMencaoGeral">Menção</th>
-                            </tr>
-                            <tr>
-                                <td class="celulaAtividadeNome">Atividade 1</td>
-                                <td class="celulaMencaoGeral">MB</td>
-                            </tr>
-                            <tr>
-                                <td class="celulaAtividadeNome">Atividade 2</td>
-                                <td class="celulaMencaoGeral">B</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="Status-Mencao-PP">
-                        <h1 class="statusPP">Concluída</h1>
-                        <h3 class="mencaoFinal">Menção final: MB</h3>
-                    </div>
-                </div>
-                <div class="requerimentos">
-                    <div class="competencias">
-                        <h3 class="titulo-competencias">Competências</h3>
-                        <div class="traco"></div>
-                        <div class="spn-requerimentos">
-                            <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>
-                        </div>
-                    </div>
-                    <div class="competencias">
-                        <h3 class="titulo-competencias">Habilidades</h3>
-                        <div class="traco"></div>
-                        <div class="spn-requerimentos">
-                           <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>
-                        </div>
-                    </div>
-                    <div class="competencias">
-                        <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
-                        <div class="traco"></div>
-                        <div class="spn-requerimentos">
-                            <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>
-                        </div>
-                    </div>
-                </div>-->
-            <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
-                <button class="botao-fechar">Fechar</button>
-            </div>
+            
         </div>
     </div>
     </div>
