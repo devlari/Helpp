@@ -1,5 +1,5 @@
 <?php
-    class Gestor extends Controller
+    class Gestor
     {        
         public function index()
         {  

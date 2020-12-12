@@ -28,18 +28,17 @@ class UsuarioDAO extends Conn{
         }
     }
     
-    public function consultarUsuario($q)
+    public function consultarUsuario($rm)
     {
-        $sql = $q;
-        $consultar = Conn::getConn()->prepare($sql);
-        $consultar->execute();
-        
-        if ($consultar->rowCount() > 0){
-            $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
+        $query = "SELECT * FROM usuario WHERE rmUsuario = ?";
+
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rm);
+        $verifica->execute();
+
+        if ($verifica->rowCount() > 0){
+            $resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
-        } 
-        else{
-            return null;
         }
     }
     
@@ -58,15 +57,14 @@ class UsuarioDAO extends Conn{
         } 
     }
     
-    public function editarUsuario(application\models\Usuario $u)
+    public function editarUsuario($u)
     {
-        $query = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ?, perfilUsuario = ? WHERE rmUsuario = ?";
+        $query = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ? WHERE rmUsuario = ?";
         $alterar = Conn::getConn()->prepare($query);
         
         $alterar->bindValue(1, $u->getNome());
         $alterar->bindValue(2, $u->getEmail());
-        $alterar->bindValue(3, $u->getPerfil());
-        $alterar->bindValue(4, $u->getId());
+        $alterar->bindValue(3, $u->getId());
         
         try{
             $alterar->execute();
@@ -103,5 +101,37 @@ class UsuarioDAO extends Conn{
     
     public function getResult() {
         return $this->result;
+    }
+
+    public function VerificaSenha($rm,$senha){
+        $query = "SELECT * FROM usuario WHERE senhaUsuario = ? AND rmUsuario = ?";
+
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $senha);
+        $verifica->bindValue(2, $rm);
+        $verifica->execute();
+
+        if ($verifica->rowCount() > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function atualizaSenha($u){
+        $query = "UPDATE usuario SET senhaUsuario = ? WHERE rmUsuario = ?";
+        
+        $alterar = Conn::getConn()->prepare($query);
+        $alterar->bindValue(1, $u->getSenha());
+        $alterar->bindValue(2, $u->getID());
+                
+        try{
+            $alterar->execute();
+            $this->result = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->result = null;
+            WSErro("<b>Erro ao alterar o registro de código: {$u->getId()}:</b> {$e->getMessage()}", $e->getCode());
+        }
     }
 }

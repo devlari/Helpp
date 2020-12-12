@@ -18,8 +18,7 @@
     require("../../../application/config/Conn.class.php");
     require("../../../application/models/PP.class.php");
     require("../../../application/models/PPDAO.class.php");
-    require("../../../application/models/TurmaDAO.class.php")
-    //session_start();
+    require("../../../application/models/TurmaDAO.class.php");
     ?>
     <nav id="navbar-helpp">
         <div class="logo">
@@ -27,7 +26,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
             <li><a href="../../" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
         </ul>
@@ -41,7 +40,7 @@
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
-                <li class="Ola">Olá, Flávia</li>
+                <li class="Ola">Olá, Admin!</li>
                 <li>Cargo: Gestor(a)</li>
             </ul>
         </div>
