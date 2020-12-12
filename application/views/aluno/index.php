@@ -111,6 +111,7 @@ $UsuarioDAO = new UsuarioDAO();
                         <?php
                             foreach ($atividades->listarAtividadeAluno($_SESSION['usuario']) as $atividade){
                                 echo "<div class='ativ' id='atividade'>";
+                                echo "<input type='hidden' id='codigoAtividade' value='". $atividade['codAtividade'] ."'>";
                                 echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
                                 echo "<span class='prazo'>" . $atividade["prazo_entrega"] . "</span><br>";
                                 echo "</div>";
@@ -157,31 +158,7 @@ $UsuarioDAO = new UsuarioDAO();
     </footer>
     <div class="modal-container" id="modal-atividade">
         <div class="modal" id="modal-ativ-aluno">
-            <h3 class="tituloModal">Criação de listas ordenadas e não ordenadas.</h3>
-            <div class="conteudo-modal">
-                <div class="descricao">
-                    <span>Crie um contexto e uma página com listas ordenadas e não ordenadas.</span>
-                </div>
-                <div class="material">
-                        <div class="materiais">
-                            <a href="#" download="NomeAtividade.txt" class="label">Atividade</a>
-                            <i class="fas fa-download"></i>
-                        </div>
-                    <span class="prazo-entrega">Prazo de entrega: 27/05/2020 até 23:59.</span>
-                </div>
-                <div class="upload">
-                    <span class="tituloUpload">Fazer upload de arquivo</span>
-                    <form action="../../controllers/enviarAtivAluno.php" method="POST">
-                        <div class="materiais">
-                            <label for="upload" class="label" id="label">Selecionar arquivo...</label>
-                            <input type="file" name="upload" id="upload">
-                            <i class="fas fa-upload"></i>
-                        </div>
-                        <input type="submit" value="Enviar" class="btnEnviar">
-                        <div class="botao">Fechar</div>
-                    </form>
-                </div>
-            </div>
+            
         </div>
     </div>
     <script src="../../../system/js/app.js"></script>

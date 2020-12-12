@@ -35,11 +35,11 @@ $aluno = new AlunoDAO();
             <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i>Início</a></li>
-            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i>Atividades</a></li>
-            <li><a href="cadastroAtividade.php" class="ativid"><i class="far fa-plus-square"></i>Criar atividade</a></li>
-            <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i>Configurações</a></li>
-            <li><a href="../../index.php" class="sair"><i class="fas fa-power-off">Sair</i></a></li>
+            <li><a href="inicioProfessor.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</a></span></li>
+            <li><a href="cadastroAtividade.php" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</a></span></li>
+            <li><a href="nseiainda" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</a></span></li>
+            <li><a href="../../index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</i></a></span></li>
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>

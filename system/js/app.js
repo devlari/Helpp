@@ -210,11 +210,11 @@ function getDados() {
   const tabelaAtividadesAluno = document.querySelector('.atribuida .ativ')
   if(tabelaAtividadesAluno){
   tabelaAtividadesAluno.addEventListener('click', (e) => {
+    let codAtiv = document.getElementById('codigoAtividade').value
     let RM = document.getElementById('rmAlunoAtual')
-    let Ativ = document.getElementsByClassName("nome-ativ").innerText
     let result = document.getElementById("modal-ativ-aluno")
     let xmlreq = CriaRequest()
-    xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtAtiv =" + Ativ + "&funcao=modalAtivAluno", true)
+    xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
     xmlreq.onreadystatechange = function () {
 
       // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)

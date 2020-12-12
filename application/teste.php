@@ -20,6 +20,44 @@ if (isset($_GET["txtRm"])) {
 }
 function modalAtivAluno(){
     $conexao = conexao();
+    $codAtiv = $_GET["txtCodAtiv"];
+    $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
+    $result = mysqli_query($conexao, $sql);
+    $cont = mysqli_affected_rows($conexao);
+    if($cont > 0){
+        $resultado = mysqli_fetch_array($result);
+        $dataArrumada = explode("-", $resultado["prazo_entrega"]);
+        $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+        ?>
+        <input type="hidden" value="<?php echo $resultado['codAtividade'];?>">
+        <h3 class="tituloModal"><?php echo $resultado['titulo_atividade'];?></h3>
+            <div class="conteudo-modal">
+                <div class="descricao">
+                    <span><?php echo $resultado['instrucao_atividade'];?></span>
+                </div>
+                <div class="material">
+                        <div class="materiais">
+                            <a href="#" download="NomeAtividade.txt" class="label">Instrução atividade</a>
+                            <i class="fas fa-download"></i>
+                        </div>
+                    <span class="prazo-entrega">Prazo de entrega: <?php echo $dataNova;?></span>
+                </div>
+                <div class="upload">
+                    <span class="tituloUpload">Fazer upload de arquivo</span>
+                    <form action="../../controllers/enviarAtivAluno.php" method="POST">
+                        <div class="materiais">
+                            <label for="upload" class="label" id="label">Selecionar arquivo...</label>
+                            <input type="file" name="upload" id="upload">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <input type="submit" value="Enviar" class="btnEnviar">
+                        <div class="botao">Fechar</div>
+                    </form>
+                </div>
+            </div>
+        <?php
+    }
+
 }
 
 function modalAtiv(){
