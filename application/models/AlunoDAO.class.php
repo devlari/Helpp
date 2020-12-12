@@ -36,4 +36,22 @@ class AlunoDAO{
             return $resultado;
         } 
     }
+
+    public function getTurmaAluno($rm){
+        $query = "SELECT t.nome_turma FROM aluno AS a  
+                INNER JOIN aluno_turma AS at 
+                ON a.rmUsuario = at.rmAluno
+                INNER JOIN turma AS t
+                ON at.codTurma = t.cod_turma
+                WHERE a.rmAluno = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rm);
+        $verifica->execute();
+
+        if ($verifica->rowCount() > 0){
+            $resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+    }
 }

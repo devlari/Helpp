@@ -6,11 +6,13 @@ require("../../models/TurmaDAO.class.php");
 require("../../models/PPDAO.class.php");
 require("../../models/AtividadeDAO.class.php");
 require("../../models/UsuarioDAO.class.php");
+require("../../models/AlunoDAO.class.php");
 
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
+$aluno = new AlunoDAO();
 
 ?>
 <!DOCTYPE html>
@@ -55,8 +57,10 @@ $UsuarioDAO = new UsuarioDAO();
                 foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user) {
                     echo "<li>Curso: " . $user["cursoPP"] . "</li>";
                 }
+                foreach ($aluno->getTurmaAluno($_SESSION['usuario']) as $user) {
+                    echo "<li>Série: " . $user["nome_turma"] . "</li>";
+                }
                 ?>
-                <li class="serieUser">Série: 3ºAi</li>
             </ul>
         </div>
         <div class="retangulo-pp" id='tabelaPPSALUNO'>
