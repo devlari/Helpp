@@ -105,7 +105,7 @@ function modalPp()
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega
-    $sql = "Select a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
+    $sql = "Select a.aluno_RmAluno, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
     $sql2 = "Select titulo_atividade, mencao_atividade from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno where b.aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $result2 = mysqli_query($conexao, $sql2);
@@ -147,26 +147,26 @@ function modalPp()
                     <h3 class="titulo-competencias">Competências</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>-->
+                        <span><?php echo $resultado['habilidadePP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Habilidades</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>-->
+                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>-->
+                        <span><?php echo $resultado['tecnologiaPP']; ?></span>
                     </div>
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno']?>">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
     <?php
