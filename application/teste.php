@@ -24,6 +24,7 @@ function modalAtivAluno(){
     $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
+    
     if($cont > 0){
         $resultado = mysqli_fetch_array($result);
         $dataArrumada = explode("-", $resultado["prazo_entrega"]);
@@ -37,7 +38,7 @@ function modalAtivAluno(){
                 </div>
                 <div class="material">
                         <div class="materiais">
-                            <a href="#" download="NomeAtividade.txt" class="label">Instrução atividade</a>
+                            <a href="../../../system/arquivos/<?php echo $resultado['arquivo_prof']; ?>" download="ativ" class="label">Instrução atividade</a>
                             <i class="fas fa-download"></i>
                         </div>
                     <span class="prazo-entrega">Prazo de entrega: <?php echo $dataNova;?></span>
