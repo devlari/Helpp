@@ -47,7 +47,7 @@ function modalAtivAluno(){
                     <form action="../../controllers/enviarAtivAluno.php" method="POST">
                         <div class="materiais">
                             <label for="upload" class="label" id="label">Selecionar arquivo...</label>
-                            <input type="file" name="upload" id="upload">
+                            <input type="file" name="upload" id="upload" required>
                             <i class="fas fa-upload"></i>
                         </div>
                         <input type="submit" value="Enviar" class="btnEnviar">

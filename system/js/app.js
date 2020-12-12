@@ -214,6 +214,7 @@ function getDados() {
     let RM = document.getElementById('rmAlunoAtual')
     let result = document.getElementById("modal-ativ-aluno")
     let xmlreq = CriaRequest()
+    console.log(codAtiv);
     xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
     xmlreq.onreadystatechange = function () {
 
