@@ -58,19 +58,6 @@ function modalAtivAluno()
                 </form>
             </div>
         </div>
-        <script>
-                var input = document.getElementById("upload");
-                if (input) {
-                    
-                    input.addEventListener("change", () => {
-                        if (input.files.length > 0) {
-                            var nome = "Não há arquivo selecionado. Selecionar arquivo...";
-                            nome = input.files[0].name;
-                            document.getElementById("label").innerHTML = nome;
-                        }
-                    });
-                }
-        </script>
     <?php
     }
 }
