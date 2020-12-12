@@ -32,7 +32,6 @@ function modalAlert(modalID) {
 function modalAtiv(modalID) {
   const modal = document.getElementById(modalID);
   const atividade = document.querySelectorAll(".ativ.atribuidaa");
-  console.log(atividade)
   if (modal) {
     atividade.forEach(linha => linha.addEventListener("click", (e) => {
       modal.classList.add("mostrar");
@@ -234,7 +233,6 @@ function getDados() {
   if (tabelaAtividadesAluno) {
     tabelaAtividadesAluno.forEach(linha => linha.addEventListener('click', (e) => {
       let codAtiv = linha.childNodes[0].defaultValue;
-      console.log(codAtiv);
       if(codAtiv){
       let RM = document.getElementById('rmAlunoAtual')
       let result = document.getElementById("modal-ativ-aluno")
