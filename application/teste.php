@@ -18,8 +18,7 @@ if (isset($_GET["txtRm"])) {
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
 }
-function modalAtivAluno()
-{
+function modalAtivAluno(){
     $conexao = conexao();
     $codAtiv = $_GET["txtCodAtiv"];
     $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
@@ -33,6 +32,7 @@ function modalAtivAluno()
 ?>
         <input type="hidden" value="<?php echo $resultado['codAtividade']; ?>">
         <h3 class="tituloModal"><?php echo $resultado['titulo_atividade']; ?></h3>
+        <div class="traco"></div>
         <div class="conteudo-modal">
             <div class="descricao">
                 <span><?php echo $resultado['instrucao_atividade']; ?></span>
@@ -62,8 +62,7 @@ function modalAtivAluno()
     }
 }
 
-function modalAtiv()
-{
+function modalAtiv(){
     $conexao = conexao();
     $rm = $_GET['txtRm'];
     $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
@@ -72,14 +71,23 @@ function modalAtiv()
     echo mysqli_error($conexao);
     if ($cont > 0) {
         $resultado = mysqli_fetch_array($result);
+        $data_prazo = $resultado['prazo_entrega'];
+        $data_entrega = $resultado['data_conclusao'];
+
+        $dataPrazoArrumada = explode("-", $data_prazo);
+        $dataPrazoNova = $dataPrazoArrumada[2] . "/" . $dataPrazoArrumada[1] . "/" . $dataPrazoArrumada[0];
+
+        $dataEntregaArrumada = explode("-", $data_entrega);
+        $dataEntregaNova = $dataEntregaArrumada[2] . "/" . $dataEntregaArrumada[1] . "/" . $dataPrazoArrumada[0];
+
     ?>
         <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
-            <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
-            <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
+            <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
+            <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
             <div class="materiais">
-                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label"><?php echo $resultado['arquivo_aluno']; ?></a>
+                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label">Arquivo Aluno</a>
                 <i class="fas fa-download"></i>
             </div>
         </div>
@@ -91,12 +99,11 @@ function modalAtiv()
     }
 }
 
-function modalPp()
-{
+function modalPp(){
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega
-    $sql = "Select a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
+    $sql = "Select a.aluno_RmAluno, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
     $sql2 = "Select titulo_atividade, mencao_atividade from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno where b.aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $result2 = mysqli_query($conexao, $sql2);
@@ -138,26 +145,26 @@ function modalPp()
                     <h3 class="titulo-competencias">Competências</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia in, molestias perspiciatis omnis illo sunt est enim, quidem corporis, nisi aliquid incidunt sequi delectus vel ipsum. Eligendi ullam tempora placeat?</span>-->
+                        <span><?php echo $resultado['habilidadePP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Habilidades</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fugit ipsum obcaecati porro, iusto odio?</span>-->
+                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <!--<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit, temporibus harum sunt debitis quod. Ipsa adipisci repudiandae amet quasi.</span>-->
+                        <span><?php echo $resultado['tecnologiaPP']; ?></span>
                     </div>
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno']?>">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
     <?php

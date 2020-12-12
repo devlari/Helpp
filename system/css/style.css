@@ -117,6 +117,14 @@ html{
     font-weight: 900;
 }
 
+.editarTurma{
+    width:70%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .botao2 {
     width: 35px;
     height: 35px;
@@ -472,11 +480,14 @@ select {
     align-items: center;
     flex-direction: column;
     height: 500px;
+    margin-top:20vh;
+    margin-bottom:100px;
 }
 .management-class{
     width: 80%;
     height:50%;
-    margin-top:30px;
+    margin-top:20px;
+    margin-bottom:15px;
 }
 
 .management-table{
@@ -490,7 +501,7 @@ select {
     -moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .management-table th:nth-child(-n + 3){
@@ -524,10 +535,22 @@ select {
     padding: 0px 12px 6px 12px;
     font-size: 18px;
     min-width: 180px;
+    border-bottom:1px solid black;
 }
 
 .thCursoTurma{
-    width: 100%;
+    width: 75%;
+}
+
+table::-webkit-scrollbar-track {
+    background-color: #c4c4c4;
+}
+table::-webkit-scrollbar {
+    width: 3px;
+    background: #c4c4c4;
+}
+table::-webkit-scrollbar-thumb {
+    background: #a9a9a9;
 }
 
 .tabela-pps th {
@@ -598,6 +621,40 @@ select {
     padding-top:12vh;
     height: 88vh;
 }
+
+.vazio{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.svg-vazio{
+    height: 87px;
+}
+
+.selectEditarTurma{
+    height: 50px;
+    width:100%;
+    margin:0;
+}
+
+.btnAlterar{
+    margin-top:15px;
+    width:100%;
+    padding:15px;
+    font-weight: 900;
+    font-family: "Lato", sans-serif;
+    outline:none;
+    border:none;
+    background-color:#1ec2b4;
+    border-radius:7px;
+    font-size:24px;
+    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
 
 .importarPPs {
     background-color: #1ec2b4;
@@ -804,6 +861,7 @@ select {
     box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
+
 .name-section {
     position: relative;
     width: 100%;
@@ -820,6 +878,7 @@ select {
     font-size: 20px;
     padding-left: 10px;
 }
+
 
 .content-name {
     position: absolute;
@@ -1672,6 +1731,10 @@ select {
     }
     .ativ{
         overflow:auto;
+    }
+    .management-class-section{
+        margin-top:80px;
+        margin-bottom:200px;
     }
 }
 

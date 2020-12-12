@@ -164,7 +164,6 @@ class PPDAO{
         $atualizar->bindValue(1, $pp->getHabilidadePP());
         $atualizar->bindValue(2, $pp->getCompetenciaPP());
         $atualizar->bindValue(3, $pp->getBaseTecnologicaPP());
-        
         $atualizar->bindValue(4, $pp->getRmAluno());
         $atualizar->bindValue(5, $pp->getCodDisciplina());
         

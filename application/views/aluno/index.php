@@ -6,11 +6,13 @@ require("../../models/TurmaDAO.class.php");
 require("../../models/PPDAO.class.php");
 require("../../models/AtividadeDAO.class.php");
 require("../../models/UsuarioDAO.class.php");
+require("../../models/AlunoDAO.class.php");
 
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
+$aluno = new AlunoDAO();
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +36,7 @@ $UsuarioDAO = new UsuarioDAO();
         <ul class="nav-links">
             <li><a href="index.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="../../index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
 
         </ul>
@@ -50,13 +52,15 @@ $UsuarioDAO = new UsuarioDAO();
             <ul>
                 <?php
                 foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user) {
-                    echo "<li class='Ola'>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                    echo "<li class='Ola'>Olá, <span id='nomeUsuario'>" . $user["nomeUsuario"] . "</span>!" . "</li>";
                 }
                 foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user) {
                     echo "<li>Curso: " . $user["cursoPP"] . "</li>";
                 }
+                foreach ($aluno->getTurmaAluno($_SESSION['usuario']) as $user) {
+                    echo "<li>Série: " . $user["nome_turma"] . "</li>";
+                }
                 ?>
-                <li class="serieUser">Série: 3ºAi</li>
             </ul>
         </div>
         <div class="retangulo-pp" id='tabelaPPSALUNO'>
@@ -108,7 +112,7 @@ $UsuarioDAO = new UsuarioDAO();
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <h3>Atribuída(<?php
-                        $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuida();
+                        $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuida($_SESSION['usuario']);
                         foreach ($atividadesAtribuidas as $resultado){
                             $quantidadeAtribuido = $resultado['COUNT(codAtividade)'];
                             echo $resultado['COUNT(codAtividade)'];
@@ -126,10 +130,10 @@ $UsuarioDAO = new UsuarioDAO();
                         foreach ($atividades->listarAtividadeAlunoAtribuida($_SESSION['usuario']) as $atividade) {
                             $dataArrumada = explode("-", $atividade["prazo_entrega"]);
                             $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ' id='atividade'>";
+                            echo "<div class='ativ atribuidaa'>";
                             echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
                             echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                            echo "<span class='prazo'>" . $dataNova . "</span><br>";
+                            echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
                             echo "</div>";
                         }
                     }
@@ -138,28 +142,29 @@ $UsuarioDAO = new UsuarioDAO();
                 </div>
                 <div class="concluida">
                     <h3>Concluída(<?php
-                        $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluida();
-                        foreach ($atividades->contarAtividadeAlunoConcluida() as $resultado){
+                        $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluida($_SESSION['usuario']);
+                        foreach ($atividadesConcluidas as $resultado){
                            echo $resultado['COUNT(codAtividade)'];
                            $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
                         }
                     ?>)</h3>
+                    
                     <?php
                     if ($quantidadeConcluida == 0)
                     {
                         echo '<div class="vazio">
-                        <span>Você não possuí atividades concluídas!</span>
+                        <img src="../../../system/img/vazio.svg" alt="Vazio!" class="svg-vazio"/>
+                        <span>Você não possui atividades concluidas!</span>
                         </div>';
                     }
                     else
                     {
                         foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
-                            $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                            $dataArrumada = explode("-", $atividade["data_conclusao"]);
                             $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ' id='atividade'>";
-                            echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                            echo "<div class='ativ concluidaa'>";
                             echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                            echo "<span class='prazo'>" . $dataNova . "</span><br>";
+                            echo "<span class='prazo'>Entregue em: " . $dataNova . "</span><br>";
                             echo "</div>";
                         }
                     }

@@ -138,8 +138,8 @@ class AtividadeDAO extends Conn{
         }
     }
 
-    public function contarAtividadeAlunoAtribuida(){
-        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = ''";
+    public function contarAtividadeAlunoAtribuida($rm){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = '' AND PP_Aluno_rmAluno = $rm";
 
         $busca = Conn::getConn()->prepare($query);
         $busca->execute();
@@ -148,8 +148,8 @@ class AtividadeDAO extends Conn{
         return $this->resultado;
     }
 
-    public function contarAtividadeAlunoConcluida(){
-        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = 'Entregue'";
+    public function contarAtividadeAlunoConcluida($rm){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = 'Entregue' AND PP_Aluno_rmAluno = $rm";
 
         $busca = Conn::getConn()->prepare($query);
         $busca->execute();
