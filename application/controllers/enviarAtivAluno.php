@@ -21,4 +21,5 @@ for ($i = 0; $i <= $tamanho; $i++) {
 $nome_final = $nome_final . "." . $extensao_real;
 copy($nome_temporario, "../../system/arquivos/$nome_final");
 
-echo $nome_final, $codAtiv;
+//echo $nome_final, $codAtiv;
+echo $nome_temporario;

@@ -47,6 +47,7 @@ function modalAtivAluno(){
                     <span class="tituloUpload">Fazer upload de arquivo</span>
                     <form action="../../controllers/enviarAtivAluno.php" method="POST">
                         <div class="materiais">
+                            <input type='hidden' id='codigoAtividade' name='codigoAtividade' value='<?php echo $codAtiv ?>'>
                             <label for="upload" class="label" id="label">Selecionar arquivo...</label>
                             <input type="file" name="upload" id="upload" required>
                             <i class="fas fa-upload"></i>
