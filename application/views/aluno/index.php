@@ -160,11 +160,11 @@ $aluno = new AlunoDAO();
                     else
                     {
                         foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
-                            $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                            $dataArrumada = explode("-", $atividade["data_conclusao"]);
                             $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
                             echo "<div class='ativ concluidaa'>";
                             echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                            echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
+                            echo "<span class='prazo'>Entregue em: " . $dataNova . "</span><br>";
                             echo "</div>";
                         }
                     }

@@ -34,7 +34,7 @@ class AlunoDAO{
         if ($consultar->rowCount() > 0){
             $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
-        } 
+        }
     }
 
     public function getTurmaAluno($rm){
