@@ -296,6 +296,14 @@ function getDados() {
   }))
 }
 
+const arrumaNome = () => {
+    let nome = document.getElementById("nomeUsuario").innerText
+    let nomeNovo = nome.split(" ")
+    let nomeAtualizado= `${nomeNovo[0]} ${nomeNovo[`${nomeNovo.length - 1}`]}`
+    document.getElementById("nomeUsuario").innerText = `${nomeAtualizado}`
+}
+
+
 const app = () => {
   navSlide();
   modalLogin("modal-aviso");
@@ -307,6 +315,7 @@ const app = () => {
   scroll();
   softScroll()
   getDados()
+  arrumaNome()
 };
 
 app();

@@ -50,7 +50,7 @@ $UsuarioDAO = new UsuarioDAO();
             <ul>
                 <?php
                 foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user) {
-                    echo "<li class='Ola'>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                    echo "<li class='Ola'>Olá, <span id='nomeUsuario'>" . $user["nomeUsuario"] . "</span>!" . "</li>";
                 }
                 foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user) {
                     echo "<li>Curso: " . $user["cursoPP"] . "</li>";
