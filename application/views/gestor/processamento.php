@@ -113,7 +113,11 @@
                             $turma->setCodTurma($t["cod_turma"]);
                             $Usuario->setId($rmAluno);
                         }
-                        $turmaDAO->cadastrarAlunoTurma($turma, $Usuario);
+                        //Verifica se o aluno e turma já estão na tabela N pra N, se não estiverem, eles são cadastrados
+                        $turmaDAO->verificaAlunoTurma($turma, $rmAluno);
+                        if($turmaDAO->getResult() == false){
+                            $turmaDAO->cadastrarAlunoTurma($turma, $Usuario);
+                        }
                         
                         //Cadastrando Professor 1
                         $Usuario->setId($rmProf1);
@@ -161,18 +165,22 @@
                         
                         //Verifica se disciplina existe, se sim ela é enviada para a classe PP
                         foreach($discDAO->verificaDisciplina($disc) as $d){
+                               //enviando o valor do codigo da disciplina
                                $PP->setCodDisciplina($d["codDisciplina"]);
                                $PP->setDisciplinaPP($d["nomeDisciplina"]);
                                $disc->setCodDisciplina($d["codDisciplina"]);
-                               $id1 = $rmProf1;
-                               if($rmProf2 != 0){
-                                   $id2 = $rmProf2;
-                               }
                         }
                         
-                        $discDAO->cadastrarProfDisc($disc, $id1);
+                        //Verifica se o prof e a disciplina já estão cadastrados na tabela associativa, se não estiverem, o cadastro é feito
+                        $discDAO->verificaProfDisciplina($rmProf1, $disc);
+                        if($discDAO->verificaProfDisciplina($rmProf1, $disc) == false){
+                            $discDAO->cadastrarProfDisc($disc, $rmProf1);
+                        }
                         if($rmProf2 != 0){
-                            $discDAO->cadastrarProfDisc($disc, $id2);
+                            $discDAO->verificaProfDisciplina($rmProf2, $disc);
+                            if($discDAO->verificaProfDisciplina($rmProf2, $disc) == false){
+                                $discDAO->cadastrarProfDisc($disc, $rmProf2);
+                            }
                         }
 
                         //Setando os valores da PP
@@ -182,14 +190,26 @@
                         $PP->setStatusPP('Em aberto');
                         $PP->setCursoPP('Informática');
                         $PP->setAnoPP($semestreAno);
+                        $PP->setTurmaAtual($turmaAtual);
+                        $PP->setPeriodo($periodo);
                         
-                        $PPDAO->verificaDisciplina($disc);
+                        $PPDAO->verificaPP($PP);
                         if($PPDAO->getResultado() == false){
                             //Cadastrando PP
                             $PPDAO->cadastrar($PP);
-                            $PPDAO->cadastrarProfPP($PP, $id1);
+                            
+                            //verifica se o prof de rm 1 e a pp já estão cadastradas na entidade associativa
+                            $PPDAO->verificaProfPP($PP, $rmProf1);
+                            if($PPDAO->verificaProfPP($PP, $rmProf1) == false){
+                                $PPDAO->cadastrarProfPP($PP, $rmProf1);
+                            }
+                            
+                            //verifica se o prof de rm 2 e a pp já estão cadastradas na entidade associativa
                             if($rmProf2 != 0){
-                                $PPDAO->cadastrarProfPP($PP, $id2);
+                                $PPDAO->verificaProfPP($PP, $rmProf2);
+                                if($PPDAO->verificaProfPP($PP, $rmProf2) == false){
+                                    $PPDAO->cadastrarProfPP($PP, $rmProf2);
+                                }
                             }
                         }
                         
@@ -204,7 +224,7 @@
                         echo "Rm professor 2: " . $rmProf2 . "<br>";
                         echo "Nome professor 2: " . $professor2 . "<br>";
                         echo "Turma atual: " . $turmaAtual . "<br><hr>";
-                        //header("location: index.php");
+                        header("location: index.php");
                     }
                     echo "</table>";
                 }

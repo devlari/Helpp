@@ -11,7 +11,7 @@ class PPDAO{
     public function cadastrar(PP $pp)
     {
         $query = "INSERT INTO pp (aluno_rmAluno, disciplina_CodDisciplina, gestor_rmGestor, cursoPP"
-                . ", semestrePP, anoPP, seriePP, statusPP, disciplinaPP) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                . ", semestrePP, anoPP, seriePP, statusPP, disciplinaPP, periodoPP, turmaAtualPP) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         $cadastrar->bindValue(1, $pp->getRmAluno());
@@ -23,6 +23,8 @@ class PPDAO{
         $cadastrar->bindValue(7, $pp->getSeriePP());
         $cadastrar->bindValue(8, $pp->getStatusPP());
         $cadastrar->bindValue(9, $pp->getDisciplinaPP());
+        $cadastrar->bindValue(10, $pp->getPeriodo());
+        $cadastrar->bindValue(11, $pp->getTurmaAtual());
         
         try{
             $cadastrar->execute();
@@ -88,16 +90,29 @@ class PPDAO{
         $deletar->execute();
     }
     
-    public function verificaDisciplina(Disciplina $disciplina) {
-
-    }
-    
-    public function verificaTurma(PP $pp) {
+    public function verificaPP(PP $pp) {
         $query = "SELECT * FROM pp WHERE aluno_rmAluno = ? and disciplina_codDisciplina = ?";
         
         $verifica = Conn::getConn()->prepare($query);
         $verifica->bindValue(1, $pp->getRmAluno());
         $verifica->bindValue(2, $pp->getCodDisciplina());
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+        }
+    }
+    
+        public function verificaProfPP(PP $pp, $rmProf) {
+        $query = "SELECT * FROM professor_pp WHERE cod_pp_rmAluno = ? and cod_pp_codDisciplina = ? and rm_professor = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $pp->getRmAluno());
+        $verifica->bindValue(2, $pp->getCodDisciplina());
+        $verifica->bindValue(3, $rmProf);
         $verifica->execute();
         
         if($verifica->rowCount() > 0){

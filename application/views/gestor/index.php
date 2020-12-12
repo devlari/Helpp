@@ -55,7 +55,10 @@
                     <th class="headerSerieMod">Série/Módulo</th>
                     <th class="headerMateria">Matéria da PP</th>
                     <th class="headerSemestre">Semestre</th>
-                    <th class="headerProfessor">Professores</th>
+                    <th class="headerPeriodo">Periodo</th>
+                    <th class="headerProfessor1">Professor 1</th>
+                    <th class="headerProfessor2">Professor 2</th>
+                    <th class="headerTurmaAtual">Turma atual</th>
                     <th class="headerConcluiu">Concluiu em</th>
                     <th class="headerMencao">Menção</th>
                 </tr>

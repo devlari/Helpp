@@ -82,6 +82,23 @@ class DisciplinaDAO{
         }
     }
     
+    public function verificaProfDisciplina($rmProf, Disciplina $disciplina) {
+        $query = "SELECT * FROM professor_disciplina WHERE professor_rmProfessor = ? and codDisciplina = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rmProf);
+        $verifica->bindValue(2, $disciplina->getCodDisciplina());
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+            return false;
+        }
+    }
+    
     public function cadastrarProfDisc(Disciplina $codDisc, string $rmProf)
     {
         $query = "INSERT INTO professor_disciplina (professor_rmProfessor, professor_rmUsuario, codDisciplina) values (?,?,?)";

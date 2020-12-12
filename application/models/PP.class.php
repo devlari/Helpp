@@ -21,6 +21,16 @@ class PP {
     private $statusPP;
     private $mencaoFinalPP;
     private $dataTerminoPP;
+    private $turmAtual;
+    private $periodo;
+    
+    function getTurmaAtual(){
+        return $this->turmAtual;
+    }
+    
+    function getPeriodo(){
+        return $this->periodo;
+    }
     
     function getCodDisciplina() {
         return $this->codDisciplina;
@@ -82,6 +92,10 @@ class PP {
         return $this->rmGestor;
     }
 
+    function setTurmaAtual($turmaAtual){
+        $this->turmAtual = $turmaAtual;
+    }
+    
     function setCodDisciplina($codDisciplina){
         $this->codDisciplina = $codDisciplina;
     }
@@ -140,6 +154,10 @@ class PP {
     
     function setRmGestor($rmGestor) {
         $this->rmGestor = $rmGestor;
+    }
+    
+    function setPeriodo($periodo) {
+        $this->periodo = $periodo;
     }
     
 }
