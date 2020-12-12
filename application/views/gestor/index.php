@@ -18,7 +18,9 @@
     require("../../../application/config/Conn.class.php");
     require("../../../application/models/PP.class.php");
     require("../../../application/models/PPDAO.class.php");
-    require("../../../application/models/TurmaDAO.class.php")
+    require("../../../application/models/TurmaDAO.class.php");
+    require('../../models/Curso.class.php');
+    require('../../models/CursoDAO.class.php');
     //session_start();
     ?>
     <nav id="navbar-helpp">
@@ -41,7 +43,7 @@
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
-                <li class="Ola">Olá, Flávia</li>
+                <li class="Ola">Olá, Administrador</li>
                 <li>Cargo: Gestor(a)</li>
             </ul>
         </div>
@@ -65,7 +67,7 @@
                     echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                     echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
                     echo "<td class='celulaMateria'>" . $Pps{
-                    "disciplinaPP"} . "</td>";
+                        "disciplinaPP"} . "</td>";
                     echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
                     echo "<td class='celulaProfessor'>" . '' . "</td>";
                     echo "<td class='celulaConcluiu'></td>";
@@ -125,10 +127,31 @@
                     echo "<td class='tdAnoTurma'>{$turma["ano_turma"]}</td>";
                     echo "<td class='tdNomeCurso'>{$turma["nome_curso"]}</td>";
                     echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='../../controllers/excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
-                    echo "<td class='tdAcao'></td>";
                     echo "</tr>";
                 endforeach;
                 //endif;
+                ?>
+            </table>
+        </div>
+        <h1>Gerenciar cursos</h1>
+        <div class="management-class">
+            <table class="management-table">
+                <tr>
+                    <th class="thCursoTurma">Nome</th>
+                    <th class="thEixoCurso">Eixo</th>
+                    <th class="thAcaoTurma" style="border-right:none;">Ação</th>
+                </tr>
+                <?php
+                $cursoDAO = new CursoDAO();
+                $query = "SELECT * FROM curso";
+
+                foreach ($cursoDAO->consultar($query) as $curso) :
+                    echo "<tr>";
+                    echo "<td class=''>" . $curso["nome_curso"] . "</td>";
+                    echo "<td class='tdAnoTurma'>" . $curso["eixo_curso"] . "</td>";
+                    echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=#>Excluir</a></td>";
+                    echo "</tr>";
+                endforeach;
                 ?>
             </table>
         </div>

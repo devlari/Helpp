@@ -30,7 +30,7 @@
             $idTurma = null;
         endif;
         ?>        
-        <div>
+        <div class="">
             <form class="editarTurma" method="POST" action="../../controllers/editTurma.php">
                 <?php foreach ($lerTurma->consultar($query) as $turma):?>
                 <input type="hidden" name="txtIdTurma" id="txtIdTurma" value="<?php echo $idTurma ?>"><br>

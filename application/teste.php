@@ -72,14 +72,23 @@ function modalAtiv()
     echo mysqli_error($conexao);
     if ($cont > 0) {
         $resultado = mysqli_fetch_array($result);
+        $data_prazo = $resultado['prazo_entrega'];
+        $data_entrega = $resultado['data_conclusao'];
+
+        $dataPrazoArrumada = explode("-", $data_prazo);
+        $dataPrazoNova = $dataPrazoArrumada[2] . "/" . $dataPrazoArrumada[1] . "/" . $dataPrazoArrumada[0];
+
+        $dataEntregaArrumada = explode("-", $data_entrega);
+        $dataEntregaNova = $dataEntregaArrumada[2] . "/" . $dataEntregaArrumada[1] . "/" . $dataPrazoArrumada[0];
+
     ?>
         <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
-            <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
-            <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
+            <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
+            <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
             <div class="materiais">
-                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label"><?php echo $resultado['arquivo_aluno']; ?></a>
+                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label">Arquivo Aluno</a>
                 <i class="fas fa-download"></i>
             </div>
         </div>

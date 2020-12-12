@@ -53,7 +53,7 @@ $aluno = new AlunoDAO();
             <ul>
                 <?php
                 foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user) {
-                    echo "<li>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
+                    echo "<li>Olá, <span id='nomeUsuario'>" . $user["nomeUsuario"] . "</span>!" . "</li>";
                 }
                 ?>
                 <li>Cargo: Professor(a)</li>
