@@ -5,7 +5,6 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
-$_SESSION["erro"] = 0;
 class PPDAO{
     private $resultado;
     
@@ -19,7 +18,7 @@ class PPDAO{
         $cadastrar->bindValue(2, $pp->getCodDisciplina());
         $cadastrar->bindValue(3, $pp->getRmGestor());
         $cadastrar->bindValue(4, $pp->getCursoPP());
-        $cadastrar->bindValue(5, $pp->getSemestrePP());
+        $cadastrar->bindValue(5, $pp->getAnoPP());
         $cadastrar->bindValue(6, $pp->getAnoPP());
         $cadastrar->bindValue(7, $pp->getSeriePP());
         $cadastrar->bindValue(8, $pp->getStatusPP());
@@ -164,6 +163,25 @@ class PPDAO{
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
         
+    }
+    
+    public function cadastrarProfPP(PP $pp, string $rmProf)
+    {
+        $query = "INSERT INTO professor_pp (rm_professor, cod_pp_rmAluno, cod_pp_codDisciplina) values (?,?,?)";
+        
+        $cadastrar = Conn::getConn()->prepare($query);
+        
+        $cadastrar->bindValue(1, $rmProf);
+        $cadastrar->bindValue(2, $pp->getRmAluno());
+        $cadastrar->bindValue(3, $pp->getCodDisciplina());
+        
+        try{
+            $cadastrar->execute();
+            $this->resultado = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->resultado = null;
+            WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
+        }
     }
     
     //Caso o professor queira editar alguma coisa no doc

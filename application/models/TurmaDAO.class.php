@@ -26,6 +26,26 @@ class TurmaDAO extends Conn{
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
     }
+    
+    public function cadastrarAlunoTurma(Turma $turma, \application\models\Usuario $u)
+    {   
+        $query = "INSERT INTO aluno_turma (codTurma, aluno_rmUsuario, rmAluno) values (?,?,?)";
+        
+        $cadastrar = Conn::getConn()->prepare($query);
+        
+        $cadastrar->bindValue(1, $turma->getCodTurma());
+        $cadastrar->bindValue(2, $u->getId());
+        $cadastrar->bindValue(3, $u->getId());
+        
+        try{
+            $cadastrar->execute();
+            $this->resultado = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->resultado = null;
+            WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
+        }
+    }
+
    
     public function consultar($q){
         $sql = $q;
