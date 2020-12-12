@@ -18,8 +18,7 @@ if (isset($_GET["txtRm"])) {
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
 }
-function modalAtivAluno()
-{
+function modalAtivAluno(){
     $conexao = conexao();
     $codAtiv = $_GET["txtCodAtiv"];
     $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
@@ -33,6 +32,7 @@ function modalAtivAluno()
 ?>
         <input type="hidden" value="<?php echo $resultado['codAtividade']; ?>">
         <h3 class="tituloModal"><?php echo $resultado['titulo_atividade']; ?></h3>
+        <div class="traco"></div>
         <div class="conteudo-modal">
             <div class="descricao">
                 <span><?php echo $resultado['instrucao_atividade']; ?></span>
@@ -62,8 +62,7 @@ function modalAtivAluno()
     }
 }
 
-function modalAtiv()
-{
+function modalAtiv(){
     $conexao = conexao();
     $rm = $_GET['txtRm'];
     $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
@@ -100,8 +99,7 @@ function modalAtiv()
     }
 }
 
-function modalPp()
-{
+function modalPp(){
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega

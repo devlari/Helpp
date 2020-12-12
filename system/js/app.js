@@ -31,16 +31,25 @@ function modalAlert(modalID) {
 
 function modalAtiv(modalID) {
   const modal = document.getElementById(modalID);
-  const atividade = document.getElementById("atividade");
+  const atividade = document.querySelectorAll(".ativ.atribuidaa");
+  console.log(atividade)
   if (modal) {
-    atividade.addEventListener("click", (e) => {
+    atividade.forEach(linha => linha.addEventListener("click", (e) => {
       modal.classList.add("mostrar");
       modal.addEventListener("click", (e) => {
         if (e.target.className == "botao") {
           location.reload()
         }
       });
-    });
+    }))
+    // atividade.addEventListener("click", (e) => {
+    //   modal.classList.add("mostrar");
+    //   modal.addEventListener("click", (e) => {
+    //     if (e.target.className == "botao") {
+    //       location.reload()
+    //     }
+    //   });
+    // });
   }
 }
 
@@ -221,10 +230,12 @@ function getDados() {
   // Declaração de Variáveis
   const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
   const tabelaPP = document.querySelectorAll("#linhaPP")
-  const tabelaAtividadesAluno = document.querySelector('.atribuida .ativ')
+  const tabelaAtividadesAluno = document.querySelectorAll('.atribuida .ativ.atribuidaa')
   if (tabelaAtividadesAluno) {
-    tabelaAtividadesAluno.addEventListener('click', (e) => {
-      let codAtiv = document.getElementById('codigoAtividade').value
+    tabelaAtividadesAluno.forEach(linha => linha.addEventListener('click', (e) => {
+      let codAtiv = linha.childNodes[0].defaultValue;
+      console.log(codAtiv);
+      if(codAtiv){
       let RM = document.getElementById('rmAlunoAtual')
       let result = document.getElementById("modal-ativ-aluno")
       let xmlreq = CriaRequest()
@@ -243,7 +254,8 @@ function getDados() {
         }
       }
       xmlreq.send(null);
-    })
+    }
+    }))
   }
   tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
     if (e.target.className == 'celulaNomeAluno') {

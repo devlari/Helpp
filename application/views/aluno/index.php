@@ -130,7 +130,7 @@ $aluno = new AlunoDAO();
                         foreach ($atividades->listarAtividadeAlunoAtribuida($_SESSION['usuario']) as $atividade) {
                             $dataArrumada = explode("-", $atividade["prazo_entrega"]);
                             $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ' id='atividade'>";
+                            echo "<div class='ativ atribuidaa'>";
                             echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
                             echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
                             echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
@@ -148,11 +148,13 @@ $aluno = new AlunoDAO();
                            $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
                         }
                     ?>)</h3>
+                    
                     <?php
                     if ($quantidadeConcluida == 0)
                     {
                         echo '<div class="vazio">
-                        <span>Você não possuí atividades concluídas!</span>
+                        <img src="../../../system/img/vazio.svg" alt="Vazio!" class="svg-vazio"/>
+                        <span>Você não possui atividades concluidas!</span>
                         </div>';
                     }
                     else
@@ -160,8 +162,7 @@ $aluno = new AlunoDAO();
                         foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
                             $dataArrumada = explode("-", $atividade["prazo_entrega"]);
                             $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ' id='atividade'>";
-                            echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                            echo "<div class='ativ concluidaa'>";
                             echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
                             echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
                             echo "</div>";
