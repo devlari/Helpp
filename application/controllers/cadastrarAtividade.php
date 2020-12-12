@@ -34,6 +34,7 @@
     $atividade->setFormaEntregaAtividade($modoEntrega);
     $atividade->setPrazoAtividade($data);
     $atividade->setArquivoProf($nome_final);
+    $atividade->setStatus("Não entregue");
 
     $atividadeDAO->cadastrarAtividade($atividade);
 

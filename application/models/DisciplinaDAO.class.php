@@ -82,6 +82,25 @@ class DisciplinaDAO{
         }
     }
     
+    public function cadastrarProfDisc(Disciplina $codDisc, string $rmProf)
+    {
+        $query = "INSERT INTO professor_disciplina (professor_rmProfessor, professor_rmUsuario, codDisciplina) values (?,?,?)";
+        
+        $cadastrar = Conn::getConn()->prepare($query);
+        
+        $cadastrar->bindValue(1, $rmProf);
+        $cadastrar->bindValue(2, $rmProf);
+        $cadastrar->bindValue(3, $codDisc->getCodDisciplina());
+        
+        try{
+            $cadastrar->execute();
+            $this->resultado = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->resultado = null;
+            WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
+        }
+    }
+    
     public function getResultado() {
         return $this->resultado;
     }
