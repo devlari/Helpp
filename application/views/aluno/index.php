@@ -1,28 +1,27 @@
 <?php
 session_start();
-require ("../../config/config.php");
-require ("../../config/Conn.class.php");
-require ("../../models/TurmaDAO.class.php");
-require ("../../models/PPDAO.class.php");
-require ("../../models/AtividadeDAO.class.php");
-require ("../../models/UsuarioDAO.class.php");
+require("../../config/config.php");
+require("../../config/Conn.class.php");
+require("../../models/TurmaDAO.class.php");
+require("../../models/PPDAO.class.php");
+require("../../models/AtividadeDAO.class.php");
+require("../../models/UsuarioDAO.class.php");
 
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
- 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
     <script src="https://kit.fontawesome.com/43a2aaa0b4.js" crossorigin="anonymous"></script>
 </head>
@@ -37,7 +36,7 @@ $UsuarioDAO = new UsuarioDAO();
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
             <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="../../index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
-            
+
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -50,10 +49,10 @@ $UsuarioDAO = new UsuarioDAO();
         <div class="dados-user" id="dadosAluno">
             <ul>
                 <?php
-                foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user){
+                foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user) {
                     echo "<li class='Ola'>Olá, " . $user["nomeUsuario"] . "!" . "</li>";
                 }
-                foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user){
+                foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user) {
                     echo "<li>Curso: " . $user["cursoPP"] . "</li>";
                 }
                 ?>
@@ -70,14 +69,14 @@ $UsuarioDAO = new UsuarioDAO();
                         <th class="headerMencao">Menção</th>
                     </tr>
                     <?php
-                        foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $pp){
-                            echo "<tr>";
-                            echo '<td class="celulaMateria">'. $pp["disciplinaPP"] .'</option>';
-                            echo '<td class="celulaProfessor">'. $pp["nomeUsuario"] .'</option>';
-                            echo '<td class="celulaConcluiu">'. $pp["statusPP"] .'</option>';
-                            echo '<td class="celulaMencao">'. $pp["mencaoFinal"] .'</option>';
-                            echo "</tr>";
-                        }
+                    foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $pp) {
+                        echo "<tr>";
+                        echo '<td class="celulaMateria">' . $pp["disciplinaPP"] . '</option>';
+                        echo '<td class="celulaProfessor">' . $pp["nomeUsuario"] . '</option>';
+                        echo '<td class="celulaConcluiu">' . $pp["statusPP"] . '</option>';
+                        echo '<td class="celulaMencao">' . $pp["mencaoFinal"] . '</option>';
+                        echo "</tr>";
+                    }
                     ?>
                 </table>
             </div>
@@ -94,9 +93,10 @@ $UsuarioDAO = new UsuarioDAO();
                 </label>
                 <select class="filtro_txt" name="filtro_disciplina" id="filtro_disciplina">
                     <?php
-                        foreach ($turmas->buscarTurmaAluno($_SESSION['usuario']) as $turma){
-                            echo '<option value="'. $turma{"codDisciplina"} . '">' . $turma["nomeDisciplina"] .'</option>';
-                        }
+                    foreach ($turmas->buscarTurmaAluno($_SESSION['usuario']) as $turma) {
+                        echo '<option value="' . $turma{
+                        "codDisciplina"} . '">' . $turma["nomeDisciplina"] . '</option>';
+                    }
                     ?>
                 </select>
                 <div class="botao_search">
@@ -107,30 +107,63 @@ $UsuarioDAO = new UsuarioDAO();
         <div class="retangulo-ativ">
             <div class="quadro-ativ">
                 <div class="atribuida">
-                    <h3>Atribuída(1)</h3>
-                        <?php
-                            foreach ($atividades->listarAtividadeAluno($_SESSION['usuario']) as $atividade){
-                                $dataArrumada = explode("-", $atividade["prazo_entrega"]);
-                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                                echo "<div class='ativ' id='atividade'>";
-                                echo "<input type='hidden' id='codigoAtividade' value='". $atividade['codAtividade'] ."'>";
-                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                                echo "<span class='prazo'>" . $dataNova. "</span><br>";
-                                echo "</div>";
-                            }
-                            
-                        ?>
-                    
+                    <h3>Atribuída(<?php
+                        $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuida();
+                        foreach ($atividadesAtribuidas as $resultado){
+                            $quantidadeAtribuido = $resultado['COUNT(codAtividade)'];
+                            echo $resultado['COUNT(codAtividade)'];
+                        }
+                    ?>)</h3>
+                    <?php
+                    if ($quantidadeAtribuido == 0)
+                    {
+                        echo '<div class="vazio">
+                        <span>Você não possuí atividades atribuídas!</span>
+                        </div>';
+                    }
+                    else
+                    {
+                        foreach ($atividades->listarAtividadeAlunoAtribuida($_SESSION['usuario']) as $atividade) {
+                            $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                            $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                            echo "<div class='ativ' id='atividade'>";
+                            echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                            echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                            echo "<span class='prazo'>" . $dataNova . "</span><br>";
+                            echo "</div>";
+                        }
+                    }
+                    ?>
+
                 </div>
                 <div class="concluida">
-                    <h3>Concluída(0)</h3>
-                    <!--<div class="ativ">Ativar isso aqui caso tenham atividades concluidas
-                        <span class="nome-ativ"></span>
-                        <span class="prazo"></span>
-                    </div>-->
-                    <div class="vazio">
+                    <h3>Concluída(<?php
+                        $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluida();
+                        foreach ($atividades->contarAtividadeAlunoConcluida() as $resultado){
+                           echo $resultado['COUNT(codAtividade)'];
+                           $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
+                        }
+                    ?>)</h3>
+                    <?php
+                    if ($quantidadeConcluida == 0)
+                    {
+                        echo '<div class="vazio">
                         <span>Você não possuí atividades concluídas!</span>
-                    </div>
+                        </div>';
+                    }
+                    else
+                    {
+                        foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
+                            $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                            $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                            echo "<div class='ativ' id='atividade'>";
+                            echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                            echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                            echo "<span class='prazo'>" . $dataNova . "</span><br>";
+                            echo "</div>";
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -139,8 +172,7 @@ $UsuarioDAO = new UsuarioDAO();
     <footer id="rodape">
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../../../system/img/crowntech.png"
-                        class="logo-rodape" /></a>
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../../../system/img/crowntech.png" class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />
                     <span class="endereco">R. Alcântara, 113 - Vila Guilherme, São Paulo - SP, 02110-010</span>
@@ -160,7 +192,7 @@ $UsuarioDAO = new UsuarioDAO();
     </footer>
     <div class="modal-container" id="modal-atividade">
         <div class="modal" id="modal-ativ-aluno">
-            
+
         </div>
     </div>
     <script src="../../../system/js/app.js"></script>

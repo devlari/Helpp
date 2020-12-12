@@ -96,11 +96,62 @@ class AtividadeDAO extends Conn{
         return $this->resultado;
     }
     
-     public function listarAtividadeAluno($rmAluno) {
-        $query = "Select * from atividade where PP_Aluno_rmAluno = ?";
+     public function listarAtividadeAlunoConcluida($rmAluno) {
+        $query = "Select * from atividade where PP_Aluno_rmAluno = ? AND status = 'Entregue'";
        
         $busca = Conn::getConn()->prepare($query);
         $busca->bindValue(1, $rmAluno);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
+    public function listarAtividadeAlunoAtribuida($rmAluno) {
+        $query = "Select * from atividade where PP_Aluno_rmAluno = ? AND status=''";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
+    public function enviarAtividadeAluno(Atividade $atividade){
+        $query = "UPDATE atividade SET data_conclusao = ?,  
+        status = ?, arquivo_aluno = ? WHERE codAtividade = ?";
+
+        $alterar = Conn::getConn()->prepare($query);
+
+        $alterar->bindValue(1, $atividade->getDataConclusaoAtividade());
+        $alterar->bindValue(2, $atividade->getStatus());
+        $alterar->bindValue(3, $atividade->getArquivoAluno());
+        $alterar->bindValue(4, $atividade->getCodigoAtividade());
+
+        try{
+            $alterar->execute();
+            $this->result = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->result = null;
+            echo $e;
+        }
+    }
+
+    public function contarAtividadeAlunoAtribuida(){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = ''";
+
+        $busca = Conn::getConn()->prepare($query);
+        $busca->execute();
+
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
+    public function contarAtividadeAlunoConcluida(){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = 'Entregue'";
+
+        $busca = Conn::getConn()->prepare($query);
         $busca->execute();
         
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);

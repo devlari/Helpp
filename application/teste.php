@@ -79,7 +79,7 @@ function modalAtiv()
 {
     $conexao = conexao();
     $rm = $_GET['txtRm'];
-    $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
+    $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
     echo mysqli_error($conexao);
@@ -92,7 +92,7 @@ function modalAtiv()
             <span class="prazo-para">Prazo de entrega:<?php echo $resultado['prazo_entrega']; ?></span>
             <h2 class="entregue-em">Entregue em <?php echo $resultado['data_conclusao']; ?></h2>
             <div class="materiais">
-                <a href="#" download="NomeAtividade.txt" class="label"><?php echo $resultado['arquivo']; ?></a>
+                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label"><?php echo $resultado['arquivo_aluno']; ?></a>
                 <i class="fas fa-download"></i>
             </div>
         </div>

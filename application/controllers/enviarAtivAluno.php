@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Sao_Paulo');
+
 require('../config/config.php');
 require('../config/Conn.class.php');
 require('../models/Update.class.php');
@@ -23,3 +25,16 @@ copy($nome_temporario, "../../system/arquivos/$nome_final");
 
 //echo $nome_final, $codAtiv;
 echo $nome_temporario;
+
+$atividade = new Atividade();
+$atividadeDAO = new AtividadeDAO();
+
+$atividade->setCodigoAtividade($codAtiv);
+$atividade->setArquivoAluno($nome_final);
+$data = date('Y-m-d');
+$atividade->setDataConclusaoAtividade($data);
+$atividade->setStatus("Entregue");
+
+$atividadeDAO->enviarAtividadeAluno($atividade);
+
+header('location:../views/aluno');
