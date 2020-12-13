@@ -70,7 +70,7 @@ function modalAtiv()
 {
     $conexao = conexao();
     $rm = $_GET['txtRm'];
-    $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
+    $sql = "SELECT a.codAtividade, a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
     echo mysqli_error($conexao);
@@ -89,6 +89,8 @@ function modalAtiv()
         <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
+        <form action="../../controllers/atualizandoAtividade.php" method="POST">
+            <input name="idAtiv" type="hidden" value="<?php echo $resultado['codAtividade'];?>">
             <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
             <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
             <div class="materiais">
@@ -99,17 +101,17 @@ function modalAtiv()
                 <form action="">
                     <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
                     <select name="mencaoAtiv" id="mencaoAtiv">
-                        <option value="1">MB</option>
-                        <option value="2">B</option>
-                        <option value="3">R</option>
-                        <option value="4">I</option>
+                        <option value="MB">MB</option>
+                        <option value="B">B</option>
+                        <option value="R">R</option>
+                        <option value="I">I</option>
                     </select>
             </div>
             <div class="botao12">
                 <input type="submit" class="botao-fechar" value="Enviar">
                 <button class="botao-fechar" style="z-index:99999">Fechar</button>
             </div>
-            </form>
+        </form>
         </div>
 
     <?php

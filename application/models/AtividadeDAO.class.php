@@ -125,11 +125,35 @@ class AtividadeDAO extends Conn{
         return $this->resultado;
     }
 
+    public function listarAtividadeAlunoConcluidaFiltrado($rmAluno, $filtro) {
+        $query = "Select * from atividade where PP_Aluno_rmAluno = ? AND status = 'Entregue' AND PP_Disciplina_codDisciplina = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
+        $busca->bindValue(2, $filtro);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
     public function listarAtividadeAlunoAtribuida($rmAluno) {
         $query = "Select * from atividade where PP_Aluno_rmAluno = ? AND status=''";
        
         $busca = Conn::getConn()->prepare($query);
         $busca->bindValue(1, $rmAluno);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
+    public function listarAtividadeAlunoAtribuidaFiltrado($rmAluno, $filtro) {
+        $query = "Select * from atividade where PP_Aluno_rmAluno = ? AND status='' AND PP_Disciplina_codDisciplina = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $rmAluno);
+        $busca->bindValue(2, $filtro);
         $busca->execute();
         
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
@@ -166,6 +190,16 @@ class AtividadeDAO extends Conn{
         return $this->resultado;
     }
 
+    public function contarAtividadeAlunoAtribuidaFiltrado($rm, $filtro){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = '' AND PP_Aluno_rmAluno = $rm AND PP_Disciplina_codDisciplina = $filtro";
+
+        $busca = Conn::getConn()->prepare($query);
+        $busca->execute();
+
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
     public function contarAtividadeAlunoConcluida($rm){
         $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = 'Entregue' AND PP_Aluno_rmAluno = $rm";
 
@@ -174,5 +208,33 @@ class AtividadeDAO extends Conn{
         
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
         return $this->resultado;
+    }
+
+    public function contarAtividadeAlunoConcluidaFiltrado($rm,$filtro){
+        $query = "SELECT COUNT(codAtividade) FROM atividade WHERE status = 'Entregue' AND PP_Aluno_rmAluno = $rm AND PP_Disciplina_codDisciplina = $filtro";
+
+        $busca = Conn::getConn()->prepare($query);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
+    public function enviarMencao($atividade){
+        $query = "UPDATE atividade SET mencao_atividade = ?  
+        WHERE codAtividade = ?";
+
+        $alterar = Conn::getConn()->prepare($query);
+
+        $alterar->bindValue(1, $atividade->getMencaoAtividade());
+        $alterar->bindValue(2, $atividade->getCodigoAtividade());
+
+        try{
+            $alterar->execute();
+            $this->result = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->result = null;
+            echo $e;
+        } 
     }
 }
