@@ -5,6 +5,7 @@ require("../../config/Conn.class.php");
 require("../../models/AlunoDAO.class.php");
 require("../../models/TurmaDAO.class.php");
 require("../../models/PPDAO.class.php");
+require("../../models/Atividade.class.php");
 require("../../models/AtividadeDAO.class.php");
 require("../../models/UsuarioDAO.class.php");
 
@@ -13,6 +14,8 @@ $pps = new PPDAO();
 $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
 $aluno = new AlunoDAO();
+$atividade = new Atividade();
+$atividadeDAO = new AtividadeDAO();
 
 ?>
 <!DOCTYPE html>
@@ -189,33 +192,28 @@ $aluno = new AlunoDAO();
                         <th class="headerRm">Rm</th>
                         <th class="headerNome">Nome</th>
                         <th class="headerTurma">Turma</th>
+                        <th class="headerTurma">Título</th>
                         <th class="headerStatus">Status</th>
                     </tr>
-                    <tr id="linhaAtiv">
-                        <td class="celulaRm"><span class="rmAluno">180114</span></td>
-                        <td class="celulaNome"><span class="nomeAluno">Joao Vitor Belarmino Dias Silva</span></td>
-                        <td class="celulaTurma"><span class="turmaPP">3Ai</span></td>
-                        <td class="celulaStatus">Entregue</td>
-                    </tr>
-                    <tr  id="linhaAtiv">
-                        <td class="celulaRm"><span class="rmAluno">180500</span></td>
-                        <td class="celulaNome"><span class="nomeAluno">Geovana Miranda Mélo</span></td>
-                        <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
-                        <td class="celulaStatus">Entregue</td>
-                    </tr>
-                    <tr  id="linhaAtiv">
-                        <td class="celulaRm"><span class="rmAluno">180500</span></td>
-                        <td class="celulaNome"><span class="nomeAluno">Henrique Nunes</span></td>
-                        <td class="celulaTurma"><span class="turmaPP">3Ai</span></th>
-                        <td class="celulaStatus">Entregue</td>
-                    </tr>
+                    <?php
+                        $alunos = $atividadeDAO->listarAtividadeConcluidaAlunos($_SESSION['usuario']);
+
+                        foreach($alunos as $dados){?>
+                            <tr id="linhaAtiv">
+                            <td class="celulaRm"><span class="rmAluno"><?php echo $dados['rmUsuario']?></span></td>
+                            <td class="celulaNome"><span class="nomeAluno"><?php echo $dados['nomeUsuario']?></span></td>
+                            <td class="celulaTurma"><span class="turmaPP"><?php echo $dados['nome_turma']?></span></td>
+                            <td class="celulaTurma"><span class="turmaPP"><?php echo $dados['titulo_atividade']?></span></td>
+                            <td class="celulaStatus"><?php echo $dados['status']?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                 </table>
             </div>
         </div>
 
-
     </section>
-
     <footer id="rodape">
         <div class="rodape">
             <div class="rodape2">
