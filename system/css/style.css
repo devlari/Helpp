@@ -602,8 +602,14 @@ select {
 .thAcaoDisciplina{
     padding: 0px 12px 6px 12px;
     font-size: 18px;
-    width:30%;
+    width:60%;
     border-bottom:1px solid black;
+}
+
+.cadCurso{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
 }
 
 .thCursoTurma{
@@ -1014,7 +1020,7 @@ table::-webkit-scrollbar-corner{
     width: 60%;
     position:relative;
     height: 45px;
-    margin-bottom:8px;
+    margin-bottom:15px;
 }
 .inputTurma input{
     width: 100%;
