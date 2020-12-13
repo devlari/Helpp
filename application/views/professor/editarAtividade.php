@@ -67,7 +67,11 @@ endif;
                         <label for="formaEntrega">Forma de entrega:</label>
                         <input type="text" name="formaEntrega" id="formaEntrega" value="<?php echo $dados['forma_entrega']; ?>">
                     </div>
-                    <input type="file" name="upload" id="upload">
+                    <div class="upload-arquivo">
+                        <label for="upload" class="label" id="label">Selecionar arquivo...</label>
+                        <input type="file" name="upload" id="upload" required>
+                        <i class="fas fa-upload"></i>
+                    </div>
                 <?php endforeach ?>
                 <button type="submit" value="enviar" class="btnAlterar">Editar</button>
             </form>

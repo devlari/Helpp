@@ -67,7 +67,8 @@ $aluno = new AlunoDAO();
                 <table id="tabelaPPs">
                     <tr>
                         <th class="headerMateria">Matéria da PP</th>
-                        <th class="headerProfessor">Professores</th>
+                        <th class="headerProfessor">Professor 1</th>
+                        <th class="headerProfessor">Professor 2</th>
                         <th class="headerConcluiu">Status</th>
                         <th class="headerMencao">Menção</th>
                     </tr>

@@ -1222,6 +1222,7 @@ table::-webkit-scrollbar-corner{
     border-radius: 10px;
     position: relative;
     animation: modal 0.6s ease-out;
+    overflow:auto;
 }
 
 .Status-Mencao-PP {
@@ -1245,6 +1246,10 @@ table::-webkit-scrollbar-corner{
     flex-direction: column;
 }
 
+.inputAtividade input[type="file"]{
+    display:block;
+}
+
 #modal-atividade-recebida{
     height: 50vh;
     overflow: auto;
@@ -1254,7 +1259,7 @@ table::-webkit-scrollbar-corner{
     bottom:auto;
 }
 
-#modal-doc-aluno .botao12{
+#modal-doc-aluno, #modal-gestor .botao12{
     bottom:auto;
 }
 

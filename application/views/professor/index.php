@@ -175,8 +175,7 @@ $aluno = new AlunoDAO();
                     <select name="filtro-atividade" class="filtro-atividade" id="filtro-atividade">
                         <?php
                         foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
-                            echo '<option value="' . $atividade{
-                            "cod_atividade"} . '">' . $atividade["titulo_atividade"] . '</option>';
+                            echo '<option value="' . $atividade["cod_atividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
                         }
                         ?>
                     </select>

@@ -101,8 +101,24 @@ function modalAtivRequisitada(modalID){
       }
     });
   }))
-  console.log(tabelaAtivRequisitada)
 }
+
+function modalGestor(modalID){
+  const modal = document.getElementById(modalID)
+  const tabelaPP = document.querySelectorAll("#linhaPPGestor")
+  tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
+    if(e.target.className == "celulaAluno"){
+      modal.classList.add("mostrar")
+      modal.addEventListener("click", (e) => {
+        if(e.target.className == "botao-fechar" || e.target == modal){
+          location.reload()
+        }
+      })
+    }
+  }))
+}
+
+
 
 function alteraLabel() {
   var input = document.getElementById("upload");
@@ -235,6 +251,7 @@ function getDados() {
   const tabelaPP = document.querySelectorAll("#linhaPP")
   const tabelaAtividadesAluno = document.querySelectorAll('.atribuida .ativ.atribuidaa')
   const tabelaAtivRequisitada = document.querySelectorAll('.ativ-requisitada')
+  const tabelaGestor = document.querySelectorAll("#linhaPPGestor")
   if (tabelaAtivRequisitada) {
     tabelaAtivRequisitada.forEach(linha => linha.addEventListener('click', (e) => {
       let codAtiv = linha.childNodes[0].defaultValue
@@ -333,13 +350,37 @@ function getDados() {
       xmlreq.send(null);
     }
   }))
+  tabelaGestor.forEach(linha => linha.addEventListener('click', (e) => {
+    let RM = linha.firstElementChild.innerText
+    let result = document.getElementById("modal-doc-gestor")
+    let xmlreq = CriaRequest()
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalGestor", true);
+
+      xmlreq.onreadystatechange = function () {
+
+        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+        if (xmlreq.readyState == 4) {
+
+          // Verifica se o arquivo foi encontrado com sucesso
+          if (xmlreq.status == 200) {
+            result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+          } else {
+            result.innerHTML = "Erro: " + xmlreq.statusText;
+          }
+        }
+      }
+      xmlreq.send(null);
+  }))
 }
 
 const arrumaNome = () => {
-  let nome = document.getElementById("nomeUsuario").innerText
-  let nomeNovo = nome.split(" ")
+  let nome = document.getElementById("nomeUsuario")
+  if(nome){
+    let nomeUsuario = nome.innerText
+  let nomeNovo = nomeUsuario.split(" ")
   let nomeAtualizado = `${nomeNovo[0]} ${nomeNovo[`${nomeNovo.length - 1}`]}`
   document.getElementById("nomeUsuario").innerText = `${nomeAtualizado}`
+  }
 }
 
 
@@ -352,6 +393,7 @@ const app = () => {
   modalAlert("modal-alert-import");
   modalDocAluno("modal-doc-aluno");
   modalAtivRequisitada("modal-atividade-requisitada")
+  modalGestor("modal-gestor")
   scroll();
   softScroll()
   getDados()
