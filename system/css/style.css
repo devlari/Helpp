@@ -921,6 +921,7 @@ table::-webkit-scrollbar-corner{
     height: 100%;
 }
 
+
 .formAtiv {
     width: 80%;
     position: relative;
@@ -1087,6 +1088,21 @@ table::-webkit-scrollbar-corner{
     box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
+.formAtiv input[type="date"] {
+    outline: none;
+    border: 0;
+    padding: 8px;
+    background-color: #c4c4c4;
+    border-radius: 7px;
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    height: 30%;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
 .modo-entrega {
     height: 30%;
     padding: 0px;
@@ -1222,6 +1238,11 @@ table::-webkit-scrollbar-corner{
     right: 0;
     bottom: 0;
     margin: 20px;
+}
+
+.inputAtividade{
+    display:flex;
+    flex-direction: column;
 }
 
 #modal-atividade-recebida{
