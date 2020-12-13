@@ -30,7 +30,7 @@ class AtividadeDAO extends Conn{
         }
     }
     
-    public function consultarAtividade(){
+    public function consultarAtividade($q){
         $sql = $q;
         
         $consultar = Conn::getConn()->prepare($sql);
@@ -39,7 +39,7 @@ class AtividadeDAO extends Conn{
         if ($consultar->rowCount() > 0){
             $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
             return $resultado;
-        } 
+        }
     }
     
     private function excluirAtividade($id)
@@ -57,21 +57,39 @@ class AtividadeDAO extends Conn{
     
     public function editarAtividade(Atividade $atividade){
         $query = "UPDATE atividade SET titulo_atividade = ?, instrucao_atividade = ?, 
-        data_conclusao = ?, prazo_entrega = ?, forma_entrega = ?, mencao_atividade = ?, 
-        status = ?, arquivo_prof = ?, arquivo_aluno = ? WHERE codAtividade = ?";
+        prazo_entrega = ?, forma_entrega = ?
+        WHERE codAtividade = ?";
 
         $alterar = Conn::getConn()->prepare($query);
         
         $alterar->bindValue(1, $atividade->getTituloAtividade());
         $alterar->bindValue(2, $atividade->getInstrucaoAtividade());
-        $alterar->bindValue(3, $atividade->getDataConclusaoAtividade());
-        $alterar->bindValue(4, $atividade->getPrazoAtividade());
-        $alterar->bindValue(5, $atividade->getFormaEntregaAtividade());
-        $alterar->bindValue(6, $atividade->getMencaoAtividade());
-        $alterar->bindValue(7, $atividade->getStatus());
-        $alterar->bindValue(8, $atividade->getArquivoProf());
-        $alterar->bindValue(9, $atividade->getArquivoAluno());
-        $alterar->bindValue(10, $atividade->getCodigoAtividade());
+        $alterar->bindValue(3, $atividade->getPrazoAtividade());
+        $alterar->bindValue(4, $atividade->getFormaEntregaAtividade());
+        $alterar->bindValue(5, $atividade->getCodigoAtividade());
+
+        try{
+            $alterar->execute();
+            $this->result = Conn::getConn()->lastInsertId();
+        } catch (Exception $e) {
+            $this->result = null;
+            WSErro("<b>Erro ao alterar o registro de código: {$u->getId()}:</b> {$e->getMessage()}", $e->getCode());
+        }
+    }
+
+    public function editarAtividadeArquivo(Atividade $atividade){
+        $query = "UPDATE atividade SET titulo_atividade = ?, instrucao_atividade = ?, 
+        prazo_entrega = ?, forma_entrega = ?, arquivo_prof = ?
+        WHERE codAtividade = ?";
+
+        $alterar = Conn::getConn()->prepare($query);
+        
+        $alterar->bindValue(1, $atividade->getTituloAtividade());
+        $alterar->bindValue(2, $atividade->getInstrucaoAtividade());
+        $alterar->bindValue(3, $atividade->getPrazoAtividade());
+        $alterar->bindValue(4, $atividade->getFormaEntregaAtividade());
+        $alterar->bindValue(5, $atividade->getArquivoProf());
+        $alterar->bindValue(6, $atividade->getCodigoAtividade());
 
         try{
             $alterar->execute();
