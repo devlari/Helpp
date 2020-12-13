@@ -24,17 +24,17 @@
 
                 if($_SESSION['cargo'] == "Aluno")
                 {
-                    header("location:../views/aluno");
+                    header("location:../views/Aluno");
                 }
                 
                 if($_SESSION['cargo'] == "Professor")
                 {
-                    header("location:../views/aluno");
+                    header("location:../views/Professor");
                 }
                 
                 if($_SESSION['cargo'] == "Gestor")
                 {
-                    header("location:../views/aluno");
+                    header("location:../views/Gestor");
                 }
             }
             else

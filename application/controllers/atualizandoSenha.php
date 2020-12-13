@@ -25,12 +25,12 @@
 		
 		if($_SESSION['cargo'] == "Professor")
 		{
-			header("location:../views/aluno");
+			header("location:../views/professor");
 		}
 		
 		if($_SESSION['cargo'] == "Gestor")
 		{
-			header("location:../views/aluno");
+			header("location:../views/gestor");
 		}
 	}
 

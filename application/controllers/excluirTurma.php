@@ -8,16 +8,19 @@ require('../models/TurmaDAO.class.php');
 
 if (isset($_GET['ID'])):
     $idTurma = $_GET['ID'];
-    
+
+    $turma = new Turma();
     $turmaDAO = new TurmaDAO();
-    $turmaDAO->excluir($idTurma);
+
+    //$turmaDAO->
+    //$turmaDAO->excluir($idTurma);
     
-//    echo "<pre>";
-//    var_dump($lerTurma);    
-//    echo "</pre>";
+   echo "<pre>";
+   var_dump();    
+   echo "</pre>";
     
 
-        header("location:../views/gestor");
+        //header("location:../views/gestor");
 
 else:
     $idTurma = null;

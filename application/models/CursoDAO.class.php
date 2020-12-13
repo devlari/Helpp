@@ -54,10 +54,6 @@ class CursoDAO{
     }
     
     public function excluir($codCurso){
-        $query = "DELETE FROM curso where cod_curso = ?";
-        
-        $deletar = Conn::getConn()->prepare($query);
-        $deletar->bindValue(1, $codCurso);
-        $deletar->execute();
+
     }
 }

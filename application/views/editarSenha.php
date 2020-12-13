@@ -14,12 +14,12 @@
       <img src="../../system/img/helpp.png" class="logo"></img>
       </div>
       <div class="half-two">
-        <form class="frmLogin" method="POST" action="../../controllers/atualizandoSenha.php">
+        <form class="frmLogin" method="POST" action="../controllers/editSenhaUsuario.php">
           <div class="form">
             <h1 class="tituloForm">ALTERAR SENHA</h1><br/>
-            <input type="password" class="txtSenha2" placeholder="Senha atual" name="txtSenha" id="txtSenha" required>
-            <input type="password" class="txtSenha2" placeholder="Senha nova" name="txtSenha" id="txtSenha" required>
-            <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="txtSenha2" id="txtSenha2" required><br/>  
+            <input type="password" class="txtSenha2" placeholder="Senha atual" name="senhaAtual" id="txtSenha" required>
+            <input type="password" class="txtSenha2" placeholder="Senha nova" name="senha1" id="txtSenha" required>
+            <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="senha2" id="txtSenha2" required><br/>  
             <input type="submit" class="btnEntrar2" value="Entrar"><br/><br/>
           </div>
         </form>
