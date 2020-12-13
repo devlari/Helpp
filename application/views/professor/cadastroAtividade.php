@@ -4,7 +4,11 @@ date_default_timezone_set('America/Sao_Paulo');
 require("../../config/config.php");
 require("../../config/Conn.class.php");
 require("../../models/TurmaDAO.class.php");
+require("../../models/Disciplina.class.php");
+require("../../models/DisciplinaDAO.class.php");
 
+$disciplina = new Disciplina();
+$disciplinaDAO = new DisciplinaDAO();
 $turmas = new TurmaDAO();
 session_start();
 ?>
@@ -71,6 +75,25 @@ session_start();
                     <input type="file" name="upload" id="upload" required>
                     <i class="fas fa-upload"></i>
                 </div>
+                <select class="modo-entrega" name="disciplina">
+                    <?php
+                        $rm = $_SESSION['usuario'];
+                        $consulta = $disciplinaDAO->consultar("SELECT d.codDisciplina, d.nomeDisciplina FROM disciplina AS d 
+                        INNER JOIN professor_disciplina as pd
+                        ON d.codDisciplina = pd.codDisciplina
+                        INNER JOIN professor AS p
+                        ON pd.professor_rmProfessor = p.rmProfessor
+                        INNER JOIN usuario as u 
+                        ON p.rmUsuario = u.rmUsuario
+                        WHERE u.rmUsuario = $rm");
+
+                        foreach ($consulta as $dados)
+                        {
+                            echo "<option value={$dados['codDisciplina']}>{$dados['nomeDisciplina']}</option>";
+                        }
+                    
+                    ?>
+                </select>
                 <input type="submit" class="btnEnviar" value="Enviar" />
             </form>
         </div>

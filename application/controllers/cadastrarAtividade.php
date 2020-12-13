@@ -12,6 +12,7 @@
     $prazoEntrega = explode('T', $_POST['txtPrazoEntrega']);
     $data = $prazoEntrega[0];
     $horario = $prazoEntrega[1];
+    $disciplina = $_POST['disciplina'];
 
     $nome_temporario = $_FILES['upload']["tmp_name"];
     $nome_real = $_FILES['upload']["name"];
@@ -29,6 +30,9 @@
     $atividade = new Atividade();
     $atividadeDAO = new AtividadeDAO();
 
+    $buscar = $atividadeDAO->buscarRMAtiv($turma, $disciplina);
+
+    $atividade->setCodigoDisciplina($disciplina);
     $atividade->setTituloAtividade($titulo);
     $atividade->setInstrucaoAtividade($descricao);
     $atividade->setFormaEntregaAtividade($modoEntrega);
@@ -36,7 +40,18 @@
     $atividade->setArquivoProf($nome_final);
     $atividade->setStatus("Não entregue");
 
-    $atividadeDAO->cadastrarAtividade($atividade);
+    echo $disciplina, $turma;
+    
+    foreach($buscar as $alunos)
+    {
+        $atividade->setRmAluno($alunos['rmAluno']);
+        $atividadeDAO->cadastrarAtividade($atividade);
+
+        echo "<pre>";
+        var_dump($atividade);
+        echo "</pre>";
+    }
+
 
     header("location:../views/professor");
 

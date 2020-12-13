@@ -8,6 +8,7 @@
 class Atividade{
 //put your code here
     private $codigoAtividade;
+    private $rmAluno;
     private $codigoPP;
     private $tituloAtividade;
     private $instrucaoAtividade;
@@ -17,6 +18,7 @@ class Atividade{
     private $mencaoAtividade;
     private $arquivo_prof;
     private $arquivo_aluno;
+    private $codigoDisciplina;
     
     public function importarArquivo(){
         
@@ -32,6 +34,14 @@ class Atividade{
     
     function getCodigoAtividade() {
         return $this->codigoAtividade;
+    }
+
+    function getRmAluno() {
+        return $this->rmAluno;
+    }
+
+    function getCodigoDisciplina() {
+        return $this->codigoDisciplina;
     }
 
     function getCodigoPP() {
@@ -82,6 +92,10 @@ class Atividade{
         $this->codigoPP = $codigoPP;
     }
 
+    function setRmAluno($rmAluno){
+        $this->rmAluno = $rmAluno;
+    }
+
     function setTituloAtividade($tituloAtividade){
         $this->tituloAtividade = $tituloAtividade;
     }
@@ -116,6 +130,10 @@ class Atividade{
 
     function setStatus($status){
         $this->status = $status;
+    }
+
+    function setCodigoDisciplina($disciplina){
+        $this->codigoDisciplina = $disciplina;
     }
 
 
