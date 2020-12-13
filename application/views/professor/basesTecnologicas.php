@@ -43,6 +43,7 @@ $aluno = new AlunoDAO();
         <div class="container">
             <?php
                 $rm = $_GET['rmAluno'];
+                $codDisc = $_GET['codDisc'];
                 $query = "SELECT u.nomeUsuario, p.anoPP, d.nomeDisciplina, p.habilidadePP, p.conhecimentoPP, p.tecnologiaPP FROM usuario AS u
                 INNER JOIN pp AS p
                 ON u.rmUsuario = p.aluno_rmAluno
@@ -70,39 +71,22 @@ $aluno = new AlunoDAO();
         <div class="container2">
             <form action="../../controllers/editandoPP.php" method="POST" class="frmBasesTec">
                 <input name='rmAluno' type="hidden" value=<?php echo $rm;?>></input>
+                <input name='codDisc' type="hidden" value=<?php echo $codDisc;?>></input>
                 <div class="basesTecnologicas">
                     <div class="campoCompetencias">
                         <h3 class="titulo-competencias">Competências</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" id="txtCompetencias" name="txtCompetencias" placeholder="Digite as competências aqui...">
-                        <?php
-                            foreach ($result as $dados){
-                                echo $dados['conhecimentoPP']; 
-                            }  
-                        ?>   
-                        </textarea>
+                        <textarea class="txtCompetencias" id="txtCompetencias" name="txtCompetencias" placeholder="Digite as competências aqui..."><?php foreach ($result as $dados){ echo $dados['conhecimentoPP'];}?></textarea>
                     </div>
                     <div class="campoCompetencias">
                         <h3 class="titulo-competencias">Habilidades</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" id="txtHabilidades" name ="txtHabilidades" placeholder="Digite as habilidades aqui...">
-                        <?php
-                            foreach ($result as $dados){
-                                echo $dados['habilidadePP']; 
-                            }  
-                        ?>
-                        </textarea>
+                        <textarea class="txtCompetencias" id="txtHabilidades" name ="txtHabilidades" placeholder="Digite as habilidades aqui..."><?php foreach ($result as $dados){echo $dados['habilidadePP'];} ?></textarea>
                     </div>
                     <div class="campoCompetencias" style="position: relative">
                         <h3 class="titulo-competencias">Base(s) tecnológica(s) ou científica(s)</h3>
                         <div class="traco"></div>
-                        <textarea class="txtCompetencias" id="txtBasesTecnologicas" name = "txtBasesTecnologicas" placeholder="Digite as bases tecnologicas aqui...">
-                        <?php
-                            foreach ($result as $dados){
-                                echo $dados['tecnologiaPP']; 
-                            }  
-                        ?>
-                        </textarea>
+                        <textarea class="txtCompetencias" id="txtBasesTecnologicas" name = "txtBasesTecnologicas" placeholder="Digite as bases tecnologicas aqui..."><?php foreach ($result as $dados){echo $dados['tecnologiaPP'];}?></textarea>
                         <input type="submit" value="Salvar" class="btnEnviar" style="position:absolute; bottom:-55px; right:0px;">
                     </div>
                 </div>

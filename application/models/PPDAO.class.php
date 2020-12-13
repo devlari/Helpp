@@ -156,9 +156,9 @@ class PPDAO{
     //Cadastro de competências, habilidades e bases tecnológicas
     public function preencherDoc31 (PP $pp)
     {
-        $query = "UPDATE pp SET habilidadePP = ?, conhecimentoPP = ?, tecnologiaPP = ? WHERE aluno_rmAluno = ? "
-                . "AND disciplina_codDisciplina = ?";
+        $query = "UPDATE pp SET habilidadePP = ?, conhecimentoPP = ?, tecnologiaPP = ? WHERE aluno_rmAluno = ? AND disciplina_codDisciplina = ?";
         
+
         $atualizar = Conn::getConn()->prepare($query);
         
         $atualizar->bindValue(1, $pp->getHabilidadePP());

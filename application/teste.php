@@ -103,7 +103,7 @@ function modalPp(){
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega
-    $sql = "Select a.aluno_RmAluno, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
+    $sql = "Select a.aluno_RmAluno, a.disciplina_codDisciplina, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
     $sql2 = "Select titulo_atividade, mencao_atividade from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno where b.aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $result2 = mysqli_query($conexao, $sql2);
@@ -147,14 +147,14 @@ function modalPp(){
                     <h3 class="titulo-competencias">Competências</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <span><?php echo $resultado['habilidadePP']; ?></span>
+                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Habilidades</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
+                        <span><?php echo $resultado['habilidadePP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
@@ -166,7 +166,7 @@ function modalPp(){
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno']?>">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno']?>&codDisc=<?php echo $resultado['disciplina_codDisciplina'];?>">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
     <?php
