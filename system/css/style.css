@@ -362,6 +362,14 @@ a.label {
     align-items: center;
 }
 
+#modal-ativ-requisitada{
+    overflow: auto;
+}
+
+#modal-ativ-requisitada .conteudo-modal .botao12{
+    bottom:auto;
+}
+
 .div-filtro {
     position: absolute;
 }
