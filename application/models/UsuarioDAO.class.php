@@ -60,12 +60,11 @@ class UsuarioDAO extends Conn{
     
     public function editarUsuario($u)
     {
-        $query = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ? WHERE rmUsuario = ?";
+        $query = "UPDATE usuario SET emailUsuario = ? WHERE rmUsuario = ?";
         $alterar = Conn::getConn()->prepare($query);
         
-        $alterar->bindValue(1, $u->getNome());
-        $alterar->bindValue(2, $u->getEmail());
-        $alterar->bindValue(3, $u->getId());
+        $alterar->bindValue(1, $u->getEmail());
+        $alterar->bindValue(2, $u->getId());
         
         try{
             $alterar->execute();

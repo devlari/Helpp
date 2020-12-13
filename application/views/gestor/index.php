@@ -21,6 +21,8 @@
     require("../../../application/models/TurmaDAO.class.php");
     require('../../models/Curso.class.php');
     require('../../models/CursoDAO.class.php');
+    require('../../models/Disciplina.class.php');
+    require('../../models/DisciplinaDAO.class.php');
     //session_start();
     ?>
     <nav id="navbar-helpp">
@@ -29,6 +31,9 @@
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="cadastroCurso.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar curso</span></a></li>
+            <li><a href="cadastroTurma.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar turma</span></a></li>
+            <li><a href="cadastroDisciplina.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar disciplina</span></a></li>
             <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
             <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
             <li><a href="../../" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
@@ -169,13 +174,44 @@
 
                 foreach ($cursoDAO->consultar($query) as $curso) :
                     echo "<tr>";
-                    echo "<td class=''>" . $curso["nome_curso"] . "</td>";
+                    echo "<td>" . $curso["nome_curso"] . "</td>";
                     echo "<td class='tdAnoTurma'>" . $curso["eixo_curso"] . "</td>";
                     echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=#>Excluir</a></td>";
                     echo "</tr>";
                 endforeach;
                 ?>
             </table>
+        </div>
+        <h1>Gerenciar Disciplinas</h1>
+        <div class="management-class">
+        <table class="management-table disciplina">
+            <tr>
+                <th class="thDisciplinaTurma">Nome</th>
+                <th class="thAnoTurma">Sigla</th>
+                <th class="thEixoCurso">Turma</th>
+                <th class="thAcaoDisciplina">Ação</th>
+            </tr>
+            <?php
+            //if ($turmaDAO->getRowCount() >= 1):
+            $disciplinaDAO = new DisciplinaDAO();
+            $query = "SELECT * FROM disciplina";
+
+            foreach ($disciplinaDAO->consultar($query) as $disciplina) :
+                echo "<td>" . $disciplina["nomeDisciplina"] . "</td>";
+                echo "<td>" . $disciplina["siglaDisciplina"] . "</td>";
+                $query2 = "SELECT t.nome_turma FROM turma AS t INNER JOIN disciplina d ON t.cod_turma = d.codTurma WHERE d.codDisciplina = {$disciplina["codDisciplina"]}";
+                if ($disciplinaDAO->consultar($query2) > 1) :
+                    foreach ($disciplinaDAO->consultar($query2) as $turma) :
+                        echo "<td>" . $turma["nome_turma"] . "</td>";
+                    endforeach;
+                    echo " <td class='tdAcao'><a href=editarDisciplina.php?ID={$disciplina["codDisciplina"]} class='link-acao'>Editar</a> <a href=# class='link-acao'>Excluir</a></td>";
+                endif;
+                echo "</tr>";
+            endforeach;
+
+            //endif;
+            ?>
+        </table>
         </div>
     </section>
 

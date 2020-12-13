@@ -18,4 +18,4 @@
         
         $cursoDAO->alterar($curso); 
 
-        header("location:../views/gestor/gerenciarCurso.php");
+        header("location:../views/gestor/");

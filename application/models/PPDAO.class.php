@@ -143,7 +143,7 @@ class PPDAO{
     }
     
     public function buscarProfPP($rmProfessor) {
-        $query = "Select seriePP, a.nomeUsuario, disciplinaPP, statusPP, a.rmUsuario from usuario a inner join pp b 
+        $query = "Select seriePP, a.nomeUsuario, disciplinaPP, statusPP, b.turmaAtualPP, a.rmUsuario from usuario a inner join pp b 
             on a.rmUsuario = b.aluno_rmAluno inner join professor_pp c 
             on b.aluno_rmAluno = c.cod_pp_rmAluno and b.disciplina_codDisciplina = c.cod_pp_codDisciplina 
             where c.rm_professor = ?";
@@ -175,9 +175,9 @@ class PPDAO{
     //Cadastro de competências, habilidades e bases tecnológicas
     public function preencherDoc31 (PP $pp)
     {
-        $query = "UPDATE pp SET habilidadePP = ?, conhecimentoPP = ?, tecnologiaPP = ? WHERE aluno_rmAluno = ? "
-                . "AND disciplina_codDisciplina = ?";
+        $query = "UPDATE pp SET habilidadePP = ?, conhecimentoPP = ?, tecnologiaPP = ? WHERE aluno_rmAluno = ? AND disciplina_codDisciplina = ?";
         
+
         $atualizar = Conn::getConn()->prepare($query);
         
         $atualizar->bindValue(1, $pp->getHabilidadePP());
@@ -190,9 +190,10 @@ class PPDAO{
             $atualizar->execute();
             //echo "Competências, Habilidades e Bases Tecnológicas cadastradas com sucesso!";
             $this->resultado = true;
-            //$this->result = Conn::getConn()->lastInsertId();
+            $this->result = Conn::getConn()->lastInsertId();
+
         } catch (Exception $e) {
-            //$this->result = null;
+            $this->result = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
         

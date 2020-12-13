@@ -32,7 +32,6 @@ function modalAlert(modalID) {
 function modalAtiv(modalID) {
   const modal = document.getElementById(modalID);
   const atividade = document.querySelectorAll(".ativ.atribuidaa");
-  console.log(atividade)
   if (modal) {
     atividade.forEach(linha => linha.addEventListener("click", (e) => {
       modal.classList.add("mostrar");
@@ -55,9 +54,10 @@ function modalAtiv(modalID) {
 
 function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
-  const tabela = document.getElementById("tabelaProfsPP");
+  const tabela = document.querySelectorAll("#tabelaProfsPP")
   if (modal) {
-    tabela.addEventListener("click", (e) => {
+    tabela.forEach(linha=> linha.addEventListener("click", (e) => {
+      console.log()
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
@@ -66,13 +66,12 @@ function modalDocAluno(modalID) {
           }
         });
       }
-    });
+    }));
   }
 }
 
 function modalAtivAluno(modalID) {
   const modal = document.getElementById(modalID);
-  const tabela = document.getElementById("tabelaAtividade");
   const tabelaAtiv = document.querySelectorAll("#linhaAtiv")
   if (modal) {
     tabelaAtiv.forEach(linha => linha.addEventListener('click', (e) => {
@@ -234,7 +233,6 @@ function getDados() {
   if (tabelaAtividadesAluno) {
     tabelaAtividadesAluno.forEach(linha => linha.addEventListener('click', (e) => {
       let codAtiv = linha.childNodes[0].defaultValue;
-      console.log(codAtiv);
       if(codAtiv){
       let RM = document.getElementById('rmAlunoAtual')
       let result = document.getElementById("modal-ativ-aluno")

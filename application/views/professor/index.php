@@ -106,7 +106,7 @@ $aluno = new AlunoDAO();
                         echo '<td class="celulaTurmaPP">' . $pp["seriePP"] . '</td>';
                         echo '<td class="celulaNomeAluno">' . $pp["nomeUsuario"] . '</td>';
                         echo '<td class="celulaDisciplina">' . $pp["disciplinaPP"] . '</td>';
-                        echo '<td class="celulaTurmaAtual">' . '' . '</td>';
+                        echo '<td class="celulaTurmaAtual">' . $pp["turmaAtualPP"] . '</td>';
                         echo '<td class="celulaEstado">' . $pp["statusPP"] . '</td>';
                         echo "</tr>";
                     }

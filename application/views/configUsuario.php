@@ -14,48 +14,50 @@ session_start();
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../system/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
+    <title>Início</title>
+    <script src="https://kit.fontawesome.com/43a2aaa0b4.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <form action="../controllers/editUsuario.php" method="POST">
-        <?php
+    <a href="../views/<?php echo $_SESSION['cargo'];?>" style="text-decoration:none; color:black;"><i class="fa fa-arrow-left voltar-seta" aria-hidden="true"></i></a>
+    <div class="wrapper-config">
+        <h1 class="tituloForm3" style="padding-bottom:20px"><i class="fas fa-cog"></i> Configurações </i></h1>
+        <form class="formAtiv" action="../controllers/editUsuario.php" method="POST">
+            <?php
             $usuarioDados = $usuarioDAO->consultarUsuario($_SESSION['usuario']);
-            foreach($usuarioDados as $dados)
-            {
+            foreach ($usuarioDados as $dados) {
                 $nome = $dados['nomeUsuario'];
                 $email = $dados['emailUsuario'];
                 $senha = $dados['senhaUsuario'];
             }
-        
-        ?>
-        <h1>Configurações</h1>
-        <label>RM: <?php echo $_SESSION['usuario']; ?></label>
-        <br/>      
-        <label>Nome:</label>
-        <input name='txtNome'value='<?php echo $nome ?>'>
-        <br/>
-        <label>Email:</label>
-        <input name='txtEmail' value='<?php echo $email ?>'>
-        <br/>
-        <button type="submit">editar</button>
-        <br/>
-        <br/>
-    </form>
-    <form action='../controllers/editSenhaUsuario.php' method="POST">
-        <label>Senha Atual:</label>
-        <input name='senhaAtual' type='password' value=''>
-        <br/>
-        <label>Nova Senha:</label>
-        <input name='senha1' type='password' value=''>
-        <br/>        
-        <label>Confirmar Senha:</label>
-        <input name='senha2' type='password' value=''>
-        <br/>   
-        <button type='submit'>Alterar Senha</button>
-    
-    </form>
 
+            ?>
+
+
+            <div class="configs">
+                <div class="rmUsuario">
+                    <label><span class="rmusuario">RM:</span> <?php echo $_SESSION['usuario']; ?></label>
+                </div>
+                <div class="inputNome">
+                    <label>Nome:</label>
+                    <input type="text" name='txtNome' value='<?php echo $nome ?>' disabled>
+                </div>
+                <div class="inputEmail">
+                    <label>Email:</label>
+                    <input type="text" name='txtEmail' value='<?php echo $email ?>'>
+                </div>
+                <a href="editarSenha.php" class="esqueceu-senha" style="padding-top:15px">Alterar senha</a>
+                <button type="submit" class="btnEditar">Editar</button>
+            </div>
+        </form>
+    </div>
+    <script src="../../../system/js/app.js"></script>
 </body>
 
 </html>

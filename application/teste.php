@@ -18,7 +18,8 @@ if (isset($_GET["txtRm"])) {
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
 }
-function modalAtivAluno(){
+function modalAtivAluno()
+{
     $conexao = conexao();
     $codAtiv = $_GET["txtCodAtiv"];
     $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
@@ -62,7 +63,8 @@ function modalAtivAluno(){
     }
 }
 
-function modalAtiv(){
+function modalAtiv()
+{
     $conexao = conexao();
     $rm = $_GET['txtRm'];
     $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
@@ -87,7 +89,7 @@ function modalAtiv(){
             <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
             <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
             <div class="materiais">
-                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno']?>" download='<?php echo $resultado['arquivo_aluno']?>' class="label">Arquivo Aluno</a>
+                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno'] ?>" download='<?php echo $resultado['arquivo_aluno'] ?>' class="label">Arquivo Aluno</a>
                 <i class="fas fa-download"></i>
             </div>
         </div>
@@ -99,19 +101,21 @@ function modalAtiv(){
     }
 }
 
-function modalPp(){
+function modalPp()
+{
     $conexao = conexao();
     $rm = $_GET["txtRm"];
     //instrução que pega nome do aluno, titulo da atividade, descrição/instrução da atividade, data de entrega e prazo de entrega
-    $sql = "Select a.aluno_RmAluno, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
-    $sql2 = "Select titulo_atividade, mencao_atividade from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno where b.aluno_rmAluno = $rm";
+    $sql = "Select a.aluno_RmAluno, a.disciplina_codDisciplina, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
-    $result2 = mysqli_query($conexao, $sql2);
     $cont = mysqli_affected_rows($conexao);
-    $cont2 = mysqli_affected_rows($conexao);
-    if ($cont > 0 && $cont2) {
-        $resultado2 = mysqli_fetch_array($result2);
+    if ($cont > 0) {
+        $sql2 = "Select titulo_atividade, mencao_atividade from atividade a inner join pp b on a.PP_Aluno_rmAluno = b.aluno_rmAluno where b.aluno_rmAluno = $rm";
+        $result2 = mysqli_query($conexao, $sql2);
+        $cont2 = mysqli_affected_rows($conexao);
         $resultado = mysqli_fetch_array($result);
+        
+
     ?>
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
@@ -119,6 +123,10 @@ function modalPp(){
             <div class="linha-um-doc30">
                 <span class="dados-pp">PP em: <?php echo $resultado['anoPP']; ?><br /><?php echo $resultado['disciplinaPP']; ?></span>
                 <div class="tabela-ativ-geral">
+                <?php
+                        if($cont2 > 0){
+                            $resultado2 = mysqli_fetch_array($result2);
+                        ?>
                     <table class="tabela-atividades-pp" id="tabela-ativ-pp">
                         <tr>
                             <th class="headerAtividade">Atividade</th>
@@ -133,6 +141,9 @@ function modalPp(){
                             <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade']; ?></td>
                             <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade']; ?></td>
                         </tr>
+                        <?php }else{
+                            echo "<h3>opa, esse aluno n tem atividades</h3>";
+                        } ?>
                     </table>
                 </div>
                 <div class="Status-Mencao-PP">
@@ -145,14 +156,14 @@ function modalPp(){
                     <h3 class="titulo-competencias">Competências</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <span><?php echo $resultado['habilidadePP']; ?></span>
+                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
                     <h3 class="titulo-competencias">Habilidades</h3>
                     <div class="traco"></div>
                     <div class="spn-requerimentos">
-                        <span><?php echo $resultado['conhecimentoPP']; ?></span>
+                        <span><?php echo $resultado['habilidadePP']; ?></span>
                     </div>
                 </div>
                 <div class="competencias">
@@ -164,7 +175,7 @@ function modalPp(){
                 </div>
             </div>
             <div class="botao12">
-                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno']?>">Editar</a>
+                <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno'] ?>&codDisc=<?php echo $resultado['disciplina_codDisciplina']; ?>">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
     <?php

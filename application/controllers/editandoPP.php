@@ -8,12 +8,8 @@
     $habilidades = $_POST['txtHabilidades'];
     $basesTecnologicas = $_POST['txtBasesTecnologicas'];
     
-    $rmAluno = '170381';
-    $codDisciplina = 65;
-
-    echo $competencias . "<br>";
-    echo $habilidades . "<br>";
-    echo $basesTecnologicas . "<br>";
+    $rmAluno = $_POST['rmAluno'];
+    $codDisciplina = $_POST['codDisc'];
 
     $PP = new PP();
     $PPDAO = new PPDAO();
@@ -24,7 +20,7 @@
     $PP->setHabilidadePP($habilidades);
     $PP->setCompetenciaPP($competencias);
     $PP->setBaseTecnologicaPP($basesTecnologicas);
-    
+
     $PPDAO->preencherDoc31($PP);
    
     header("location:../views/professor");
