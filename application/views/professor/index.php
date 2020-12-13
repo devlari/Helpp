@@ -129,7 +129,8 @@ $aluno = new AlunoDAO();
                         $dataArrumada = explode("-", $atividade["prazo_entrega"]);
                         $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
 
-                        echo "<div class='ativ' id='atividade'>";
+                        echo "<div class='ativ ativ-requisitada'>";
+                        echo "<input type='hidden' id='codAtiv' value=".$atividade['codAtividade'].">"; 
                         echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
                         echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
                         echo "</div>";
@@ -241,14 +242,15 @@ $aluno = new AlunoDAO();
             
         </div>
     </div>
-    </div>
     <div class="modal-container" id="modal-atividade-aluno">
         <div class="modal-atividade" id="modal-atividade-recebida">
 
-            <div class="botao12">
-                <button class="botao-fechar">Fechar</button>
-            </div>
+            
 
+        </div>
+    </div>
+    <div class="modal-container" id="modal-atividade-requisitada">
+        <div class="modal" id="modal-ativ-requisitada">
         </div>
     </div>
     <script src="../../../system/js/app.js"></script>

@@ -18,20 +18,7 @@
 
 		$result = mysqli_query($conexao, $query);
 		
-		if($_SESSION['cargo'] == "Aluno")
-		{
-			header("location:../views/aluno");
-		}
-		
-		if($_SESSION['cargo'] == "Professor")
-		{
-			header("location:../views/aluno");
-		}
-		
-		if($_SESSION['cargo'] == "Gestor")
-		{
-			header("location:../views/aluno");
-		}
+		header("location:../");
 	}
 
 ?> 

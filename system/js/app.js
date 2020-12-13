@@ -56,7 +56,7 @@ function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
   const tabela = document.querySelectorAll("#tabelaProfsPP")
   if (modal) {
-    tabela.forEach(linha=> linha.addEventListener("click", (e) => {
+    tabela.forEach(linha => linha.addEventListener("click", (e) => {
       console.log()
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
@@ -87,17 +87,21 @@ function modalAtivAluno(modalID) {
         }
       }
     }))
-    /*tabela.addEventListener("click", (e) => {
-      if (e.target.className == "nomeAluno") {
-        modal.classList.add("mostrar");
-        modal.addEventListener("click", (e) => {
-          if (e.target.className == "botao-fechar" || e.target == modal) {
-            location.reload()
-          }
-        });
-      }
-    });*/
   }
+}
+
+function modalAtivRequisitada(modalID){
+  const modal = document.getElementById(modalID)
+  const tabelaAtivRequisitada = document.querySelectorAll(".ativ-requisitada")
+  tabelaAtivRequisitada.forEach(linha => linha.addEventListener('click', (e) => {
+    modal.classList.add("mostrar")
+    modal.addEventListener("click", (e) => {
+      if (e.target.className == "botao-fechar" || e.target == modal) {
+        location.reload()
+      }
+    });
+  }))
+  console.log(tabelaAtivRequisitada)
 }
 
 function alteraLabel() {
@@ -230,29 +234,54 @@ function getDados() {
   const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
   const tabelaPP = document.querySelectorAll("#linhaPP")
   const tabelaAtividadesAluno = document.querySelectorAll('.atribuida .ativ.atribuidaa')
+  const tabelaAtivRequisitada = document.querySelectorAll('.ativ-requisitada')
+  if (tabelaAtivRequisitada) {
+    tabelaAtivRequisitada.forEach(linha => linha.addEventListener('click', (e) => {
+      let codAtiv = linha.childNodes[0].defaultValue
+      if (codAtiv) {
+        let result = document.getElementById("modal-ativ-requisitada")
+        let xmlreq = CriaRequest()
+        xmlreq.open("GET", "../../../application/teste.php?txtCodAtiv=" + codAtiv + "&funcao=modalAtivRequisitada", true)
+        xmlreq.onreadystatechange = function () {
+
+          // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+          if (xmlreq.readyState == 4) {
+
+            // Verifica se o arquivo foi encontrado com sucesso
+            if (xmlreq.status == 200) {
+              result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+            } else {
+              result.innerHTML = "Erro: " + xmlreq.statusText;
+            }
+          }
+        }
+        xmlreq.send(null);
+      }
+    }))
+  }
   if (tabelaAtividadesAluno) {
     tabelaAtividadesAluno.forEach(linha => linha.addEventListener('click', (e) => {
       let codAtiv = linha.childNodes[0].defaultValue;
-      if(codAtiv){
-      let RM = document.getElementById('rmAlunoAtual')
-      let result = document.getElementById("modal-ativ-aluno")
-      let xmlreq = CriaRequest()
-      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
-      xmlreq.onreadystatechange = function () {
+      if (codAtiv) {
+        let RM = document.getElementById('rmAlunoAtual')
+        let result = document.getElementById("modal-ativ-aluno")
+        let xmlreq = CriaRequest()
+        xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&txtCodAtiv=" + codAtiv + "&funcao=modalAtivAluno", true)
+        xmlreq.onreadystatechange = function () {
 
-        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
-        if (xmlreq.readyState == 4) {
+          // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+          if (xmlreq.readyState == 4) {
 
-          // Verifica se o arquivo foi encontrado com sucesso
-          if (xmlreq.status == 200) {
-            result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
-          } else {
-            result.innerHTML = "Erro: " + xmlreq.statusText;
+            // Verifica se o arquivo foi encontrado com sucesso
+            if (xmlreq.status == 200) {
+              result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+            } else {
+              result.innerHTML = "Erro: " + xmlreq.statusText;
+            }
           }
         }
+        xmlreq.send(null);
       }
-      xmlreq.send(null);
-    }
     }))
   }
   tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
@@ -307,10 +336,10 @@ function getDados() {
 }
 
 const arrumaNome = () => {
-    let nome = document.getElementById("nomeUsuario").innerText
-    let nomeNovo = nome.split(" ")
-    let nomeAtualizado= `${nomeNovo[0]} ${nomeNovo[`${nomeNovo.length - 1}`]}`
-    document.getElementById("nomeUsuario").innerText = `${nomeAtualizado}`
+  let nome = document.getElementById("nomeUsuario").innerText
+  let nomeNovo = nome.split(" ")
+  let nomeAtualizado = `${nomeNovo[0]} ${nomeNovo[`${nomeNovo.length - 1}`]}`
+  document.getElementById("nomeUsuario").innerText = `${nomeAtualizado}`
 }
 
 
@@ -322,6 +351,7 @@ const app = () => {
   alteraLabel();
   modalAlert("modal-alert-import");
   modalDocAluno("modal-doc-aluno");
+  modalAtivRequisitada("modal-atividade-requisitada")
   scroll();
   softScroll()
   getDados()

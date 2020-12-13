@@ -176,7 +176,7 @@
                     echo "<tr>";
                     echo "<td>" . $curso["nome_curso"] . "</td>";
                     echo "<td class='tdAnoTurma'>" . $curso["eixo_curso"] . "</td>";
-                    echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=#>Excluir</a></td>";
+                    echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=../../controllers/excluirCurso.php?ID={$curso["cod_curso"]}>Excluir</a></td>";
                     echo "</tr>";
                 endforeach;
                 ?>

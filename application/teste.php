@@ -5,7 +5,7 @@ require('../application/config/config.php');
 require('../application/config/Conn.class.php');
 
 
-if (isset($_GET["txtRm"])) {
+if (isset($_GET["txtRm"]) || isset($_GET["txtCodAtiv"])) {
     if ($_GET["funcao"] == "modalAtivAluno") {
         modalAtivAluno();
     }
@@ -14,6 +14,9 @@ if (isset($_GET["txtRm"])) {
     }
     if ($_GET["funcao"] == "modalAtiv") {
         modalAtiv();
+    }
+    if ($_GET["funcao"] == "modalAtivRequisitada") {
+        modalAtivRequisitada();
     }
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
@@ -92,6 +95,21 @@ function modalAtiv()
                 <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno'] ?>" download='<?php echo $resultado['arquivo_aluno'] ?>' class="label">Arquivo Aluno</a>
                 <i class="fas fa-download"></i>
             </div>
+            <div class="mencao">
+                <form action="">
+                    <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
+                    <select name="mencaoAtiv" id="mencaoAtiv">
+                        <option value="1">MB</option>
+                        <option value="2">B</option>
+                        <option value="3">R</option>
+                        <option value="4">I</option>
+                    </select>
+            </div>
+            <div class="botao12">
+                <input type="submit" class="botao-fechar" value="Enviar">
+                <button class="botao-fechar" style="z-index:99999">Fechar</button>
+            </div>
+            </form>
         </div>
 
     <?php
@@ -114,7 +132,7 @@ function modalPp()
         $result2 = mysqli_query($conexao, $sql2);
         $cont2 = mysqli_affected_rows($conexao);
         $resultado = mysqli_fetch_array($result);
-        
+
 
     ?>
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
@@ -123,28 +141,28 @@ function modalPp()
             <div class="linha-um-doc30">
                 <span class="dados-pp">PP em: <?php echo $resultado['anoPP']; ?><br /><?php echo $resultado['disciplinaPP']; ?></span>
                 <div class="tabela-ativ-geral">
-                <?php
-                        if($cont2 > 0){
-                            $resultado2 = mysqli_fetch_array($result2);
-                        ?>
-                    <table class="tabela-atividades-pp" id="tabela-ativ-pp">
-                        <tr>
-                            <th class="headerAtividade">Atividade</th>
+                    <?php
+                    if ($cont2 > 0) {
+                        $resultado2 = mysqli_fetch_array($result2);
+                    ?>
+                        <table class="tabela-atividades-pp" id="tabela-ativ-pp">
+                            <tr>
+                                <th class="headerAtividade">Atividade</th>
 
-                            <th class="headerMencaoGeral">Menção</th>
-                        </tr>
-                        <tr>
-                            <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade'] ?></td>
-                            <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade'] ?></td>
-                        </tr>
-                        <tr>
-                            <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade']; ?></td>
-                            <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade']; ?></td>
-                        </tr>
-                        <?php }else{
-                            echo "<h3>opa, esse aluno n tem atividades</h3>";
-                        } ?>
-                    </table>
+                                <th class="headerMencaoGeral">Menção</th>
+                            </tr>
+                            <tr>
+                                <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade'] ?></td>
+                                <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade'] ?></td>
+                            </tr>
+                            <tr>
+                                <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade']; ?></td>
+                                <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade']; ?></td>
+                            </tr>
+                        <?php } else {
+                        echo "<h3>opa, esse aluno n tem atividades</h3>";
+                    } ?>
+                        </table>
                 </div>
                 <div class="Status-Mencao-PP">
                     <h1 class="statusPP"><?php echo $resultado['statusPP']; ?></h1>
@@ -178,7 +196,41 @@ function modalPp()
                 <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno'] ?>&codDisc=<?php echo $resultado['disciplina_codDisciplina']; ?>">Editar</a>
                 <button class="botao-fechar">Fechar</button>
             </div>
+        <?php
+    }
+}
+
+function modalAtivRequisitada()
+{
+    $conexao = conexao();
+    $codAtiv = $_GET['txtCodAtiv'];
+    $sql = "SELECT codAtividade, titulo_atividade, instrucao_atividade, arquivo_prof, prazo_entrega from atividade where codAtividade = $codAtiv";
+    $result = mysqli_query($conexao, $sql);
+    $cont = mysqli_affected_rows($conexao);
+    if ($cont > 0) {
+        $resultado = mysqli_fetch_array($result);
+        $dataArrumada = explode("-", $resultado["prazo_entrega"]);
+        $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+        ?>
+            <h1 class="titulodomodal"><?php echo $resultado['titulo_atividade']; ?></h1>
+            <div class="traco"></div>
+            <div class="conteudo-modal">
+                <div class="descricao">
+                    <span style="font-weight:bold;">Descrição: </span><br /><span style="font-weight:400"><?php echo $resultado['instrucao_atividade']; ?></span>
+                </div>
+                <span class="prazo-para">Prazo de entrega: <?php echo $dataNova; ?></span>
+                <div class="materiais">
+                    <a href="../../../system/arquivos/<?php echo $resultado['arquivo_prof'] ?>" download='<?php echo $resultado['arquivo_prof']; ?>' class="label">Arquivo </a>
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="botao12">
+                    <a class="botao-editar" href="editarAtividade.php?codAtiv=<?php echo $resultado['codAtividade']; ?>">Editar</a>
+                    <a class="botao-editar" href="../naoseiqualéocaminho/<?php echo $resultado['codAtividade']; ?>">Excluir</a>
+                    <button class="botao-fechar">Fechar</button>
+                </div>
+            </div>
     <?php
     }
 }
+
     ?>
