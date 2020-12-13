@@ -109,9 +109,11 @@ function modalPp(){
     $result2 = mysqli_query($conexao, $sql2);
     $cont = mysqli_affected_rows($conexao);
     $cont2 = mysqli_affected_rows($conexao);
+    
     if ($cont > 0 && $cont2) {
         $resultado2 = mysqli_fetch_array($result2);
         $resultado = mysqli_fetch_array($result);
+       
     ?>
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
@@ -168,6 +170,9 @@ function modalPp(){
                 <button class="botao-fechar">Fechar</button>
             </div>
     <?php
+    }else{
+        echo "oikkkkk";
+        echo $rm;
     }
 }
     ?>

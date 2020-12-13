@@ -4,33 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../../../system/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
     <script src="https://kit.fontawesome.com/43a2aaa0b4.js" crossorigin="anonymous"></script>
-    <script language="JavaScript" type="text/javascript">
-        function mascaraData(campoData) {
-            var data = campoData.value;
-            if (data.length == 2) {
-                data = data + '/';
-                document.forms[0].data.value = data;
-                return true;
-            }
-            if (data.length == 5) {
-                data = data + '/';
-                document.forms[0].data.value = data;
-                return true;
-            }
-        }
-    </script>
 </head>
 
 <body>
     <?php
-    require('../application/config/config.php');
-    require('../application/config/Conn.class.php');
-    require('../application/models/Read.class.php');
+    require('../../../application/config/config.php');
+    require('../../../application/config/Conn.class.php');
+    require('../../../application/models/Read.class.php');
 
     $lerCurso = new Read();
     $lerCurso->ExeRead('curso');
@@ -38,7 +23,7 @@
     ?>
     <nav id="navbar-helpp">
         <div class="logo">
-            <img src="../system/img/helpp.png" />
+            <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
@@ -52,9 +37,9 @@
             <div class="linha3"></div>
         </div>
     </nav>
-    <section class="cadTurma" id="tela">
-        <h1 style="text-align:center">CADASTRAR TURMAS</H1>
-        <form class="cadastroTurma" method="POST" action="cadastrarTurma.php">
+    <section class="cadTurma" style="margin-top:5vh;" id="tela">
+        <h1 style="text-align:center;margin-bottom:15px;">CADASTRAR TURMAS</H1>
+        <form class="cadastroTurma" method="POST" action="../../controllers/cadastrarTurma.php">
             <div class="form">
                 <div class="inputTurma">
                     <input type="text" name="txtNomeTurma" id="txtNomeTurma" required>

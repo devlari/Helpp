@@ -54,9 +54,10 @@ function modalAtiv(modalID) {
 
 function modalDocAluno(modalID) {
   const modal = document.getElementById(modalID);
-  const tabela = document.getElementById("tabelaProfsPP");
+  const tabela = document.querySelectorAll("#tabelaProfsPP")
   if (modal) {
-    tabela.addEventListener("click", (e) => {
+    tabela.forEach(linha=> linha.addEventListener("click", (e) => {
+      console.log()
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
@@ -65,13 +66,12 @@ function modalDocAluno(modalID) {
           }
         });
       }
-    });
+    }));
   }
 }
 
 function modalAtivAluno(modalID) {
   const modal = document.getElementById(modalID);
-  const tabela = document.getElementById("tabelaAtividade");
   const tabelaAtiv = document.querySelectorAll("#linhaAtiv")
   if (modal) {
     tabelaAtiv.forEach(linha => linha.addEventListener('click', (e) => {
