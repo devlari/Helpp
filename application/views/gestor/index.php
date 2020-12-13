@@ -79,7 +79,7 @@
                     echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                     echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
                     echo "<td class='celulaMateria'>" . $Pps["disciplinaPP"] . "</td>";
-                    echo "<td class= 'celulaSemestre'>" . $Pps["anoPP"] . "</td>";
+                    echo "<td class= 'celulaSemestre'>" .  $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
                     echo "<td class= 'celulaPeriodo'>" . $Pps["periodoPP"] . "</td>";
                     
                     $PPDAO->consultarProfPP($rmAluno, $codDisc);

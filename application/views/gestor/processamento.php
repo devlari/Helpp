@@ -25,7 +25,7 @@
             require ("../../../application/models/ProfessorDAO.class.php");
             
             //Instanciando as classes
-            $Usuario = new application\models\Usuario();
+            $Usuario = new Usuario();
             $UsuarioDAO = new UsuarioDAO();
             $AlunoDAO = new AlunoDAO();
             $profDAO = new ProfessorDAO();
@@ -67,13 +67,14 @@
                                     case 2: $nomeAluno = $objPHPExcel->getActiveSheet()->getCell('C'. $row)->getValue();break;
                                     case 3: $periodo = $objPHPExcel->getActiveSheet()->getCell('D'. $row)->getValue();break;
                                     case 4: $turmaPP = $objPHPExcel->getActiveSheet()->getCell('E'. $row)->getValue();break;
-                                    case 5: $semestreAno = $objPHPExcel->getActiveSheet()->getCell('F'. $row)->getValue();break;
-                                    case 6: $disciplina = $objPHPExcel->getActiveSheet()->getCell('G'. $row)->getValue();break;
-                                    case 7: $rmProf1 = $objPHPExcel->getActiveSheet()->getCell('H'. $row)->getCalculatedValue();break;
-                                    case 8: $professor1 = $objPHPExcel->getActiveSheet()->getCell('I'. $row)->getCalculatedValue();break;
-                                    case 9: $rmProf2 = $objPHPExcel->getActiveSheet()->getCell('J'. $row)->getCalculatedValue();break;
-                                    case 10: $professor2 = $objPHPExcel->getActiveSheet()->getCell('K'. $row)->getCalculatedValue();break;
-                                    case 11: $turmaAtual = $objPHPExcel->getActiveSheet()->getCell('L'. $row)->getValue();break;
+                                    case 5: $Ano = $objPHPExcel->getActiveSheet()->getCell('F'. $row)->getValue();break;
+                                    case 6: $semestre = $objPHPExcel->getActiveSheet()->getCell('G'. $row)->getValue();break;
+                                    case 7: $disciplina = $objPHPExcel->getActiveSheet()->getCell('H'. $row)->getValue();break;
+                                    case 8: $rmProf1 = $objPHPExcel->getActiveSheet()->getCell('I'. $row)->getCalculatedValue();break;
+                                    case 9: $professor1 = $objPHPExcel->getActiveSheet()->getCell('J'. $row)->getCalculatedValue();break;
+                                    case 10: $rmProf2 = $objPHPExcel->getActiveSheet()->getCell('K'. $row)->getCalculatedValue();break;
+                                    case 11: $professor2 = $objPHPExcel->getActiveSheet()->getCell('L'. $row)->getCalculatedValue();break;
+                                    case 12: $turmaAtual = $objPHPExcel->getActiveSheet()->getCell('M'. $row)->getValue();break;
                                     default: $nulo = $dados;    
                                 }
 
@@ -88,7 +89,7 @@
                         
                         //Enviando os valores para a classe turma
                         $turma->setNomeTurma($turmaPP);
-                        $turma->setAnoTurma($semestreAno);
+                        $turma->setAnoTurma($Ano);
                         $turma->setCodCurso(1); //setado manualmente!
                         
                         //Verifica se turma já existe, se o resultado é falso, ela pode ser cadastrada
@@ -189,7 +190,8 @@
                         $PP->setRmGestor('180115');
                         $PP->setStatusPP('Em aberto');
                         $PP->setCursoPP('Informática');
-                        $PP->setAnoPP($semestreAno);
+                        $PP->setAnoPP($Ano);
+                        $PP->setSemestrePP($semestre);
                         $PP->setTurmaAtual($turmaAtual);
                         $PP->setPeriodo($periodo);
                         
@@ -217,7 +219,7 @@
                         echo "Nome do aluno: " . $nomeAluno . "<br>";
                         echo "Período: " . $periodo . "<br>";
                         echo "Série/Módulo: " . $turmaPP . "<br>";
-                        echo "Semestre/Ano: " . $semestreAno . "<br>";
+                        echo "Semestre/Ano: " . $semestre . $Ano . "<br>";
                         echo "Disciplina: " . $disciplina . "<br>";
                         echo "Rm professor 1: " . $rmProf1 . "<br>";
                         echo "Nome professor 1: " . $professor1 . "<br>";

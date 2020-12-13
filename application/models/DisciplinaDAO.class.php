@@ -82,6 +82,21 @@ class DisciplinaDAO{
         }
     }
     
+    public function verificaAlunoDisciplina($rmAluno) {
+        $query = "SELECT a.codDisciplina, a.nomeDisciplina from disciplina a inner join pp b on a.codDisciplina = b.disciplina_codDisciplina where aluno_rmAluno = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rmAluno);
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+            return false;
+        }
+    }
     public function verificaProfDisciplina($rmProf, Disciplina $disciplina) {
         $query = "SELECT * FROM professor_disciplina WHERE professor_rmProfessor = ? and codDisciplina = ?";
         

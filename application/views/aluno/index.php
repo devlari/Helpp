@@ -7,7 +7,9 @@ require("../../models/PPDAO.class.php");
 require("../../models/AtividadeDAO.class.php");
 require("../../models/UsuarioDAO.class.php");
 require("../../models/AlunoDAO.class.php");
+require("../../../application/models/DisciplinaDAO.class.php");
 
+$disciplina = new DisciplinaDAO();
 $turmas = new TurmaDAO();
 $pps = new PPDAO();
 $atividades = new AtividadeDAO();
@@ -97,9 +99,9 @@ $aluno = new AlunoDAO();
                 </label>
                 <select class="filtro_txt" name="filtro_disciplina" id="filtro_disciplina">
                     <?php
-                    foreach ($turmas->buscarTurmaAluno($_SESSION['usuario']) as $turma) {
-                        echo '<option value="' . $turma{
-                        "codDisciplina"} . '">' . $turma["nomeDisciplina"] . '</option>';
+                    foreach ($disciplina->verificaAlunoDisciplina($_SESSION['usuario']) as $disc) {
+                        echo '<option value="' . $disc{
+                        "codDisciplina"} . '">' . $disc["nomeDisciplina"] . '</option>';
                     }
                     ?>
                 </select>
