@@ -245,9 +245,7 @@ $aluno = new AlunoDAO();
     <div class="modal-container" id="modal-atividade-aluno">
         <div class="modal-atividade" id="modal-atividade-recebida">
 
-            <div class="botao12">
-                <button class="botao-fechar">Fechar</button>
-            </div>
+            
 
         </div>
     </div>

@@ -95,6 +95,21 @@ function modalAtiv()
                 <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno'] ?>" download='<?php echo $resultado['arquivo_aluno'] ?>' class="label">Arquivo Aluno</a>
                 <i class="fas fa-download"></i>
             </div>
+            <div class="mencao">
+                <form action="">
+                    <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
+                    <select name="mencaoAtiv" id="mencaoAtiv">
+                        <option value="1">MB</option>
+                        <option value="2">B</option>
+                        <option value="3">R</option>
+                        <option value="4">I</option>
+                    </select>
+            </div>
+            <div class="botao12">
+                <input type="submit" class="botao-fechar" value="Enviar">
+                <button class="botao-fechar" style="z-index:99999">Fechar</button>
+            </div>
+            </form>
         </div>
 
     <?php
@@ -201,7 +216,7 @@ function modalAtivRequisitada()
             <div class="traco"></div>
             <div class="conteudo-modal">
                 <div class="descricao">
-                    <span style="font-weight:bold;">Descrição: </span><br/><span style="font-weight:400"><?php echo $resultado['instrucao_atividade']; ?></span>
+                    <span style="font-weight:bold;">Descrição: </span><br /><span style="font-weight:400"><?php echo $resultado['instrucao_atividade']; ?></span>
                 </div>
                 <span class="prazo-para">Prazo de entrega: <?php echo $dataNova; ?></span>
                 <div class="materiais">
@@ -209,8 +224,8 @@ function modalAtivRequisitada()
                     <i class="fas fa-download"></i>
                 </div>
                 <div class="botao12">
-                    <a class="botao-editar" href="editarAtividade.php?codAtiv=<?php echo $resultado['codAtividade'];?>">Editar</a>
-                    <a class="botao-editar" href="../naoseiqualéocaminho/<?php echo $resultado['codAtividade'];?>">Excluir</a>
+                    <a class="botao-editar" href="editarAtividade.php?codAtiv=<?php echo $resultado['codAtividade']; ?>">Editar</a>
+                    <a class="botao-editar" href="../naoseiqualéocaminho/<?php echo $resultado['codAtividade']; ?>">Excluir</a>
                     <button class="botao-fechar">Fechar</button>
                 </div>
             </div>
