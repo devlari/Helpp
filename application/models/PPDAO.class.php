@@ -39,7 +39,7 @@ class PPDAO{
     }
     
     public function consultar(){
-        $sql = "SELECT b.aluno_rmAluno, a.nomeUsuario, b.seriePP, b.disciplinaPP, b.semestrePP, b.anoPP FROM usuario a inner join "
+        $sql = "SELECT b.aluno_rmAluno, a.nomeUsuario, b.seriePP, b.disciplinaPP, b.semestrePP, b.anoPP, b.periodoPP, b.turmaAtualPP FROM usuario a inner join "
                 . "pp b on a.rmUsuario = b.aluno_rmALuno order by a.nomeUsuario ";
         
         $consultar = Conn::getConn()->prepare($sql);
@@ -50,6 +50,25 @@ class PPDAO{
             return $this->resultado;
         } 
     }
+        
+    public function consultarProfPP($rmAluno, $codDisc){
+        $sql = "SELECT a.nomeUsuario from usuario a inner join professor_pp b on a.rmUsuario = b.rm_professor "
+                . "inner join pp c on b.cod_pp_rmAluno = c.aluno_rmAluno and "
+                . "b.cod_pp_codDisciplina = c.disciplina_codDisciplina "
+                . "where c.aluno_rmAluno = ? and c.disciplina_codDisciplina = ?";
+        
+        $consultar = Conn::getConn()->prepare($sql);
+        
+        $consultar->bindValue(1, $rmAluno);
+        $consultar->bindValue(2, $codDisc);
+        $consultar->execute();
+        
+        if ($consultar->rowCount() > 0){
+            $this->resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        } 
+    }
+    
     
     public function consultarNomeAluno() {
         $sql = "SELECT a.nomeUsuario from usuario a inner join pp b on a.rmUsuario = b.aluno_rmAluno";
@@ -196,6 +215,17 @@ class PPDAO{
             $this->resultado = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
+    }
+    
+    public function buscarDisciplina($nomeDisc) {
+         $query = "SELECT codDisciplina from disciplina where nomeDisciplina = ?";
+       
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $nomeDisc);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
     }
     
     //Caso o professor queira editar alguma coisa no doc

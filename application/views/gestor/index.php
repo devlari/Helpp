@@ -65,14 +65,33 @@
                 <?php
                 $PPDAO = new PPDAO();
                 foreach ($PPDAO->consultar() as $Pps) {
+                    $rmAluno = $Pps["aluno_rmAluno"];
+                    foreach ($PPDAO->buscarDisciplina($Pps["disciplinaPP"]) as $disc){
+                        $codDisc = $disc["codDisciplina"];
+                    }
                     echo "<tr>";
                     echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
                     echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                     echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
-                    echo "<td class='celulaMateria'>" . $Pps{
-                        "disciplinaPP"} . "</td>";
-                    echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
-                    echo "<td class='celulaProfessor'>" . '' . "</td>";
+                    echo "<td class='celulaMateria'>" . $Pps["disciplinaPP"] . "</td>";
+                    echo "<td class= 'celulaSemestre'>" . $Pps["anoPP"] . "</td>";
+                    echo "<td class= 'celulaPeriodo'>" . $Pps["periodoPP"] . "</td>";
+                    
+                    $PPDAO->consultarProfPP($rmAluno, $codDisc);
+                    $profs = $PPDAO->getResultado();
+                    
+                        if(sizeof($PPDAO->getResultado()) == 2){
+                            foreach ($PPDAO->getResultado() as $prof){
+                                echo "<td class= 'celulaProfessor1'>" . $prof["nomeUsuario"] . "</td>";
+                            }
+                        }else{
+                            foreach ($PPDAO->getResultado() as $prof){
+                                echo "<td class= 'celulaProfessor1'>" . $prof["nomeUsuario"] . "</td>";
+                                echo "<td class='celulaProfessor2'>" .  '' . "</td>";
+                            }
+                        }
+                    
+                    echo "<td class= 'celulaTurmaAtual'>" . $Pps["turmaAtualPP"] . "</td>";
                     echo "<td class='celulaConcluiu'></td>";
                     echo "<td class='celulaMencao'></td>";
                     echo "</tr>";
