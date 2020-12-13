@@ -209,7 +209,7 @@ function modalAtivRequisitada()
                     <i class="fas fa-download"></i>
                 </div>
                 <div class="botao12">
-                    <a class="botao-editar" href="../naoseiqualéocaminho/<?php echo $resultado['codAtividade'];?>">Editar</a>
+                    <a class="botao-editar" href="editarAtividade.php?codAtiv=<?php echo $resultado['codAtividade'];?>">Editar</a>
                     <a class="botao-editar" href="../naoseiqualéocaminho/<?php echo $resultado['codAtividade'];?>">Excluir</a>
                     <button class="botao-fechar">Fechar</button>
                 </div>
