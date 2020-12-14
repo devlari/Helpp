@@ -105,7 +105,7 @@ $atividadeDAO = new AtividadeDAO();
                     <?php
                     foreach ($pps->buscarProfPP($_SESSION['usuario']) as $pp) {
                         echo "<tr id='linhaPP'>";
-                        echo "<td style='display:hidden'>" . $pp["rmUsuario"] . "</td>";
+                        echo "<td>" . $pp["rmUsuario"] . "</td>";
                         echo '<td class="celulaTurmaPP">' . $pp["seriePP"] . '</td>';
                         echo '<td class="celulaNomeAluno">' . $pp["nomeUsuario"] . '</td>';
                         echo '<td class="celulaDisciplina">' . $pp["disciplinaPP"] . '</td>';

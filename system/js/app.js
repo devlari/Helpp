@@ -57,7 +57,6 @@ function modalDocAluno(modalID) {
   const tabela = document.querySelectorAll("#tabelaProfsPP")
   if (modal) {
     tabela.forEach(linha => linha.addEventListener("click", (e) => {
-      console.log()
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
@@ -245,6 +244,18 @@ function CriaRequest() {
     return request;
 }
 
+
+
+function verificaSelect(){
+  let form = document.getElementById("form-mencao-final")
+  let btn = document.getElementById("btnSalvarDoc")
+  let select = document.getElementById("mencao-final-pp")
+  if(select.value == 0){
+    alert("Selecione uma menção final!");
+    location.reload();
+  }
+}
+
 function getDados() {
   // Declaração de Variáveis
   const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
@@ -352,9 +363,11 @@ function getDados() {
   }))
   tabelaGestor.forEach(linha => linha.addEventListener('click', (e) => {
     let RM = linha.firstElementChild.innerText
+    let disciplina = linha.childNodes[3].innerText
     let result = document.getElementById("modal-doc-gestor")
     let xmlreq = CriaRequest()
-      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalGestor", true);
+    if(e.target.className == "celulaAluno"){
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalGestor&disciplina=" + disciplina, true);
 
       xmlreq.onreadystatechange = function () {
 
@@ -370,6 +383,7 @@ function getDados() {
         }
       }
       xmlreq.send(null);
+    }
   }))
 }
 

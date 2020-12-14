@@ -70,12 +70,13 @@ session_start();
                 </select>
                 <label for="txtprazoEntrega">Prazo de entrega:</label>
                 <input type="datetime-local" name="txtPrazoEntrega" min="<?php echo date("Y-m-d\T23:59");?>" value="<?php echo date("Y-m-d\T23:59"); ?>" />
-                <div class="upload-arquivo">
+                <div class="upload-arquivo" style="margin-bottom:10px">
                     <label for="upload" class="label" id="label">Selecionar arquivo...</label>
                     <input type="file" name="upload" id="upload" required>
                     <i class="fas fa-upload"></i>
                 </div>
-                <select class="modo-entrega" name="disciplina">
+                <label for ="disciplina">Disciplina</label>
+                <select class="disciplina-select" id="disciplina" style="height: 15%;width: 100%;margin-left:0px;" name="disciplina">
                     <?php
                         $rm = $_SESSION['usuario'];
                         $consulta = $disciplinaDAO->consultar("SELECT d.codDisciplina, d.nomeDisciplina FROM disciplina AS d 

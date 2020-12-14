@@ -602,7 +602,7 @@ select {
 .thAcaoDisciplina{
     padding: 0px 12px 6px 12px;
     font-size: 18px;
-    width:60%;
+    width:30%;
     border-bottom:1px solid black;
 }
 
@@ -617,7 +617,7 @@ select {
 }
 
 .thDisciplinaTurma{
-    width:40%;
+    width:60%;
 }
 
 table::-webkit-scrollbar-track {
@@ -945,6 +945,11 @@ table::-webkit-scrollbar-corner{
     box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
+.Status-Mencao-PP select{
+    background-color:#a9a9a9;
+    margin:0;
+}
+
 .mencao{
     margin-top:10px;
 }
@@ -1226,7 +1231,7 @@ table::-webkit-scrollbar-corner{
 }
 
 .Status-Mencao-PP {
-    width: 15%;
+    width: 20%;
 }
 
 .dados-pp {
@@ -1237,7 +1242,7 @@ table::-webkit-scrollbar-corner{
 .botao12 {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: auto;
     margin: 20px;
 }
 
