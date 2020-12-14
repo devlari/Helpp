@@ -7,7 +7,7 @@
  */
 class ProfessorDAO{
 //put your code here
-     public function cadastrarProfessor(application\models\Usuario $u) {
+     public function cadastrarProfessor(Usuario $u) {
         $query = "INSERT INTO professor (rmUsuario, rmProfessor) values (?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);

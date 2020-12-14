@@ -27,13 +27,13 @@ class TurmaDAO extends Conn{
         }
     }
     
-    public function cadastrarAlunoTurma(Turma $turma, \application\models\Usuario $u)
+    public function cadastrarAlunoTurma($turma, Usuario $u)
     {   
         $query = "INSERT INTO aluno_turma (codTurma, aluno_rmUsuario, rmAluno) values (?,?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         
-        $cadastrar->bindValue(1, $turma->getCodTurma());
+        $cadastrar->bindValue(1, $turma);
         $cadastrar->bindValue(2, $u->getId());
         $cadastrar->bindValue(3, $u->getId());
         
@@ -89,12 +89,10 @@ class TurmaDAO extends Conn{
     //É NECESSÁRIO CRIAR UM MÉTODO PARA EXCLUIR FK DE TURMA DE OUTRAS TABELAS, CASO EXISTA
     
     public function verificaTurma(Turma $turma) {
-        $query = "SELECT * FROM turma WHERE nome_turma = ? and ano_turma = ? and cod_curso = ?";
+        $query = "SELECT a.cod_turma, a.nome_turma, b.nome_curso FROM turma a inner join curso b on a.cod_curso = b.cod_curso WHERE nome_turma = ?";
         
         $verifica = Conn::getConn()->prepare($query);
         $verifica->bindValue(1, $turma->getNomeTurma());
-        $verifica->bindValue(2, $turma->getAnoTurma());
-        $verifica->bindValue(3, $turma->getCodCurso());
         $verifica->execute();
         
         if($verifica->rowCount() > 0){
@@ -105,12 +103,12 @@ class TurmaDAO extends Conn{
         }
     }
     
-     public function verificaAlunoTurma(Turma $turma, $rmAluno) {
+     public function verificaAlunoTurma($turma, $rmAluno) {
         $query = "SELECT * FROM aluno_turma WHERE rmAluno = ? and codTurma = ?";
         
         $verifica = Conn::getConn()->prepare($query);
         $verifica->bindValue(1, $rmAluno);
-        $verifica->bindValue(2, $turma->getCodTurma());
+        $verifica->bindValue(2, $turma);
         $verifica->execute();
         
         if($verifica->rowCount() > 0){

@@ -18,7 +18,7 @@ class PPDAO{
         $cadastrar->bindValue(2, $pp->getCodDisciplina());
         $cadastrar->bindValue(3, $pp->getRmGestor());
         $cadastrar->bindValue(4, $pp->getCursoPP());
-        $cadastrar->bindValue(5, $pp->getAnoPP());
+        $cadastrar->bindValue(5, $pp->getSemestrePP());
         $cadastrar->bindValue(6, $pp->getAnoPP());
         $cadastrar->bindValue(7, $pp->getSeriePP());
         $cadastrar->bindValue(8, $pp->getStatusPP());

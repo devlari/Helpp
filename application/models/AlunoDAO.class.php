@@ -8,7 +8,7 @@
 
 class AlunoDAO{
     
-    public function cadastrarAluno(application\models\Usuario $u) {
+    public function cadastrarAluno(Usuario $u) {
         $query = "INSERT INTO aluno (rmUsuario, rmAluno) values (?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);

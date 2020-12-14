@@ -8,7 +8,7 @@
 class UsuarioDAO extends Conn{
     public $result;
     
-    public function cadastrarUsuario($u)
+    public function cadastrarUsuario(Usuario $u)
     {
         $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario, senhaUsuario) values (?,?,?,?)";
         
