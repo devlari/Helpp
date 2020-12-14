@@ -198,6 +198,47 @@ class PPDAO{
         }
         
     }
+
+    public function darNotaFinal(PP $pp){
+        $query = "UPDATE pp SET mencaoFinal = ? WHERE aluno_rmAluno = ? AND disciplina_codDisciplina = ?";
+
+        $atualizar = Conn::getConn()->prepare($query);
+
+        $atualizar->bindValue(1, $pp->getMencaoFinalPP());
+        $atualizar->bindValue(2, $pp->getRmAluno());
+        $atualizar->bindValue(3, $pp->getCodDisciplina());
+
+        try{
+            $atualizar->execute();
+            $this->resultado = true;
+            $this->result = Conn::getConn()->lastInsertId();
+
+        } catch (Exception $e) {
+            $this->result = null;
+            echo mysqli_error($e);
+        }
+    }
+
+    public function darBaixa(PP $pp){
+        $query = "UPDATE pp SET dataTermino = ?, statusPP = ? WHERE aluno_rmAluno = ? AND disciplina_codDisciplina = ?";
+
+        $atualizar = Conn::getConn()->prepare($query);
+
+        $atualizar->bindValue(1, $pp->getDataTerminoPP());
+        $atualizar->bindValue(2, $pp->getStatusPP());
+        $atualizar->bindValue(3, $pp->getRmAluno());
+        $atualizar->bindValue(4, $pp->getCodDisciplina());
+
+        try{
+            $atualizar->execute();
+            $this->resultado = true;
+            $this->result = Conn::getConn()->lastInsertId();
+
+        } catch (Exception $e) {
+            $this->result = null;
+            echo mysqli_error($e);
+        }
+    }
     
     public function cadastrarProfPP(PP $pp, string $rmProf)
     {
