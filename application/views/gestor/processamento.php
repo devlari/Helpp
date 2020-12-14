@@ -62,7 +62,7 @@
                     $totalColunas = PHPExcel_Cell::columnIndexFromString($colunas);
                                         
                     //ALTEREI O FOR PRA IR POUCO DADO PRO BANCO AGORA NO COMEÇO - Xofana
-                    for ($row=8; $row<=14; $row++){             
+                    for ($row=2; $row<=$totalLinhas; $row++){             
                         for ($coluna=0; $coluna<=$totalColunas; $coluna++){
                             $dados = $worksheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if ($dados != null){
@@ -89,7 +89,7 @@
                         //Setando os valores da PP
                         $PP->setRmAluno($rmAluno);
                         $PP->setRmProfessor($rmProf1);
-                        $PP->setRmGestor('180115');
+                        $PP->setRmGestor('000000');
                         $PP->setStatusPP('Em aberto');
                         $PP->setAnoPP($Ano);
                         $PP->setSemestrePP($semestre);
@@ -188,7 +188,7 @@
                                 
                                     $PPDAO->verificaPP($PP);
                                     if($PPDAO->getResultado() == false){
-                                        $contPP++;
+                                        //$contPP++;
                                         //Cadastrando PP
                                         $PPDAO->cadastrar($PP);
                             
@@ -230,7 +230,7 @@
                         echo "Turma atual: " . $turmaAtual . "<br><hr>";
                         
                         
-                        //header("location: index.php");
+                       header("location: index.php");
                     }
                     echo "</table>";
                      echo "<pre>";

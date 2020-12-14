@@ -40,7 +40,7 @@ class PPDAO{
     
     public function consultar(){
         $sql = "SELECT b.aluno_rmAluno, a.nomeUsuario, b.seriePP, b.disciplinaPP, b.semestrePP, b.anoPP, b.periodoPP, b.turmaAtualPP FROM usuario a inner join "
-                . "pp b on a.rmUsuario = b.aluno_rmALuno order by a.nomeUsuario ";
+                . "pp b on a.rmUsuario = b.aluno_rmAluno order by a.nomeUsuario ";
         
         $consultar = Conn::getConn()->prepare($sql);
         $consultar->execute();

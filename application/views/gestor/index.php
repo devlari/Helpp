@@ -69,7 +69,10 @@
                 </tr>
                 <?php
                 $PPDAO = new PPDAO();
-                foreach ($PPDAO->consultar() as $Pps) {
+                if($PPDAO->consultar() == false){
+                    //echo "Não há alunos cadastrados";
+                }else{
+                    foreach ($PPDAO->consultar() as $Pps) {
                     $rmAluno = $Pps["aluno_rmAluno"];
                     foreach ($PPDAO->buscarDisciplina($Pps["disciplinaPP"]) as $disc){
                         $codDisc = $disc["codDisciplina"];
@@ -100,6 +103,7 @@
                     echo "<td class='celulaConcluiu'></td>";
                     echo "<td class='celulaMencao'></td>";
                     echo "</tr>";
+                }
                 }
                 ?>
                 <!--<tr>
@@ -148,6 +152,11 @@
                 <?php
                 //if ($turmaDAO->getRowCount() >= 1):
                 $query = "SELECT t.cod_turma, t.nome_turma, t.ano_turma, c.nome_curso FROM turma AS t INNER JOIN curso AS c ON t.cod_curso = c.cod_curso";
+                $turmaDAO->consultar($query);
+                
+                if($turmaDAO->consultar($query) == false){
+                    //echo "Não há turmas cadastradas";
+                }else{
                 foreach ($turmaDAO->consultar($query) as $turma) :
                     echo "<tr>";
                     echo "<td class='tdNomeTurma'>{$turma["nome_turma"]}</td>";
@@ -156,6 +165,7 @@
                     echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='../../controllers/excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
                     echo "</tr>";
                 endforeach;
+                }
                 //endif;
                 ?>
             </table>
@@ -172,6 +182,9 @@
                 $cursoDAO = new CursoDAO();
                 $query = "SELECT * FROM curso";
 
+                if($turmaDAO->consultar($query) == false){
+                    
+                }else{
                 foreach ($cursoDAO->consultar($query) as $curso) :
                     echo "<tr>";
                     echo "<td>" . $curso["nome_curso"] . "</td>";
@@ -179,6 +192,7 @@
                     echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=../../controllers/excluirCurso.php?ID={$curso["cod_curso"]}>Excluir</a></td>";
                     echo "</tr>";
                 endforeach;
+                }
                 ?>
             </table>
         </div>
@@ -196,6 +210,11 @@
             $disciplinaDAO = new DisciplinaDAO();
             $query = "SELECT * FROM disciplina";
 
+            $disciplinaDAO->consultar($query);
+            
+            if($disciplinaDAO->consultar($query) == false){
+                
+            }else{
             foreach ($disciplinaDAO->consultar($query) as $disciplina) :
                 echo "<td>" . $disciplina["nomeDisciplina"] . "</td>";
                 echo "<td>" . $disciplina["siglaDisciplina"] . "</td>";
@@ -208,6 +227,7 @@
                 endif;
                 echo "</tr>";
             endforeach;
+            }
 
             //endif;
             ?>
