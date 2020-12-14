@@ -229,7 +229,7 @@
                         echo "Nome professor 2: " . $professor2 . "<br>";
                         echo "Turma atual: " . $turmaAtual . "<br><hr>";
                         
-                        
+                        $_SESSION['cadastrado'] = true;
                        header("location: index.php");
                     }
                     echo "</table>";
@@ -244,7 +244,9 @@
                
             //}
             else{
+                $_SESSION['cadastrado'] = false;
                 echo "Arquivo não foi carregado!";
+                header("location: index.php");
             }
 ?>
 

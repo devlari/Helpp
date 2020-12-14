@@ -23,7 +23,7 @@
     require('../../models/CursoDAO.class.php');
     require('../../models/Disciplina.class.php');
     require('../../models/DisciplinaDAO.class.php');
-    //session_start();
+    session_start();
     ?>
     <nav id="navbar-helpp">
         <div class="logo">
@@ -43,7 +43,22 @@
             <div class="linha3"></div>
         </div>
     </nav>
-
+    <?php 
+        if(isset($_SESSION['cadastrado'])){
+            if($_SESSION['cadastrado']){
+                ?>
+                <script>
+                    alert("Planilha importada com sucesso!")
+                </script> <?php
+                unset($_SESSION['cadastrado']);
+            }else{
+                ?>
+                <script>
+                    alert("Falha na importação da planilha!")
+                </script> <?php
+            }
+        }
+    ?>
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
