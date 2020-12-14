@@ -28,7 +28,7 @@
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha" placeholder="Senha" name="txtSenha" id="txtSenha" required>  
             <input type="submit" class="btnEntrar" value="Entrar"><br/><br/>
-            <a href="#" class="esqueceu-senha">Esqueceu a senha?</a>
+            <!--<a href="#" class="esqueceu-senha">Esqueceu a senha?</a>-->
           </div>
         </form>
       </div>

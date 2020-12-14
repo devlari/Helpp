@@ -39,7 +39,7 @@ $aluno = new AlunoDAO();
             <li><a href="index.php" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
             <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="../../index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            <li><a href="../../controllers/logout.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
 
         </ul>
         <div class="burguer" id="burger">
@@ -56,9 +56,6 @@ $aluno = new AlunoDAO();
                 foreach ($UsuarioDAO->obterUsuario($_SESSION['usuario']) as $user) {
                     echo "<li class='Ola'>Olá, <span id='nomeUsuario'>" . $user["nomeUsuario"] . "</span>!" . "</li>";
                 }
-                foreach ($pps->buscarAlunoPP($_SESSION['usuario']) as $user) {
-                    echo "<li>Curso: " . $user["cursoPP"] . "</li>";
-                }
                 foreach ($aluno->getTurmaAluno($_SESSION['usuario']) as $user) {
                     echo "<li>Série: " . $user["nome_turma"] . "</li>";
                 }
@@ -70,7 +67,8 @@ $aluno = new AlunoDAO();
                 <table id="tabelaPPs">
                     <tr>
                         <th class="headerMateria">Matéria da PP</th>
-                        <th class="headerProfessor">Professores</th>
+                        <th class="headerProfessor">Professor 1</th>
+                        <th class="headerProfessor">Professor 2</th>
                         <th class="headerConcluiu">Status</th>
                         <th class="headerMencao">Menção</th>
                     </tr>
@@ -92,21 +90,41 @@ $aluno = new AlunoDAO();
         <h1>Atividades</h1>
     </div>
     <section class="atividades" id="tela2">
-        <form>
+        <form action="../../controllers/filtroAluno.php" method="GET">
             <div class="filtro">
                 <label for="filtro_disciplina">
                     <h1>Disciplina:</h1>
                 </label>
                 <select class="filtro_txt" name="filtro_disciplina" id="filtro_disciplina">
                     <?php
-                    foreach ($disciplina->verificaAlunoDisciplina($_SESSION['usuario']) as $disc) {
-                        echo '<option value="' . $disc{
-                        "codDisciplina"} . '">' . $disc["nomeDisciplina"] . '</option>';
-                    }
+                        if(isset($_SESSION['pesquisa']) && $_SESSION['pesquisa'] == 'true')
+                        {
+                            echo '<option value="padrao">Todas as disciplinas</option>';
+                                foreach ($disciplina->verificaAlunoDisciplina($_SESSION['usuario']) as $disc) {
+                                    if($disc["codDisciplina"] == $_SESSION['filtro'])
+                                    {
+                                        echo '<option value="' . $disc{"codDisciplina"} . '" selected>' . $disc["nomeDisciplina"] . '</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="' . $disc{"codDisciplina"} . '">' . $disc["nomeDisciplina"] . '</option>';
+                                    }
+
+                                }
+                            }
+                        else
+                        {
+                            echo '<option value="padrao" selected>Todas as disciplinas</option>';
+                                foreach ($disciplina->verificaAlunoDisciplina($_SESSION['usuario']) as $disc) {
+                                    echo '<option value="' . $disc{
+                                    "codDisciplina"} . '">' . $disc["nomeDisciplina"] . '</option>';
+                                }
+                        }
+                    
                     ?>
                 </select>
                 <div class="botao_search">
-                    <input type="submit" value=" " class="botao2"><i class="fas fa-search"></i>
+                    <input type="submit" value="" class="botao2"><i class="fas fa-search"></i>
                 </div>
             </div>
         </form>
@@ -114,10 +132,22 @@ $aluno = new AlunoDAO();
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <h3>Atribuída(<?php
-                        $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuida($_SESSION['usuario']);
-                        foreach ($atividadesAtribuidas as $resultado){
-                            $quantidadeAtribuido = $resultado['COUNT(codAtividade)'];
-                            echo $resultado['COUNT(codAtividade)'];
+                        if(isset($_SESSION['pesquisa']) && ($_SESSION['pesquisa'] == true))
+                        {
+                            $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuidaFiltrado($_SESSION['usuario'], $_SESSION['filtro']);
+                            foreach ($atividadesAtribuidas as $resultado){
+                                $quantidadeAtribuido = $resultado['COUNT(codAtividade)'];
+                                echo $resultado['COUNT(codAtividade)'];
+                            }
+
+                        }
+                        else
+                        {
+                            $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuida($_SESSION['usuario']);
+                            foreach ($atividadesAtribuidas as $resultado){
+                                $quantidadeAtribuido = $resultado['COUNT(codAtividade)'];
+                                echo $resultado['COUNT(codAtividade)'];
+                            }
                         }
                     ?>)</h3>
                     <?php
@@ -129,14 +159,29 @@ $aluno = new AlunoDAO();
                     }
                     else
                     {
-                        foreach ($atividades->listarAtividadeAlunoAtribuida($_SESSION['usuario']) as $atividade) {
-                            $dataArrumada = explode("-", $atividade["prazo_entrega"]);
-                            $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ atribuidaa'>";
-                            echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
-                            echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                            echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
-                            echo "</div>";
+                        if(isset($_SESSION['pesquisa']) && $_SESSION['pesquisa'] == 'true')
+                        {
+                            foreach ($atividades->listarAtividadeAlunoAtribuidaFiltrado($_SESSION['usuario'], $_SESSION['filtro']) as $atividade) {
+                                $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                                echo "<div class='ativ atribuidaa'>";
+                                echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
+                                echo "</div>";
+                            }
+                        }
+                        else
+                        {
+                            foreach ($atividades->listarAtividadeAlunoAtribuida($_SESSION['usuario']) as $atividade) {
+                                $dataArrumada = explode("-", $atividade["prazo_entrega"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                                echo "<div class='ativ atribuidaa'>";
+                                echo "<input type='hidden' id='codigoAtividade' value='" . $atividade['codAtividade'] . "'>";
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>Prazo de entrega: " . $dataNova . "</span><br>";
+                                echo "</div>";
+                            }
                         }
                     }
                     ?>
@@ -144,10 +189,21 @@ $aluno = new AlunoDAO();
                 </div>
                 <div class="concluida">
                     <h3>Concluída(<?php
-                        $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluida($_SESSION['usuario']);
-                        foreach ($atividadesConcluidas as $resultado){
-                           echo $resultado['COUNT(codAtividade)'];
-                           $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
+                        if(isset($_SESSION['pesquisa']) && ($_SESSION['pesquisa'] == 'true'))
+                        {
+                            $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluidaFiltrado($_SESSION['usuario'], $_SESSION['filtro']);
+                            foreach ($atividadesConcluidas as $resultado){
+                               echo $resultado['COUNT(codAtividade)'];
+                               $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
+                            }
+                        }
+                        else
+                        {
+                            $atividadesConcluidas = $atividades->contarAtividadeAlunoConcluida($_SESSION['usuario']);
+                            foreach ($atividadesConcluidas as $resultado){
+                               echo $resultado['COUNT(codAtividade)'];
+                               $quantidadeConcluida = $resultado['COUNT(codAtividade)'];
+                            }
                         }
                     ?>)</h3>
                     
@@ -161,13 +217,29 @@ $aluno = new AlunoDAO();
                     }
                     else
                     {
-                        foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
-                            $dataArrumada = explode("-", $atividade["data_conclusao"]);
-                            $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
-                            echo "<div class='ativ concluidaa'>";
-                            echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
-                            echo "<span class='prazo'>Entregue em: " . $dataNova . "</span><br>";
-                            echo "</div>";
+                        if(isset($_SESSION['pesquisa']) && ($_SESSION['pesquisa'] == 'true'))
+                        {
+                            foreach ($atividades->listarAtividadeAlunoConcluidaFiltrado($_SESSION['usuario'], $_SESSION['filtro']) as $atividade) {
+                                $dataArrumada = explode("-", $atividade["data_conclusao"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                                echo "<div class='ativ concluidaa'>";
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>Entregue em: " . $dataNova . "</span><br>";
+                                echo "<span class='prazo'>Menção: " . $atividade["mencao_atividade"] . "</span><br>";
+                                echo "</div>";
+                            }
+                        }
+                        else
+                        {
+                            foreach ($atividades->listarAtividadeAlunoConcluida($_SESSION['usuario']) as $atividade) {
+                                $dataArrumada = explode("-", $atividade["data_conclusao"]);
+                                $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
+                                echo "<div class='ativ concluidaa'>";
+                                echo "<span class='nome-ativ'>" . $atividade["titulo_atividade"] . "</span>";
+                                echo "<span class='prazo'>Entregue em: " . $dataNova . "</span><br>";
+                                echo "<span class='prazo'>Menção: " . $atividade["mencao_atividade"] . "</span><br>";
+                                echo "</div>";
+                            }
                         }
                     }
                     ?>

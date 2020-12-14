@@ -45,7 +45,7 @@
             <div class="linha3"></div>
         </div>
     </nav>
-    
+
     <div class="wrapper" id="tela">
         <div class="editarTurma">
             <h1 class="tituloForm3">Editar curso</h1>

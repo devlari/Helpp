@@ -57,7 +57,6 @@ function modalDocAluno(modalID) {
   const tabela = document.querySelectorAll("#tabelaProfsPP")
   if (modal) {
     tabela.forEach(linha => linha.addEventListener("click", (e) => {
-      console.log()
       if (e.target.className == "celulaNomeAluno") {
         modal.classList.add("mostrar");
         modal.addEventListener("click", (e) => {
@@ -101,8 +100,24 @@ function modalAtivRequisitada(modalID){
       }
     });
   }))
-  console.log(tabelaAtivRequisitada)
 }
+
+function modalGestor(modalID){
+  const modal = document.getElementById(modalID)
+  const tabelaPP = document.querySelectorAll("#linhaPPGestor")
+  tabelaPP.forEach(linha => linha.addEventListener('click', (e) => {
+    if(e.target.className == "celulaAluno"){
+      modal.classList.add("mostrar")
+      modal.addEventListener("click", (e) => {
+        if(e.target.className == "botao-fechar" || e.target == modal){
+          location.reload()
+        }
+      })
+    }
+  }))
+}
+
+
 
 function alteraLabel() {
   var input = document.getElementById("upload");
@@ -229,12 +244,25 @@ function CriaRequest() {
     return request;
 }
 
+
+
+function verificaSelect(){
+  let form = document.getElementById("form-mencao-final")
+  let btn = document.getElementById("btnSalvarDoc")
+  let select = document.getElementById("mencao-final-pp")
+  if(select.value == 0){
+    alert("Selecione uma menção final!");
+    location.reload();
+  }
+}
+
 function getDados() {
   // Declaração de Variáveis
   const tabelaAtivRecebida = document.querySelectorAll("#linhaAtiv")
   const tabelaPP = document.querySelectorAll("#linhaPP")
   const tabelaAtividadesAluno = document.querySelectorAll('.atribuida .ativ.atribuidaa')
   const tabelaAtivRequisitada = document.querySelectorAll('.ativ-requisitada')
+  const tabelaGestor = document.querySelectorAll("#linhaPPGestor")
   if (tabelaAtivRequisitada) {
     tabelaAtivRequisitada.forEach(linha => linha.addEventListener('click', (e) => {
       let codAtiv = linha.childNodes[0].defaultValue
@@ -333,13 +361,40 @@ function getDados() {
       xmlreq.send(null);
     }
   }))
+  tabelaGestor.forEach(linha => linha.addEventListener('click', (e) => {
+    let RM = linha.firstElementChild.innerText
+    let disciplina = linha.childNodes[3].innerText
+    let result = document.getElementById("modal-doc-gestor")
+    let xmlreq = CriaRequest()
+    if(e.target.className == "celulaAluno"){
+      xmlreq.open("GET", "../../../application/teste.php?txtRm=" + RM + "&funcao=modalGestor&disciplina=" + disciplina, true);
+
+      xmlreq.onreadystatechange = function () {
+
+        // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+        if (xmlreq.readyState == 4) {
+
+          // Verifica se o arquivo foi encontrado com sucesso
+          if (xmlreq.status == 200) {
+            result.innerHTML += xmlreq.responseText;//pega a resposta que foi impressa no php
+          } else {
+            result.innerHTML = "Erro: " + xmlreq.statusText;
+          }
+        }
+      }
+      xmlreq.send(null);
+    }
+  }))
 }
 
 const arrumaNome = () => {
-  let nome = document.getElementById("nomeUsuario").innerText
-  let nomeNovo = nome.split(" ")
+  let nome = document.getElementById("nomeUsuario")
+  if(nome){
+    let nomeUsuario = nome.innerText
+  let nomeNovo = nomeUsuario.split(" ")
   let nomeAtualizado = `${nomeNovo[0]} ${nomeNovo[`${nomeNovo.length - 1}`]}`
   document.getElementById("nomeUsuario").innerText = `${nomeAtualizado}`
+  }
 }
 
 
@@ -352,6 +407,7 @@ const app = () => {
   modalAlert("modal-alert-import");
   modalDocAluno("modal-doc-aluno");
   modalAtivRequisitada("modal-atividade-requisitada")
+  modalGestor("modal-gestor")
   scroll();
   softScroll()
   getDados()

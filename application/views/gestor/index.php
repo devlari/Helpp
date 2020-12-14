@@ -74,7 +74,7 @@
                     foreach ($PPDAO->buscarDisciplina($Pps["disciplinaPP"]) as $disc){
                         $codDisc = $disc["codDisciplina"];
                     }
-                    echo "<tr>";
+                    echo "<tr id='linhaPPGestor'>";
                     echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
                     echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                     echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
@@ -182,7 +182,7 @@
                 ?>
             </table>
         </div>
-        <h1>Gerenciar Disciplinas</h1>
+        <h1>Gerenciar disciplinas</h1>
         <div class="management-class">
         <table class="management-table disciplina">
             <tr>
@@ -214,7 +214,11 @@
         </table>
         </div>
     </section>
-
+    <div class="modal-container" id="modal-gestor">
+        <div class="modal-doc30" id="modal-doc-gestor">
+            
+        </div>
+    </div>
     <script src="../../../system/js/app.js"></script>
 </body>
 

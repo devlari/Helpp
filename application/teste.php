@@ -18,6 +18,9 @@ if (isset($_GET["txtRm"]) || isset($_GET["txtCodAtiv"])) {
     if ($_GET["funcao"] == "modalAtivRequisitada") {
         modalAtivRequisitada();
     }
+    if ($_GET["funcao"] == "modalGestor") {
+        modalGestor();
+    }
 } else {
     echo "<h1 class='titulodomodal'>Não foram encontrados dados sobre esse aluno!</h1>";
 }
@@ -70,7 +73,7 @@ function modalAtiv()
 {
     $conexao = conexao();
     $rm = $_GET['txtRm'];
-    $sql = "SELECT a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
+    $sql = "SELECT a.codAtividade, a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
     echo mysqli_error($conexao);
@@ -89,27 +92,27 @@ function modalAtiv()
         <h1 class="titulodomodal"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
-            <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
-            <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
-            <div class="materiais">
-                <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno'] ?>" download='<?php echo $resultado['arquivo_aluno'] ?>' class="label">Arquivo Aluno</a>
-                <i class="fas fa-download"></i>
-            </div>
-            <div class="mencao">
-                <form action="">
-                    <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
-                    <select name="mencaoAtiv" id="mencaoAtiv">
-                        <option value="1">MB</option>
-                        <option value="2">B</option>
-                        <option value="3">R</option>
-                        <option value="4">I</option>
-                    </select>
-            </div>
-            <div class="botao12">
-                <input type="submit" class="botao-fechar" value="Enviar">
-                <button class="botao-fechar" style="z-index:99999">Fechar</button>
-            </div>
+            <form action="../../controllers/atualizandoAtividade.php" method="POST">
+                <input name="idAtiv" type="hidden" value="<?php echo $resultado['codAtividade']; ?>">
+                <span class="prazo-para">Prazo de entrega: <?php echo $dataPrazoNova; ?></span>
+                <h2 class="entregue-em">Entregue em: <?php echo $dataEntregaNova; ?></h2>
+                <div class="materiais">
+                    <a href="../../../system/arquivos/<?php echo $resultado['arquivo_aluno'] ?>" download='<?php echo $resultado['arquivo_aluno'] ?>' class="label">Arquivo Aluno</a>
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="mencao">
+                    <form action="">
+                        <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
+                        <select name="mencaoAtiv" id="mencaoAtiv">
+                            <option value="MB">MB</option>
+                            <option value="B">B</option>
+                            <option value="R">R</option>
+                            <option value="I">I</option>
+                        </select>
+                </div>
+                <input type="submit" style="float: left; margin-right: 7px;" class="botao-fechar" value="Enviar">
             </form>
+            <button class="botao-fechar" style="z-index:99999">Fechar</button>
         </div>
 
     <?php
@@ -138,6 +141,7 @@ function modalPp()
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
+            <form action="" method="POST" id="form-mencao-final">
             <div class="linha-um-doc30">
                 <span class="dados-pp">PP em: <?php echo $resultado['anoPP']; ?><br /><?php echo $resultado['disciplinaPP']; ?></span>
                 <div class="tabela-ativ-geral">
@@ -155,10 +159,6 @@ function modalPp()
                                 <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade'] ?></td>
                                 <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade'] ?></td>
                             </tr>
-                            <tr>
-                                <td class="celulaAtividadeNome"><?php echo $resultado2['titulo_atividade']; ?></td>
-                                <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade']; ?></td>
-                            </tr>
                         <?php } else {
                         echo "<h3>opa, esse aluno n tem atividades</h3>";
                     } ?>
@@ -166,7 +166,15 @@ function modalPp()
                 </div>
                 <div class="Status-Mencao-PP">
                     <h1 class="statusPP"><?php echo $resultado['statusPP']; ?></h1>
-                    <h3 class="mencaoFinal">Menção final: <?php echo $resultado['mencaoFinal']; ?></h3>
+                    <label name="mencao-final-pp">Menção final:</label>
+                    <select name="mencao-final-pp" id="mencao-final-pp" required>
+                        <option value="0" disabled selected>Selecione uma menção</option>
+                        <option value="1">MB</option>
+                        <option value="2">B</option>
+                        <option value="3">R</option>
+                        <option value="4">I</option>
+                    </select>
+                    
                 </div>
             </div>
             <div class="requerimentos">
@@ -193,9 +201,71 @@ function modalPp()
                 </div>
             </div>
             <div class="botao12">
+                <input type="submit" class="botao-fechar" value="Salvar" id="btnSalvarDoc" style="margin-right:10px" onclick="verificaSelect()">
+                </form>
                 <a class="botao-editar" href="basesTecnologicas.php?rmAluno=<?php echo $resultado['aluno_RmAluno'] ?>&codDisc=<?php echo $resultado['disciplina_codDisciplina']; ?>">Editar</a>
-                <button class="botao-fechar">Fechar</button>
+                <a class="botao-fechar">Fechar</a>
             </div>
+        <?php
+    }
+}
+
+function modalGestor()
+{
+    $conexao = conexao();
+    $rm = $_GET["txtRm"];
+    $disciplina = $_GET["disciplina"];
+    $sql = "Select a.aluno_RmAluno, a.disciplina_codDisciplina, a.disciplinaPP, a.anoPP, a.conhecimentoPP, a.habilidadePP, a.tecnologiaPP, a.mencaoFinal, a.statusPP, b.nomeUsuario from pp a inner join usuario b on a.aluno_rmAluno = b.rmUsuario where a.aluno_rmAluno = $rm and a.disciplinaPP = '$disciplina'";
+    $result = mysqli_query($conexao, $sql);
+    $cont = mysqli_affected_rows($conexao);
+    if ($cont > 0) {
+        $resultado = mysqli_fetch_array($result);
+        ?>
+            <form action="" method="POST">
+                <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
+                <div class="traco"></div>
+                <div class="conteudo-modal">
+                    <div class="linha-um-doc30">
+                        <span class="dados-pp">PP em: <?php echo $resultado['anoPP']; ?><br /><?php echo $resultado['disciplinaPP']; ?></span>
+                        <div class="tabela-ativ-geral"></div>
+                        <div class="Status-Mencao-PP">
+                            <label for="txtStatusPP" style="font-weight:bold;">Status:</label>
+                            <select name="txtStatusPP" id="txtStatusPP">
+                                <!-- MOSTRAR O VALUE DO STATUS VINDO DO BANCO(TA ESTATICO)-->
+                                <option value="0">Em aberto</option>
+                                <option value="1">Concluida</option>
+                            </select>
+                            <h3 class="mencaoFinal">Menção final: <?php echo $resultado['mencaoFinal']; ?></h3>
+                        </div>
+                    </div>
+                    <div class="requerimentos">
+                        <div class="competencias">
+                            <h3 class="titulo-competencias">Competências</h3>
+                            <div class="traco"></div>
+                            <div class="spn-requerimentos">
+                                <span><?php echo $resultado['conhecimentoPP']; ?></span>
+                            </div>
+                        </div>
+                        <div class="competencias">
+                            <h3 class="titulo-competencias">Habilidades</h3>
+                            <div class="traco"></div>
+                            <div class="spn-requerimentos">
+                                <span><?php echo $resultado['habilidadePP']; ?></span>
+                            </div>
+                        </div>
+                        <div class="competencias">
+                            <h3 class="titulo-competencias">Base(s) Tecnológica(s) ou Cientifíca</h3>
+                            <div class="traco"></div>
+                            <div class="spn-requerimentos">
+                                <span><?php echo $resultado['tecnologiaPP']; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="botao-fechar" value="Salvar"/>
+            </form>
+            <button class="botao-fechar">Fechar</button>
+        </div>
+
         <?php
     }
 }
@@ -232,5 +302,6 @@ function modalAtivRequisitada()
     <?php
     }
 }
+
 
     ?>

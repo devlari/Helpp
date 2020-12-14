@@ -18,6 +18,6 @@
         
         $disciplinaDAO->alterar($disciplina);
         
-        header("location:../views/gestor/gerenciarDisciplina.php");
+        header("location:../views/gestor/");
         
         

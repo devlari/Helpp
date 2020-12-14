@@ -4,7 +4,11 @@ date_default_timezone_set('America/Sao_Paulo');
 require("../../config/config.php");
 require("../../config/Conn.class.php");
 require("../../models/TurmaDAO.class.php");
+require("../../models/Disciplina.class.php");
+require("../../models/DisciplinaDAO.class.php");
 
+$disciplina = new Disciplina();
+$disciplinaDAO = new DisciplinaDAO();
 $turmas = new TurmaDAO();
 session_start();
 ?>
@@ -66,11 +70,31 @@ session_start();
                 </select>
                 <label for="txtprazoEntrega">Prazo de entrega:</label>
                 <input type="datetime-local" name="txtPrazoEntrega" min="<?php echo date("Y-m-d\T23:59");?>" value="<?php echo date("Y-m-d\T23:59"); ?>" />
-                <div class="upload-arquivo">
+                <div class="upload-arquivo" style="margin-bottom:10px">
                     <label for="upload" class="label" id="label">Selecionar arquivo...</label>
                     <input type="file" name="upload" id="upload" required>
                     <i class="fas fa-upload"></i>
                 </div>
+                <label for ="disciplina">Disciplina</label>
+                <select class="disciplina-select" id="disciplina" style="height: 15%;width: 100%;margin-left:0px;" name="disciplina">
+                    <?php
+                        $rm = $_SESSION['usuario'];
+                        $consulta = $disciplinaDAO->consultar("SELECT d.codDisciplina, d.nomeDisciplina FROM disciplina AS d 
+                        INNER JOIN professor_disciplina as pd
+                        ON d.codDisciplina = pd.codDisciplina
+                        INNER JOIN professor AS p
+                        ON pd.professor_rmProfessor = p.rmProfessor
+                        INNER JOIN usuario as u 
+                        ON p.rmUsuario = u.rmUsuario
+                        WHERE u.rmUsuario = $rm");
+
+                        foreach ($consulta as $dados)
+                        {
+                            echo "<option value={$dados['codDisciplina']}>{$dados['nomeDisciplina']}</option>";
+                        }
+                    
+                    ?>
+                </select>
                 <input type="submit" class="btnEnviar" value="Enviar" />
             </form>
         </div>

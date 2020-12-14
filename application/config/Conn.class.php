@@ -7,6 +7,7 @@
  */
 
 //namespace application\config;
+//use PDO;
 
 class Conn{
     private static $Host = HOST;
