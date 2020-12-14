@@ -106,17 +106,9 @@
                 }
                 }
                 ?>
-                <!--<tr>
-                    <td class="celulaRM">177571</td>
-                    <td class="celulaAluno">Artur Barbosa Gomes</td>
-                    <td class="celulaSerie">2ª Série</td>
-                    <td class="celulaMateria">Técnicas de programação para internet I e II</td>
-                    <td class="celulaSemestre">2º Sem/2019</td>
-                    <td class="celulaProfessor">Adriano Milanez e Marco Antonio</td>
-                    <td class="celulaConcluiu"></td>
-                    <td class="celulaMencao"></td>
-                </tr>-->
             </table>
+            
+            <a href="gerarPdf.php">Gerar PDF</a>
             <form method="POST" action="processamento.php" enctype="multipart/form-data">
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>

@@ -42,6 +42,8 @@
             
             $discNova = array();
             $turmaNova = array();
+            $AlunoPP = array();
+            
             //Verificando se o arquivo não veio vazio
             if(!empty($_FILES['uploadPPs']['tmp_name'])){
                 $planilha = $_FILES['uploadPPs']['tmp_name'];
@@ -55,14 +57,14 @@
                 $worksheet = $objPHPExcel->getSheet(2);
 
                 //foreach($worksheet as $sheet){
-                    $totalLinhas = $worksheet->getHighestRow();
+                    $totalLinhas = $objPHPExcel->setActiveSheetIndex(2)->getHighestRow();
                     
                     //pegando o total de colunas
                     $colunas = $objPHPExcel->setActiveSheetIndex(2)->getHighestColumn();
                     $totalColunas = PHPExcel_Cell::columnIndexFromString($colunas);
                                         
                     //ALTEREI O FOR PRA IR POUCO DADO PRO BANCO AGORA NO COMEÇO - Xofana
-                    for ($row=2; $row<=$totalLinhas; $row++){             
+                    for ($row=2; $row<=10; $row++){             
                         for ($coluna=0; $coluna<=$totalColunas; $coluna++){
                             $dados = $worksheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if ($dados != null){
@@ -188,9 +190,10 @@
                                 
                                     $PPDAO->verificaPP($PP);
                                     if($PPDAO->getResultado() == false){
-                                        //$contPP++;
+                                        $contPP++;
                                         //Cadastrando PP
                                         $PPDAO->cadastrar($PP);
+                                        $AlunoPP[] = $nomeAluno . "-" . $disciplina;
                             
                                         //verifica se o prof de rm 1 e a pp já estão cadastradas na entidade associativa
                                         $PPDAO->verificaProfPP($PP, $rmProf1);
@@ -208,16 +211,21 @@
                                     }   
                                 }
                             }else{
-                                $discNova[] = $disc->getNomeDisciplina() . "-" . $turmaPP;
-                            }
-                                
+                                $verificaDisc = $disc->getNomeDisciplina() . "-" . $turmaPP;
+                                if(in_array($verificaDisc, $discNova) == false){
+                                    $discNova[] = $disc->getNomeDisciplina() . "-" . $turmaPP;
+                                }
+                            }  
                             }
                         } 
                         else{
-                            $turmaNova[] = $turma->getNomeTurma();
+                            $verificaTurma = $turma->getNomeTurma();
+                            if(in_array($verificaTurma, $turmaNova) == false){
+                                $turmaNova[] = $turma->getNomeTurma();
+                            }
                         }
                         
-                        echo "RM do aluno: " . $rmAluno . "<br>";
+                         echo "RM do aluno: " . $rmAluno . "<br>";
                         echo "Nome do aluno: " . $nomeAluno . "<br>";
                         echo "Período: " . $periodo . "<br>";
                         echo "Série/Módulo: " . $turmaPP . "<br>";
@@ -228,17 +236,23 @@
                         echo "Rm professor 2: " . $rmProf2 . "<br>";
                         echo "Nome professor 2: " . $professor2 . "<br>";
                         echo "Turma atual: " . $turmaAtual . "<br><hr>";
-                        
-                        
+
                        header("location: index.php");
                     }
+                       
                     echo "</table>";
-                     echo "<pre>";
+                    $_SESSION["turmas"] = $turmaNova;
+                    $_SESSION["disc"] = $discNova;
+                    $_SESSION["contPP"] = $contPP;
+                    $_SESSION["alunoPP"] = $AlunoPP;
+                    
+                    
+                    echo "<pre>";
                         var_dump($discNova);
                         echo "</pre>";
                         
                         echo "<pre>";
-                        var_dump($turmaNova);
+                        var_dump($_SESSION["turmas"]);
                         echo "</pre>";
                 }
                
