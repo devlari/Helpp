@@ -4,6 +4,7 @@ namespace application\controllers;
 
 use application\models\UsuarioDAO;
 use application\core\Controller;
+use application\core\RouterControl;
 
 class Login extends Controller
 {    
@@ -34,14 +35,16 @@ class Login extends Controller
 
     public function check()
     { 
-        //require("../application/models/UsuarioDAO.class.php");
-        //$user = new UsuarioDAO;
+        require("../application/models/UsuarioDAO.class.php");
+        $user = new UsuarioDAO;
         if(isset($_POST['txtRM']))
         {
-           // if($user->obterUsuario($_POST['txtRM']))
-            //{
-                echo 'ACHADO';
-            //}
+           if($user->VerificaSenha($_POST['txtRM'], $_POST['txtSenha']))
+            {
+                $control = new RouterControl;
+                $control->load(ucfirst($_POST['cargo']));
+                //echo 'ACHADO';
+            }
 
             /*if($user->Login())
             {
