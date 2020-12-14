@@ -44,9 +44,6 @@ if ($qntAluno != 0){
     }
 }
 
-        
-        
-
 // carregamos o código HTML no nosso arquivo PDF
 $dompdf->loadHtml($codigo_html);
 

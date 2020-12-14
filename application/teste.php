@@ -198,7 +198,7 @@ function modalPp()
                                 <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade'] ?></td>
                             </tr>
                         <?php } else {
-                        echo "<h3>opa, esse aluno não tem atividades</h3>";
+                        echo "<h3>Este aluno não possui atividades.</h3>";
                     } ?>
                         </table>
                 </div>
