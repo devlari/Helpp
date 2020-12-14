@@ -111,7 +111,7 @@ $aluno = new AlunoDAO();
                                     }
 
                                 }
-                        }
+                            }
                         else
                         {
                             echo '<option value="padrao" selected>Todas as disciplinas</option>';
@@ -132,7 +132,7 @@ $aluno = new AlunoDAO();
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <h3>Atribuída(<?php
-                        if(isset($_SESSION['pesquisa']) && ($_SESSION['pesquisa'] == 'true'))
+                        if(isset($_SESSION['pesquisa']) && ($_SESSION['pesquisa'] == true))
                         {
                             $atividadesAtribuidas = $atividades->contarAtividadeAlunoAtribuidaFiltrado($_SESSION['usuario'], $_SESSION['filtro']);
                             foreach ($atividadesAtribuidas as $resultado){

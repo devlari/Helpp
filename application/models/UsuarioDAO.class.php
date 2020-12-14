@@ -5,6 +5,10 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
+//namespace application\models;
+//use application\config\conn;
+//use PDO;
+
 class UsuarioDAO extends Conn{
     public $result;
     

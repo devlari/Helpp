@@ -260,7 +260,7 @@ class AtividadeDAO extends Conn{
     public function listarAtividadeConcluidaAlunos($rmProf){
         $query = "Select u.rmUsuario, u.nomeUsuario, a.titulo_atividade, a.status, t.nome_turma from atividade a 
         inner join pp b 
-        on a.PP_Aluno_rmAluno = b.aluno_rmAluno and a.PP_Disciplina_codDisciplina = 			b.disciplina_codDisciplina
+        on a.PP_Aluno_rmAluno = b.aluno_rmAluno and a.PP_Disciplina_codDisciplina = b.disciplina_codDisciplina
         inner join professor_pp c 
         on b.aluno_rmAluno = c.cod_pp_rmAluno and b.disciplina_codDisciplina = c.cod_pp_codDisciplina
         inner join usuario as u 
@@ -279,4 +279,84 @@ class AtividadeDAO extends Conn{
         $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
         return $this->resultado;
     }
+
+    public function listarAtividadeConcluidaAlunosFiltrado($rmProf, $turma, $materia, $atividade)
+    {
+        $_SESSION['pesquisa'] = true;
+        $query1 = "Select u.rmUsuario, u.nomeUsuario, a.titulo_atividade, a.status, t.nome_turma from atividade a 
+        inner join pp b 
+        on a.PP_Aluno_rmAluno = b.aluno_rmAluno and a.PP_Disciplina_codDisciplina = b.disciplina_codDisciplina
+        inner join professor_pp c 
+        on b.aluno_rmAluno = c.cod_pp_rmAluno and b.disciplina_codDisciplina = c.cod_pp_codDisciplina
+        inner join usuario as u 
+        on a.PP_Aluno_rmAluno = u.rmUsuario
+        inner join aluno_turma as at 
+		on a.PP_Aluno_rmAluno = at.rmAluno
+        inner join turma as t 
+        on at.codTurma = t.cod_turma
+        where c.rm_professor = $rmProf";
+
+        if ($turma == "padrao" && $materia == "padrao" && $atividade == "padrao")
+        {
+            $query2 = "";
+        }
+        else
+        {
+            if($turma == "padrao" && $materia == "padrao")
+            {
+                $query2 = " and a.codAtividade = $atividade
+                            ORDER BY a.status asc";
+            }
+            else
+            {
+                if($turma == "padrao" && $atividade == "padrao")
+                {
+                    $query2 = " and b.disciplina_codDisciplina = $materia 
+                                ORDER BY a.status asc";
+                }
+                else
+                {
+                    if($atividade == "padrao" && $materia == "padrao")
+                    {
+                        $query2 = " and t.cod_turma = $turma 
+                        ORDER BY a.status asc";
+                    }
+                    else
+                    {
+                        if($materia == "padrao")
+                        {
+                            $query2 = " and t.cod_turma = $turma and a.codAtividade = $atividade ORDER BY a.status asc";
+                        }
+                        else
+                        {
+                            if($turma == "padrao")
+                            {
+                                $query2 = " and b.disciplina_codDisciplina = $materia and a.codAtividade = $atividade ORDER BY a.status asc";
+                            }
+                            else
+                            {
+                                if($atividade == "padrao")
+                                {
+                                    $query2 = " and b.disciplina_codDisciplina = $materia and t.cod_turma = $turma ORDER BY a.status asc";
+                                }
+                                else
+                                {
+                                    $query2 = " and b.disciplina_codDisciplina = $materia and t.cod_turma = $turma and a.codAtividade = $atividade ORDER BY a.status asc";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $query = "$query1" . "$query2";
+        echo "<br/>";
+        $busca = Conn::getConn()->prepare($query);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+
 }

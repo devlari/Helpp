@@ -42,7 +42,7 @@ $atividadeDAO = new AtividadeDAO();
             <li><a href="#tela2" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</a></span></li>
             <li><a href="cadastroAtividade.php" class="ativid"><i class="far fa-plus-square"></i><span class="spanCriarAtiv">Criar atividade</a></span></li>
             <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</a></span></li>
-            <li><a href="../../index.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</i></a></span></li>
+            <li><a href="../../controllers/logout.php" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</i></a></span></li>
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -128,6 +128,7 @@ $atividadeDAO = new AtividadeDAO();
             <div class="quadro-ativ">
                 <div class="atribuida">
                     <?php
+
                     foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
                         $dataArrumada = explode("-", $atividade["prazo_entrega"]);
                         $dataNova = $dataArrumada[2] . "/" . $dataArrumada[1] . "/" . $dataArrumada[0];
@@ -146,16 +147,34 @@ $atividadeDAO = new AtividadeDAO();
             <h1>Atividades recebidas</h1>
         </div>
         <div class="filtro-atividades">
-            <form>
+            <form action="../../controllers/filtroProfessor.php" method="GET">
                 <div class="div-turma1">
                     <label for="filtro-turma2">
                         <h1>Turma:</h1>
                     </label>
                     <select name="filtro-turma2" class="filtro-turma2" id="filtro-turma2">
+                    <option value="padrao">Todas as turmas</option>
                         <?php
-                        foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
-                            echo '<option value="' . $turma["cod_turma"] . '">' . $turma["nome_turma"] . '</option>';
-                        }
+                            if(isset($_SESSION['pesquisa']) && $_SESSION['pesquisa'] == true)
+                            {
+                                foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
+                                    if($_SESSION['turma'] == $turma['cod_turma'])
+                                    {
+                                        echo '<option value="' . $turma["cod_turma"] . '" selected>' . $turma["nome_turma"] . '</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="' . $turma["cod_turma"] . '">' . $turma["nome_turma"]  . '</option>';
+                                    }
+                                }
+                                
+                            }
+                            else
+                            {
+                                foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
+                                    echo '<option value="' . $turma["cod_turma"] . '">' . $turma["nome_turma"] . '</option>';
+                                }  
+                            }
                         ?>
                     </select>
                 </div>
@@ -164,10 +183,28 @@ $atividadeDAO = new AtividadeDAO();
                         <h1>Matéria:</h1>
                     </label>
                     <select name="filtro-materia" class="filtro-materia" id="filtro-materia">
-                    <?php
-                        foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
-                            echo '<option value="' . $turma["codDisciplina"] . '">' . $turma["nomeDisciplina"] . '</option>';
-                        }
+                    <option value="padrao">Todas as matérias</option>
+                    <?php                            
+                        if(isset($_SESSION['pesquisa']) && $_SESSION['pesquisa'] == true)
+                            {
+                                foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $turma) {
+                                    if($_SESSION['materia'] == $turma['codDisciplina'])
+                                    {
+                                        echo '<option value="' . $turma["codDisciplina"] . '" selected>' . $turma["nomeDisciplina"] . '</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="' . $turma["codDisciplina"] . '">' . $turma["nomeDisciplina"]  . '</option>';
+                                    }
+                                }
+                                
+                            }
+                            else
+                            {
+                                foreach ($turmas->buscarTurmaProfessor($_SESSION['usuario']) as $disciplina) {
+                                    echo '<option value="' . $turma["codDisciplina"] . '">' . $turma["nomeDisciplina"] . '</option>';
+                                }  
+                            }
                         ?>
                     </select>
                 </div>
@@ -176,10 +213,31 @@ $atividadeDAO = new AtividadeDAO();
                         <h1>Atividade:</h1>
                     </label>
                     <select name="filtro-atividade" class="filtro-atividade" id="filtro-atividade">
+                        <option value="padrao">Todas as atividades</option>
                         <?php
                         foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
                             echo '<option value="' . $atividade["cod_atividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
                         }
+                            if(isset($_SESSION['atividade']) && $_SESSION['pesquisa'] == true)
+                            {
+                                foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
+                                    if($_SESSION['atividade'] == $atividade['codAtividade'])
+                                    {
+                                        echo '<option value="' . $atividade["codAtividade"] . '" selected>' . $atividade["titulo_atividade"] . '</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="' . $atividade["codAtividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
+                                    }
+                                }   
+                                                    
+                            }
+                            else
+                            {
+                                foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
+                                        echo '<option value="' . $atividade["codAtividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
+                                }  
+                            }
                         ?>
                     </select>
                 </div>
@@ -195,8 +253,14 @@ $atividadeDAO = new AtividadeDAO();
                         <th class="headerStatus">Status</th>
                     </tr>
                     <?php
-                        $alunos = $atividadeDAO->listarAtividadeConcluidaAlunos($_SESSION['usuario']);
-
+                        if(isset($_SESSION['pesquisa']) && $_SESSION['pesquisa'] == true)
+                        {
+                            $alunos = $atividadeDAO->listarAtividadeConcluidaAlunosFiltrado($_SESSION['usuario'], $_SESSION['turma'], $_SESSION['materia'], $_SESSION['atividade']);
+                        }
+                        else
+                        {
+                            $alunos = $atividadeDAO->listarAtividadeConcluidaAlunos($_SESSION['usuario']);
+                        }
                         foreach($alunos as $dados){?>
                             <tr id="linhaAtiv">
                             <td class="celulaRm"><span class="rmAluno"><?php echo $dados['rmUsuario']?></span></td>
