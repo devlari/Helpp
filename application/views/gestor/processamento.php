@@ -236,7 +236,8 @@
                         echo "Rm professor 2: " . $rmProf2 . "<br>";
                         echo "Nome professor 2: " . $professor2 . "<br>";
                         echo "Turma atual: " . $turmaAtual . "<br><hr>";
-
+                        
+                        $_SESSION['cadastrado'] = true;
                        header("location: index.php");
                     }
                        
@@ -258,7 +259,9 @@
                
             //}
             else{
+                $_SESSION['cadastrado'] = false;
                 echo "Arquivo não foi carregado!";
+                header("location: index.php");
             }
 ?>
 

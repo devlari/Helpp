@@ -258,7 +258,7 @@ class AtividadeDAO extends Conn{
     }
 
     public function listarAtividadeConcluidaAlunos($rmProf){
-        $query = "Select u.rmUsuario, u.nomeUsuario, a.titulo_atividade, a.status, t.nome_turma from atividade a 
+        $query = "Select u.rmUsuario, u.nomeUsuario, a.titulo_atividade, a.status, t.nome_turma, a.mencao_atividade from atividade a 
         inner join pp b 
         on a.PP_Aluno_rmAluno = b.aluno_rmAluno and a.PP_Disciplina_codDisciplina = b.disciplina_codDisciplina
         inner join professor_pp c 

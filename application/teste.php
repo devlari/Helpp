@@ -73,7 +73,7 @@ function modalAtiv()
 {
     $conexao = conexao();
     $rm = $_GET['txtRm'];
-    $sql = "SELECT a.codAtividade, a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
+    $sql = "SELECT a.codAtividade, a.titulo_atividade, a.data_conclusao, a.arquivo_aluno, a.prazo_entrega, b.nomeUsuario, a.mencao_atividade from atividade as a inner join usuario as b on a.PP_Aluno_rmAluno = b.rmUsuario where a.PP_Aluno_rmAluno = $rm";
     $result = mysqli_query($conexao, $sql);
     $cont = mysqli_affected_rows($conexao);
     echo mysqli_error($conexao);
@@ -104,10 +104,47 @@ function modalAtiv()
                     <form action="">
                         <label for="mencaoAtiv" style="margin-top:15px;">Menção:</label>
                         <select name="mencaoAtiv" id="mencaoAtiv">
-                            <option value="MB">MB</option>
-                            <option value="B">B</option>
-                            <option value="R">R</option>
-                            <option value="I">I</option>
+                        <option value="0" disabled selected>Selecione uma menção</option>
+                            <?php
+                            if($resultado['mencao_atividade'] == null)
+                            {
+                                echo '<option value="MB">MB</option>
+                                <option value="B">B</option>
+                                <option value="R">R</option>
+                                <option value="I">I</option>';
+                            }
+                            else
+                            {
+                                    if($resultado['mencao_atividade'] == 'MB')
+                                    {
+                                        echo '<option value="MB" selected>MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R">R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencao_atividade'] == 'B')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B" selected>B</option>
+                                        <option value="R">R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencao_atividade'] == 'R')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R" selected>R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencao_atividade'] == 'I')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R">R</option>
+                                        <option value="I" selected>I</option>';
+                                    }
+                            }
+                            ?>
                         </select>
                 </div>
                 <input type="submit" style="float: left; margin-right: 7px;" class="botao-fechar" value="Enviar">
@@ -141,8 +178,10 @@ function modalPp()
         <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
         <div class="traco"></div>
         <div class="conteudo-modal">
-            <form action="" method="POST" id="form-mencao-final">
+        <form action="../../controllers/mencaoFinalPP.php" method="POST" id="form-mencao-final">
             <div class="linha-um-doc30">
+                <input type="hidden" name="rmAluno" value="<?php echo $rm?>">
+                <input type="hidden" name="codDisc" value="<?php echo $resultado['disciplina_codDisciplina']?>">
                 <span class="dados-pp">PP em: <?php echo $resultado['anoPP']; ?><br /><?php echo $resultado['disciplinaPP']; ?></span>
                 <div class="tabela-ativ-geral">
                     <?php
@@ -152,7 +191,6 @@ function modalPp()
                         <table class="tabela-atividades-pp" id="tabela-ativ-pp">
                             <tr>
                                 <th class="headerAtividade">Atividade</th>
-
                                 <th class="headerMencaoGeral">Menção</th>
                             </tr>
                             <tr>
@@ -160,19 +198,55 @@ function modalPp()
                                 <td class="celulaMencaoGeral"><?php echo $resultado2['mencao_atividade'] ?></td>
                             </tr>
                         <?php } else {
-                        echo "<h3>opa, esse aluno n tem atividades</h3>";
+                        echo "<h3>opa, esse aluno não tem atividades</h3>";
                     } ?>
                         </table>
                 </div>
                 <div class="Status-Mencao-PP">
                     <h1 class="statusPP"><?php echo $resultado['statusPP']; ?></h1>
                     <label name="mencao-final-pp">Menção final:</label>
-                    <select name="mencao-final-pp" id="mencao-final-pp" required>
-                        <option value="0" disabled selected>Selecione uma menção</option>
-                        <option value="1">MB</option>
-                        <option value="2">B</option>
-                        <option value="3">R</option>
-                        <option value="4">I</option>
+                    <select name="mencao-final" id="mencao-final-pp" required>
+                        <?php
+                            if($resultado['mencaoFinal'] == null)
+                            {
+                                echo '<option value="0" disabled selected>Selecione...</option>
+                                <option value="MB">MB</option>
+                                <option value="B">B</option>
+                                <option value="R">R</option>
+                                <option value="I">I</option>';
+                            }
+                            else
+                            {
+                                    if($resultado['mencaoFinal'] == 'MB')
+                                    {
+                                        echo '<option value="MB" selected>MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R">R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencaoFinal'] == 'B')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B" selected>B</option>
+                                        <option value="R">R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencaoFinal'] == 'R')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R" selected>R</option>
+                                        <option value="I">I</option>';
+                                    }
+                                    if($resultado['mencaoFinal'] == 'I')
+                                    {
+                                        echo '<option value="MB">MB</option>
+                                        <option value="B">B</option>
+                                        <option value="R">R</option>
+                                        <option value="I" selected>I</option>';
+                                    }
+                            }
+                            ?>
                     </select>
                     
                 </div>
@@ -221,7 +295,9 @@ function modalGestor()
     if ($cont > 0) {
         $resultado = mysqli_fetch_array($result);
         ?>
-            <form action="" method="POST">
+            <form action="../../controllers/darBaixa.php" method="POST">
+                <input type="hidden" name="rmAluno" value="<?php echo $rm?>">
+                <input type="hidden" name="codDisc" value="<?php echo $resultado['disciplina_codDisciplina']?>">
                 <h1 class="titulodomodal" style="font-size:30px; font-weight:900;"><?php echo $resultado['nomeUsuario']; ?></h1>
                 <div class="traco"></div>
                 <div class="conteudo-modal">
@@ -231,9 +307,26 @@ function modalGestor()
                         <div class="Status-Mencao-PP">
                             <label for="txtStatusPP" style="font-weight:bold;">Status:</label>
                             <select name="txtStatusPP" id="txtStatusPP">
-                                <!-- MOSTRAR O VALUE DO STATUS VINDO DO BANCO(TA ESTATICO)-->
-                                <option value="0">Em aberto</option>
-                                <option value="1">Concluida</option>
+                                <?php
+                                    if($resultado['statusPP'] == "Em aberto")
+                                    {
+                                        echo '<option value="Em aberto" selected>Em aberto</option>
+                                        <option value="Concluída">Concluida</option>';
+                                    }
+                                    else
+                                    {
+                                        if ($resultado['statusPP'] == "Concluída")
+                                        {
+                                            echo '<option value="Em aberto">Em aberto</option>
+                                            <option value="Concluída" selected>Concluida</option>';    
+                                        }
+                                        else
+                                        {
+                                            echo "??";
+                                        }
+
+                                    }
+                                ?>
                             </select>
                             <h3 class="mencaoFinal">Menção final: <?php echo $resultado['mencaoFinal']; ?></h3>
                         </div>

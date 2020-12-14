@@ -10,6 +10,19 @@
     <title>Faça login!</title>
   </head>
   <body>
+    <?php 
+    session_start();
+    if(isset($_SESSION['erro'])){
+      if($_SESSION['erro'] == 1){
+        ?>
+            <script>
+              alert("RM ou senha inválidos!")
+            </script>
+        <?php
+        unset($_SESSION['erro']);
+      }
+    }
+    ?>
     <div class="wrapper">
       <div class="half-one">
           <img src="../system/img/helpp.png" class="logo"></img>

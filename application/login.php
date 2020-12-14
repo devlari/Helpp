@@ -50,6 +50,7 @@
     }
     else
     {
+            $_SESSION['erro'] = 1;
             echo $_SESSION['usuario'];
             echo $_SESSION['cargo'];
             echo $senha;
