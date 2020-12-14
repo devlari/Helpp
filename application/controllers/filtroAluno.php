@@ -14,12 +14,12 @@
     $_SESSION['filtro'] = $filtro;
     if ($filtro != "padrao")
     {
-        $_SESSION['pesquisa'] = 'true';
+        $_SESSION['pesquisa'] = true;
         $atividadeDAO->listarAtividadeAlunoAtribuidaFiltrado($aluno, $filtro);
     } 
     else
     {
-        $_SESSION['pesquisa'] = 'false';
+        $_SESSION['pesquisa'] = false;
         $atividadeDAO->listarAtividadeAlunoAtribuida($aluno);
     }
 
