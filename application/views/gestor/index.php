@@ -30,12 +30,11 @@
             <img src="../../../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="./" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
             <li><a href="cadastroCurso.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar curso</span></a></li>
             <li><a href="cadastroTurma.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar turma</span></a></li>
             <li><a href="cadastroDisciplina.php" class="config"><i class="far fa-plus-square"></i><span class="spanConfig">Criar disciplina</span></a></li>
             <li><a href="../configUsuario.php" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
             <li><a href="../../" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
         </ul>
         <div class="burguer" id="burger">
@@ -69,41 +68,42 @@
                 </tr>
                 <?php
                 $PPDAO = new PPDAO();
-                if($PPDAO->consultar() == false){
+                if ($PPDAO->consultar() == false) {
                     //echo "Não há alunos cadastrados";
-                }else{
+                } else {
+                    
                     foreach ($PPDAO->consultar() as $Pps) {
-                    $rmAluno = $Pps["aluno_rmAluno"];
-                    foreach ($PPDAO->buscarDisciplina($Pps["disciplinaPP"]) as $disc){
-                        $codDisc = $disc["codDisciplina"];
-                    }
-                    echo "<tr id='linhaPPGestor'>";
-                    echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
-                    echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
-                    echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
-                    echo "<td class='celulaMateria'>" . $Pps["disciplinaPP"] . "</td>";
-                    echo "<td class= 'celulaSemestre'>" .  $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
-                    echo "<td class= 'celulaPeriodo'>" . $Pps["periodoPP"] . "</td>";
-                    
-                    $PPDAO->consultarProfPP($rmAluno, $codDisc);
-                    $profs = $PPDAO->getResultado();
-                    
-                        if(sizeof($PPDAO->getResultado()) == 2){
-                            foreach ($PPDAO->getResultado() as $prof){
+                        $rmAluno = $Pps["aluno_rmAluno"];
+                        foreach ($PPDAO->buscarDisciplina($Pps["disciplinaPP"]) as $disc) {
+                            $codDisc = $disc["codDisciplina"];
+                        }
+                        echo "<tr id='linhaPPGestor'>";
+                        echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
+                        echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
+                        echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
+                        echo "<td class='celulaMateria'>" . $Pps["disciplinaPP"] . "</td>";
+                        echo "<td class= 'celulaSemestre'>" .  $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
+                        echo "<td class= 'celulaPeriodo'>" . $Pps["periodoPP"] . "</td>";
+
+                        $PPDAO->consultarProfPP($rmAluno, $codDisc);
+                        $profs = $PPDAO->getResultado();
+
+                        if (sizeof($PPDAO->getResultado()) == 2) {
+                            foreach ($PPDAO->getResultado() as $prof) {
                                 echo "<td class= 'celulaProfessor1'>" . $prof["nomeUsuario"] . "</td>";
                             }
-                        }else{
-                            foreach ($PPDAO->getResultado() as $prof){
+                        } else {
+                            foreach ($PPDAO->getResultado() as $prof) {
                                 echo "<td class= 'celulaProfessor1'>" . $prof["nomeUsuario"] . "</td>";
                                 echo "<td class='celulaProfessor2'>" .  '' . "</td>";
                             }
                         }
-                    
-                    echo "<td class= 'celulaTurmaAtual'>" . $Pps["turmaAtualPP"] . "</td>";
-                    echo "<td class='celulaConcluiu'></td>";
-                    echo "<td class='celulaMencao'></td>";
-                    echo "</tr>";
-                }
+
+                        echo "<td class= 'celulaTurmaAtual'>" . $Pps["turmaAtualPP"] . "</td>";
+                        echo "<td class='celulaConcluiu'></td>";
+                        echo "<td class='celulaMencao'></td>";
+                        echo "</tr>";
+                    }
                 }
                 ?>
                 <!--<tr>
@@ -126,7 +126,7 @@
                     <div class="modal-alert">
                         <h3 class="tituloModalAlert">Atenção!</h3>
                         <div class="traco"></div><br />
-                        <span id="spnAviso">aaaaaaaaaaaaaaaaaaaaaaaaaaaa?</span><br />
+                        <span id="spnAviso"></span><br />
                         <div class="botoes">
                             <input type="submit" class="btnImportar" value="Sim">
                             <div class="botao">Não</div>
@@ -139,107 +139,110 @@
         $turmaDAO = new TurmaDAO();
         ?>
     </section>
-    <section class="management-class-section">
-        <h1>Gerenciamento de turmas</h1>
-        <div class="management-class">
-            <table class="management-table" cellspacing="0">
-                <tr>
-                    <th class="thNomeTurma">Nome</th>
-                    <th class="thAnoTurma">Ano</th>
-                    <th class="thCursoTurma">Curso</th>
-                    <th class="thAcaoTurma">Ação</th>
-                </tr>
-                <?php
-                //if ($turmaDAO->getRowCount() >= 1):
-                $query = "SELECT t.cod_turma, t.nome_turma, t.ano_turma, c.nome_curso FROM turma AS t INNER JOIN curso AS c ON t.cod_curso = c.cod_curso";
-                $turmaDAO->consultar($query);
-                
-                if($turmaDAO->consultar($query) == false){
-                    //echo "Não há turmas cadastradas";
-                }else{
-                foreach ($turmaDAO->consultar($query) as $turma) :
-                    echo "<tr>";
-                    echo "<td class='tdNomeTurma'>{$turma["nome_turma"]}</td>";
-                    echo "<td class='tdAnoTurma'>{$turma["ano_turma"]}</td>";
-                    echo "<td class='tdNomeCurso'>{$turma["nome_curso"]}</td>";
-                    echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='../../controllers/excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
-                    echo "</tr>";
-                endforeach;
+
+
+    <?php
+    //if ($turmaDAO->getRowCount() >= 1):
+    $query = "SELECT t.cod_turma, t.nome_turma, t.ano_turma, c.nome_curso FROM turma AS t INNER JOIN curso AS c ON t.cod_curso = c.cod_curso";
+    $turmaDAO->consultar($query);
+
+    if ($turmaDAO->consultar($query) == false) {
+    } else { ?>
+        <section class="management-class-section">
+            <h1>Gerenciamento de turmas</h1>
+            <div class="management-class">
+                <table class="management-table" cellspacing="0">
+                    <tr>
+                        <th class="thNomeTurma">Nome</th>
+                        <th class="thAnoTurma">Ano</th>
+                        <th class="thCursoTurma">Curso</th>
+                        <th class="thAcaoTurma">Ação</th>
+                    </tr> <?php
+                            foreach ($turmaDAO->consultar($query) as $turma) :
+                                echo "<tr>";
+                                echo "<td class='tdNomeTurma'>{$turma["nome_turma"]}</td>";
+                                echo "<td class='tdAnoTurma'>{$turma["ano_turma"]}</td>";
+                                echo "<td class='tdNomeCurso'>{$turma["nome_curso"]}</td>";
+                                echo "<td class='tdAcao'><a class='link-acao' href='editarTurma.php?ID={$turma["cod_turma"]}'>Editar</a> <a href='../../controllers/excluirTurma.php?ID={$turma["cod_turma"]}'>Excluir</a></td>";
+                                echo "</tr>";
+                            endforeach; ?>
+                </table>
+            </div> <?php
                 }
                 //endif;
-                ?>
-            </table>
-        </div>
-        <h1>Gerenciar cursos</h1>
-        <div class="management-class">
-            <table class="management-table">
-                <tr>
-                    <th class="thCursoTurma">Nome</th>
-                    <th class="thEixoCurso">Eixo</th>
-                    <th class="thAcaoTurma" style="border-right:none;">Ação</th>
-                </tr>
-                <?php
-                $cursoDAO = new CursoDAO();
-                $query = "SELECT * FROM curso";
+                    ?>
 
-                if($turmaDAO->consultar($query) == false){
-                    
-                }else{
-                foreach ($cursoDAO->consultar($query) as $curso) :
-                    echo "<tr>";
-                    echo "<td>" . $curso["nome_curso"] . "</td>";
-                    echo "<td class='tdAnoTurma'>" . $curso["eixo_curso"] . "</td>";
-                    echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=../../controllers/excluirCurso.php?ID={$curso["cod_curso"]}>Excluir</a></td>";
-                    echo "</tr>";
-                endforeach;
+        <?php
+        $cursoDAO = new CursoDAO();
+        $query = "SELECT * FROM curso";
+
+        if ($turmaDAO->consultar($query) == false) {
+        } else { ?>
+            <h1>Gerenciar cursos</h1>
+            <div class="management-class">
+                <table class="management-table">
+                    <tr>
+                        <th class="thCursoTurma">Nome</th>
+                        <th class="thEixoCurso">Eixo</th>
+                        <th class="thAcaoTurma" style="border-right:none;">Ação</th>
+                    </tr> <?php
+                            foreach ($cursoDAO->consultar($query) as $curso) :
+                                echo "<tr>";
+                                echo "<td>" . $curso["nome_curso"] . "</td>";
+                                echo "<td class='tdAnoTurma'>" . $curso["eixo_curso"] . "</td>";
+                                echo "<td class='tdAcao'><a class='link-acao'href=editarCurso.php?ID={$curso["cod_curso"]}>Editar</a> <a href=../../controllers/excluirCurso.php?ID={$curso["cod_curso"]}>Excluir</a></td>";
+                                echo "</tr>";
+                            endforeach; ?>
+                </table>
+            </div> <?php
                 }
-                ?>
-            </table>
-        </div>
-        <h1>Gerenciar disciplinas</h1>
-        <div class="management-class">
-        <table class="management-table disciplina">
-            <tr>
-                <th class="thDisciplinaTurma">Nome</th>
-                <th class="thAnoTurma">Sigla</th>
-                <th class="thEixoCurso">Turma</th>
-                <th class="thAcaoDisciplina">Ação</th>
-            </tr>
-            <?php
-            //if ($turmaDAO->getRowCount() >= 1):
-            $disciplinaDAO = new DisciplinaDAO();
-            $query = "SELECT * FROM disciplina";
+                    ?>
 
-            $disciplinaDAO->consultar($query);
-            
-            if($disciplinaDAO->consultar($query) == false){
-                
-            }else{
-            foreach ($disciplinaDAO->consultar($query) as $disciplina) :
-                echo "<td>" . $disciplina["nomeDisciplina"] . "</td>";
-                echo "<td>" . $disciplina["siglaDisciplina"] . "</td>";
-                $query2 = "SELECT t.nome_turma FROM turma AS t INNER JOIN disciplina d ON t.cod_turma = d.codTurma WHERE d.codDisciplina = {$disciplina["codDisciplina"]}";
-                if ($disciplinaDAO->consultar($query2) > 1) :
-                    foreach ($disciplinaDAO->consultar($query2) as $turma) :
-                        echo "<td>" . $turma["nome_turma"] . "</td>";
-                    endforeach;
-                    echo " <td class='tdAcao'><a href=editarDisciplina.php?ID={$disciplina["codDisciplina"]} class='link-acao'>Editar</a> <a href=# class='link-acao'>Excluir</a></td>";
-                endif;
-                echo "</tr>";
-            endforeach;
-            }
 
-            //endif;
-            ?>
-        </table>
+        <?php
+        //if ($turmaDAO->getRowCount() >= 1):
+        $disciplinaDAO = new DisciplinaDAO();
+        $query = "SELECT * FROM disciplina";
+
+        $disciplinaDAO->consultar($query);
+
+        if ($disciplinaDAO->consultar($query) == false) {
+        } else { ?>
+            <h1>Gerenciar disciplinas</h1>
+            <div class="management-class">
+                <table class="management-table disciplina">
+                    <tr>
+                        <th class="thDisciplinaTurma">Nome</th>
+                        <th class="thAnoTurma">Sigla</th>
+                        <th class="thEixoCurso">Turma</th>
+                        <th class="thAcaoDisciplina">Ação</th>
+                    </tr> <?php
+                            foreach ($disciplinaDAO->consultar($query) as $disciplina) :
+                                echo "<td>" . $disciplina["nomeDisciplina"] . "</td>";
+                                echo "<td>" . $disciplina["siglaDisciplina"] . "</td>";
+                                $query2 = "SELECT t.nome_turma FROM turma AS t INNER JOIN disciplina d ON t.cod_turma = d.codTurma WHERE d.codDisciplina = {$disciplina["codDisciplina"]}";
+                                if ($disciplinaDAO->consultar($query2) > 1) :
+                                    foreach ($disciplinaDAO->consultar($query2) as $turma) :
+                                        echo "<td>" . $turma["nome_turma"] . "</td>";
+                                    endforeach;
+                                    echo " <td class='tdAcao'><a href=editarDisciplina.php?ID={$disciplina["codDisciplina"]} class='link-acao'>Editar</a> <a href=# class='link-acao'>Excluir</a></td>";
+                                endif;
+                                echo "</tr>";
+                            endforeach; ?>
+                </table>
+            </div> <?php
+                }
+
+                //endif;
+                    ?>
+
+        </section>
+        <div class="modal-container" id="modal-gestor">
+            <div class="modal-doc30" id="modal-doc-gestor">
+
+            </div>
         </div>
-    </section>
-    <div class="modal-container" id="modal-gestor">
-        <div class="modal-doc30" id="modal-doc-gestor">
-            
-        </div>
-    </div>
-    <script src="../../../system/js/app.js"></script>
+        <script src="../../../system/js/app.js"></script>
 </body>
 
 </html>
