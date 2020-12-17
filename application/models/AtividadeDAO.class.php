@@ -298,7 +298,7 @@ class AtividadeDAO extends Conn{
 
         if ($turma == "padrao" && $materia == "padrao" && $atividade == "padrao")
         {
-            $query2 = "";
+            $query2 = " ORDER BY a.status asc";
         }
         else
         {

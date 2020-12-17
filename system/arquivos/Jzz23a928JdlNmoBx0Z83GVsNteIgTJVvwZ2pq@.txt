@@ -1,0 +1,93 @@
+Documentação - Revisão:
+
+- Ajuste no folder, parte dos alunos
+
+- Análise de requisitos
+
+- Fontes que foram feitas na internet
+
+- Verificar os requisitos 
+
+- Verificar os diagramas:
+    - Caso de uso (ajustar o caso de uso de atividade)
+    - Classe (desatualizado)
+    - DER (desatualizado)
+    - Ajustar o script (MUITO desatualizado)
+
+- Adicionar o modelo da planilha
+
+Programação - Revisão
+
+Implementar IMEDIATAMENTE:
+- Terminar o login (Logout e restrição de página)
+- Criptografia de senha
+- Gerar doc.30 e doc.31
+- Verificações (não é certeza)
+[19:44]
+Requisitos Funcionais:
+
+1 - OK (só implementar que a lista é de acordo com o usuário)
+2 - OK
+3 - OK
+4 - OK
+5 - OK
+6 - NOT OK. Arrumar o número do anexo e numeração da pag
+7 - Verificar com a prof se o nosso sistema realmente vai ter relação com a impressão
+8 - OK
+9 - NOT OK. Arrumar o número do anexo e numeração da página
+10 - Verificar com a prof, mesmo motivo do 7
+11 - OK
+12 - Meio OK, verificar a questão do cronograma
+13 - Apagar
+14 - OK
+15 - OK
+16 - Meio OK, verificar a questão do cronograma
+17 - OK
+18 - Verificar a questão da impressão
+
+Add *:
+O sistema só deve aceitar a planilha importada se ela estiver com os dados coerentes segundo o modelo
+criado.
+
+Requisitos não funcionais:
+1 - OK
+2 - Apagar a parte do mobile
+3 - Apagar
+4 - Apagar
+
+Regras de negócio:
+
+1 - OK (arrumar a parte do gestor)
+2 - Rever por causa da impressão
+3 - || 
+4 - OK
+[19:44]
+Projeto solução: Arrumar o nome e a parte da limpeza de dados
+
+Projeto infra: Arrumar a parte da impressão
+
+Narrativa de caso de uso
+- Arrumar o caso referente a visualização de PP
+
+Diagrama de classe:
+- Verificar os atributos e o nivel de segurança
+- Verificar os métodos, tem mt coisa estranha e que não faz mais sentido
+[19:45]
+Banco de dados: 
+Usuario: email n ta sendo usado, manter ele pra implementar futuramente ou não?
+
+Aluno:
+- Verificar se o rmUsuario herdado pelas tabelas pode ser fk e pk das mesmas, ao invés de manter
+essa fk mais uma pk, sendo que as duas vão ter o mesmo conteúdo
+
+Turma: Remover o anoTurma, verificar a questão da sigla (não ta constando na doc, mas ver se vai manter)
+
+Disciplina: Verificar a questão da sigla
+
+Curso: OK
+
+PP: Adicionar o campo período e turma atual
+
+Atividade: Adicionar o campo arquivo aluno/prof (por essa diferença)
+
+Banco e Script: verificar a questão da padronização dos nomes (PRINCIPALMENTE NO SCRIPT), e se o script deve ser do MYSQL (gerado no phpmyadmin) ou sql server mesmo

@@ -33,7 +33,24 @@
       <div class="modal-container" id="modal-aviso">
         <div class="modal">
           <h3 class="tituloModal">Opa!</h3><br/>
-          <span>Você precisa atualizar sua senha!</span>
+          <?php
+          session_start();
+            if(isset($_SESSION['erro'])){
+              if($_SESSION['erro'] == 1){
+          ?>
+                <div>
+                  <span>Senhas não coincidem!</span>
+                </div>
+          <?php
+          unset($_SESSION['erro']);
+              }
+            }
+            else{ 
+          ?>
+              <span>Você precisa atualizar sua senha!</span>
+          <?php
+            }
+          ?>
           <button class="botao">OK!</button>
         </div>
       </div>

@@ -10,19 +10,6 @@
     <title>Faça login!</title>
   </head>
   <body>
-    <?php 
-    session_start();
-    if(isset($_SESSION['erro'])){
-      if($_SESSION['erro'] == 1){
-        ?>
-            <script>
-              alert("RM ou senha inválidos!")
-            </script>
-        <?php
-        unset($_SESSION['erro']);
-      }
-    }
-    ?>
     <div class="wrapper">
       <div class="half-one">
           <img src="../system/img/helpp.png" class="logo"></img>
@@ -41,6 +28,19 @@
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha" placeholder="Senha" name="txtSenha" id="txtSenha" required>  
             <input type="submit" class="btnEntrar" value="Entrar"><br/><br/>
+            <?php 
+            session_start();
+            if(isset($_SESSION['erro'])){
+            if($_SESSION['erro'] == 1){
+            ?>
+            <div>
+              <P>Login/senha incorretos!</P>
+            </div>
+            <?php
+            unset($_SESSION['erro']);
+              }
+            }
+            ?>
             <!--<a href="#" class="esqueceu-senha">Esqueceu a senha?</a>-->
           </div>
         </form>

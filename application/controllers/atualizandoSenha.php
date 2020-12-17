@@ -22,5 +22,11 @@
 		
 		header("location:../");
 	}
+	else
+	{
+		$_SESSION['erro'] = 1;
+
+		header("location:../views/login/atualizarSenha.php");
+	}
 
 ?> 
