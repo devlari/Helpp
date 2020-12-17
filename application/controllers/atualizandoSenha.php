@@ -14,7 +14,9 @@
 
 	if($senha == $senha2)
 	{
-		$query = "UPDATE usuario SET senhaUsuario = '{$senha}' WHERE rmUsuario = '{$_SESSION['usuario']}'";
+		$senhaCriptografada = sha1($senha);
+
+		$query = "UPDATE usuario SET senhaUsuario = '{$senhaCriptografada}' WHERE rmUsuario = '{$_SESSION['usuario']}'";
 
 		$result = mysqli_query($conexao, $query);
 		
