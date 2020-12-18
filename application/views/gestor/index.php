@@ -58,6 +58,11 @@
                 </script> <?php
             }
         }
+        if($_SESSION['cargo'] != "Gestor")
+        {
+            $_SESSION['erro'] = 3;
+            header("location:../../");
+        }
     ?>
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">

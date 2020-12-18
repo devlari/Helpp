@@ -1,4 +1,9 @@
 <?php
+        if($_SESSION['cargo'] != "Gestor")
+        {
+            $_SESSION['erro'] = 3;
+            header("location:../../");
+        }
             session_start();
             echo "<h1>Pagina de processamento </h1><br>";
             

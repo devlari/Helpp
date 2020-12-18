@@ -19,6 +19,12 @@
 
     $lerTurma = new Read();
     $lerTurma->ExeRead('turma');
+
+    if($_SESSION['cargo'] != "Gestor")
+    {
+        $_SESSION['erro'] = 3;
+        header("location:../../");
+    }
     ?>
     <nav id="navbar-helpp">
         <div class="logo">

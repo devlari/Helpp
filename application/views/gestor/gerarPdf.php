@@ -1,5 +1,11 @@
 <?php
 
+if($_SESSION['cargo'] != "Gestor")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
+
 require_once '../../../Libraries/dompdf/lib/html5lib/Parser.php';
 require_once '../../../Libraries/dompdf/lib/php-font-lib-master/src/FontLib/Autoloader.php';
 require_once '../../../Libraries/dompdf/lib/php-svg-lib-master/src/autoload.php';

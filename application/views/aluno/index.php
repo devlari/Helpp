@@ -16,6 +16,12 @@ $atividades = new AtividadeDAO();
 $UsuarioDAO = new UsuarioDAO();
 $aluno = new AlunoDAO();
 
+if($_SESSION['cargo'] != "Aluno")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,6 +65,7 @@ $aluno = new AlunoDAO();
                 foreach ($aluno->getTurmaAluno($_SESSION['usuario']) as $user) {
                     echo "<li>Série: " . $user["nome_turma"] . "</li>";
                 }
+                echo $_SESSION['cargo'];
                 ?>
             </ul>
         </div>
@@ -77,6 +84,7 @@ $aluno = new AlunoDAO();
                         echo "<tr>";
                         echo '<td class="celulaMateria">' . $pp["disciplinaPP"] . '</option>';
                         echo '<td class="celulaProfessor">' . $pp["nomeUsuario"] . '</option>';
+                        echo '<td class="celulaProfessor"> </option>';
                         echo '<td class="celulaConcluiu">' . $pp["statusPP"] . '</option>';
                         echo '<td class="celulaMencao">' . $pp["mencaoFinal"] . '</option>';
                         echo "</tr>";
@@ -154,7 +162,7 @@ $aluno = new AlunoDAO();
                     if ($quantidadeAtribuido == 0)
                     {
                         echo '<div class="vazio">
-                        <span>Você não possuí atividades atribuídas!</span>
+                        <span><b>Você não possui atividades atribuídas!</b></span>
                         </div>';
                     }
                     else

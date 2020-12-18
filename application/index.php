@@ -28,20 +28,32 @@
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha" placeholder="Senha" name="txtSenha" id="txtSenha" required>  
             <input type="submit" class="btnEntrar" value="Entrar"><br/><br/>
-            <?php 
-            session_start();
-            if(isset($_SESSION['erro'])){
-            if($_SESSION['erro'] == 1){
-            ?>
             <div>
-              <P>Login/senha incorretos!</P>
-            </div>
+            <?php 
+              session_start();
+              if(isset($_SESSION['erro']))
+              {
+                if($_SESSION['erro'] == 1)
+                {
+            ?>
+                  <P>Login/senha incorretos!</P>
             <?php
-            unset($_SESSION['erro']);
+                }
+                else
+                {
+                  if($_SESSION['erro'] == 3)
+                  {
+            ?>
+                    <P>Acesso negado!</P> 
+            <?php      
+                    unset($_SESSION['cargo']);      
+                  }
+               }
+              unset($_SESSION['erro']);
               }
-            }
             ?>
             <!--<a href="#" class="esqueceu-senha">Esqueceu a senha?</a>-->
+            </div>
           </div>
         </form>
       </div>

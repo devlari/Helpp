@@ -21,7 +21,7 @@
             <input type="password" class="txtSenha2" placeholder="Senha" name="txtSenha" id="txtSenha" required>
             <label for="txtSenha2" id="lblSenha2" class="lblSenha2"></label>
             <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="txtSenha2" id="txtSenha2" required><br/>  
-            <input type="submit" class="btnEntrar2" value="Entrar"><br/><br/>
+            <input type="submit" class="btnEntrar2" value="Redefinir"><br/><br/>
           </div>
         </form>
       </div>
