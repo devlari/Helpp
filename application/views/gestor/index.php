@@ -43,7 +43,31 @@
             <div class="linha3"></div>
         </div>
     </nav>
+<<<<<<< HEAD
    
+=======
+    <?php 
+        if(isset($_SESSION['cadastrado'])){
+            if($_SESSION['cadastrado']){
+                ?>
+                <script>
+                    alert("Planilha importada com sucesso!")
+                </script> <?php
+                unset($_SESSION['cadastrado']);
+            }else{
+                ?>
+                <script>
+                    alert("Falha na importação da planilha!")
+                </script> <?php
+            }
+        }
+        if($_SESSION['cargo'] != "Gestor")
+        {
+            $_SESSION['erro'] = 3;
+            header("location:../../");
+        }
+    ?>
+>>>>>>> 04c97937ac40782cef6a1f1120a7a3d998289b5e
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>

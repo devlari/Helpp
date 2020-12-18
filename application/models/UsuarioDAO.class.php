@@ -111,7 +111,7 @@ class UsuarioDAO extends Conn{
         $query = "SELECT * FROM usuario WHERE senhaUsuario = ? AND rmUsuario = ?";
 
         $verifica = Conn::getConn()->prepare($query);
-        $verifica->bindValue(1, $senha);
+        $verifica->bindValue(1, sha1($senha));
         $verifica->bindValue(2, $rm);
         $verifica->execute();
 

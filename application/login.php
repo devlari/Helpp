@@ -7,8 +7,9 @@
     $_SESSION['usuario'] = mysqli_real_escape_string($conexao, $_POST['txtRM']);
     $_SESSION['cargo'] = $_POST['cargo'];
     $senha = mysqli_real_escape_string($conexao, $_POST['txtSenha']);
+    $senhaCriptografada = sha1($senha);
 
-    $query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$_SESSION['usuario']}' AND senhaUsuario = '{$senha}' AND perfilUsuario = '{$_SESSION['cargo']}'";
+    $query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$_SESSION['usuario']}' AND senhaUsuario = '{$senhaCriptografada}' AND perfilUsuario = '{$_SESSION['cargo']}'";
     $result = mysqli_query($conexao, $query);
     $row = mysqli_num_rows($result);
 

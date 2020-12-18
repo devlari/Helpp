@@ -13,6 +13,12 @@ if (isset($_GET['codAtiv'])) :
 else :
     $idAtiv = null;
 endif;
+
+if($_SESSION['cargo'] != "Professor")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

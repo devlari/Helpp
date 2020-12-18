@@ -17,6 +17,12 @@ $aluno = new AlunoDAO();
 $atividade = new Atividade();
 $atividadeDAO = new AtividadeDAO();
 
+if($_SESSION['cargo'] != "Professor")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -202,7 +208,7 @@ $atividadeDAO = new AtividadeDAO();
                         <option value="padrao">Todas as atividades</option>
                         <?php
                         foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {
-                            echo '<option value="' . $atividade["cod_atividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
+                            echo '<option value="' . $atividade["codAtividade"] . '">' . $atividade["titulo_atividade"] . '</option>';
                         }
                         if (isset($_SESSION['atividade']) && $_SESSION['pesquisa'] == true) {
                             foreach ($atividades->listarAtividadeProf($_SESSION['usuario']) as $atividade) {

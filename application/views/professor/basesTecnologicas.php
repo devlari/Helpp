@@ -6,6 +6,11 @@ require("../../models/AlunoDAO.class.php");
 
 $aluno = new AlunoDAO();
 
+if($_SESSION['cargo'] != "Professor")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

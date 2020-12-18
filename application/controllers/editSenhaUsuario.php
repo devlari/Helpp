@@ -19,7 +19,7 @@
             if($novaSenha == $confirmarSenha)
             {
                 $usuario->setID($rmUsuario);
-                $usuario->setSenha($novaSenha);
+                $usuario->setSenha(sha1($novaSenha));
                 $usuarioDAO->atualizaSenha($usuario);
 
                 if($_SESSION['cargo'] == "Aluno")
@@ -39,11 +39,13 @@
             }
             else
             {
-                echo "Senhas novas não coincidem!";
+                $_SESSION['erro'] = 2;
+                header("location:../views/editarSenha.php");
             }
         }
         else
         {
-            echo "senha inválida!";
+            $_SESSION['erro'] = 1;
+            header("location:../views/editarSenha.php");
         }
 ?>

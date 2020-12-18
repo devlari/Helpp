@@ -11,6 +11,12 @@ $disciplina = new Disciplina();
 $disciplinaDAO = new DisciplinaDAO();
 $turmas = new TurmaDAO();
 session_start();
+
+if($_SESSION['cargo'] != "Professor")
+{
+    $_SESSION['erro'] = 3;
+    header("location:../../");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -20,7 +20,27 @@
             <input type="password" class="txtSenha2" placeholder="Senha atual" name="senhaAtual" id="txtSenha" required>
             <input type="password" class="txtSenha2" placeholder="Senha nova" name="senha1" id="txtSenha" required>
             <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="senha2" id="txtSenha2" required><br/>  
-            <input type="submit" class="btnEntrar2" value="Entrar"><br/><br/>
+            <input type="submit" class="btnEntrar2" value="Alterar"><br/><br/>
+            <?php 
+            session_start();
+            if(isset($_SESSION['erro'])){
+              if($_SESSION['erro'] == 1){
+              ?>
+              <div>
+                <P>Senha atual incorreta!</P>
+              </div>
+              <?php
+              }
+              if($_SESSION['erro'] == 2){
+              ?>
+                <div>
+                  <P>Senhas não coincidem!</P>
+                </div>
+              <?php
+              }
+              unset($_SESSION['erro']);
+            }
+            ?>
           </div>
         </form>
       </div>

@@ -10,6 +10,7 @@
     <title>Faça login!</title>
   </head>
   <body>
+<<<<<<< HEAD
     <?php 
     /*session_start();
     if(isset($_SESSION['erro'])){
@@ -23,6 +24,8 @@
       }
     }*/
     ?>
+=======
+>>>>>>> 04c97937ac40782cef6a1f1120a7a3d998289b5e
     <div class="wrapper">
       <div class="half-one">
           <img src="../system/img/helpp.png" class="logo"></img>
@@ -41,7 +44,32 @@
             <label for="txtSenha" id="lblSenha" class="lblSenha"></label>
             <input type="password" class="txtSenha" placeholder="Senha" name="txtSenha" id="txtSenha" required>  
             <input type="submit" class="btnEntrar" value="Entrar"><br/><br/>
+            <div>
+            <?php 
+              session_start();
+              if(isset($_SESSION['erro']))
+              {
+                if($_SESSION['erro'] == 1)
+                {
+            ?>
+                  <P>Login/senha incorretos!</P>
+            <?php
+                }
+                else
+                {
+                  if($_SESSION['erro'] == 3)
+                  {
+            ?>
+                    <P>Acesso negado!</P> 
+            <?php      
+                    unset($_SESSION['cargo']);      
+                  }
+               }
+              unset($_SESSION['erro']);
+              }
+            ?>
             <!--<a href="#" class="esqueceu-senha">Esqueceu a senha?</a>-->
+            </div>
           </div>
         </form>
       </div>

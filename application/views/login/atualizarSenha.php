@@ -21,7 +21,7 @@
             <input type="password" class="txtSenha2" placeholder="Senha" name="txtSenha" id="txtSenha" required>
             <label for="txtSenha2" id="lblSenha2" class="lblSenha2"></label>
             <input type="password" class="txtSenha2" placeholder="Confirme a Senha" name="txtSenha2" id="txtSenha2" required><br/>  
-            <input type="submit" class="btnEntrar2" value="Entrar"><br/><br/>
+            <input type="submit" class="btnEntrar2" value="Redefinir"><br/><br/>
           </div>
         </form>
       </div>
@@ -33,7 +33,24 @@
       <div class="modal-container" id="modal-aviso">
         <div class="modal">
           <h3 class="tituloModal">Opa!</h3><br/>
-          <span>Você precisa atualizar sua senha!</span>
+          <?php
+          session_start();
+            if(isset($_SESSION['erro'])){
+              if($_SESSION['erro'] == 1){
+          ?>
+                <div>
+                  <span>Senhas não coincidem!</span>
+                </div>
+          <?php
+          unset($_SESSION['erro']);
+              }
+            }
+            else{ 
+          ?>
+              <span>Você precisa atualizar sua senha!</span>
+          <?php
+            }
+          ?>
           <button class="botao">OK!</button>
         </div>
       </div>
