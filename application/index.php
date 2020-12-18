@@ -11,7 +11,7 @@
   </head>
   <body>
     <?php 
-    session_start();
+    /*session_start();
     if(isset($_SESSION['erro'])){
       if($_SESSION['erro'] == 1){
         ?>
@@ -21,7 +21,7 @@
         <?php
         unset($_SESSION['erro']);
       }
-    }
+    }*/
     ?>
     <div class="wrapper">
       <div class="half-one">

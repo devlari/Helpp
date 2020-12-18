@@ -3,6 +3,7 @@
     require('../config/Conn.class.php');
     require('../models/Atividade.class.php');
     require('../models/AtividadeDAO.class.php');
+    
     session_start();
 
     $filtro = $_GET['filtro_disciplina'];

@@ -3,14 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/PPDAO.class.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/UsuarioDAO.class.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/Professor.class.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/ProfessorDAO.class.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/Usuario.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/views/gestor/processamento.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/TurmaDAO.class.php</file>
-            <file>file:/C:/xampp/htdocs/Helpp/application/models/AlunoDAO.class.php</file>
+            <file>file:/C:/xampp/htdocs/Helpp/system/js/app.js</file>
         </group>
     </open-files>
 </project-private>

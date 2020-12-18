@@ -43,22 +43,7 @@
             <div class="linha3"></div>
         </div>
     </nav>
-    <?php 
-        if(isset($_SESSION['cadastrado'])){
-            if($_SESSION['cadastrado']){
-                ?>
-                <script>
-                    alert("Planilha importada com sucesso!")
-                </script> <?php
-                unset($_SESSION['cadastrado']);
-            }else{
-                ?>
-                <script>
-                    alert("Falha na importação da planilha!")
-                </script> <?php
-            }
-        }
-    ?>
+   
     <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
@@ -122,8 +107,24 @@
                 }
                 ?>
             </table>
+            <?php 
+        if(isset($_SESSION['cadastrado'])){
+            if($_SESSION['cadastrado']){
+                ?>
+                <script>
+                    alert("Planilha importada com sucesso!")
+                </script> <?php
+                echo "<a href='gerarPdf.php'>Gerar PDF</a>";
+                unset($_SESSION['cadastrado']);
+            }else{
+                ?>
+                <script>
+                    alert("Falha na importação da planilha!")
+                </script> <?php
+            }
+        }
+    ?>
             
-            <a href="gerarPdf.php">Gerar PDF</a>
             <form method="POST" action="processamento.php" enctype="multipart/form-data">
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
